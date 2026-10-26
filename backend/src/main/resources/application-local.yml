@@ -1,0 +1,16 @@
+# No Docker, MySQL, Python coordinator, .env or judge secret required.
+# File database is shared across launch directories and survives API restarts.
+server:
+  address: 127.0.0.1
+spring:
+  datasource:
+    url: jdbc:h2:file:${quest.data-dir}/javaquest;MODE=MySQL;DATABASE_TO_LOWER=TRUE;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ${LOCAL_DB_PASSWORD:}
+  h2:
+    console:
+      enabled: false
+quest:
+  data-dir: ${QUEST_DATA_DIR:${user.home}/.java-quest}
+  judge-enabled: ${JUDGE_ENABLED:false}

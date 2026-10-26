@@ -1,0 +1,21 @@
+server:
+  port: ${PORT:8080}
+  tomcat:
+    max-http-form-post-size: 256KB
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:mysql://127.0.0.1:3306/javaquest?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&characterEncoding=UTF-8}
+    username: ${DB_USER:javaquest}
+    password: ${DB_PASSWORD}
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: true
+  mvc:
+    log-resolved-exception: false
+quest:
+  origin: ${FRONTEND_ORIGIN:http://localhost:5173}
+  judge-url: ${JUDGE_URL:http://127.0.0.1:8091}
+  judge-token: ${JUDGE_TOKEN:}
+  judge-enabled: ${JUDGE_ENABLED:true}
+  judge-mode: ${JUDGE_MODE:docker}
+  cookie-secure: ${COOKIE_SECURE:false}

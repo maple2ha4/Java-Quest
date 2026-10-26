@@ -1,0 +1,536 @@
+{
+  "hello-world": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        System.out.println(\"Hello, Java Quest!\");\n    }\n}\n"
+    }
+  ],
+  "variables": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        int points=10;points+=5;System.out.println(points);\n    }\n}\n"
+    }
+  ],
+  "types": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        double result=5.0/2;System.out.println(result);\n    }\n}\n"
+    }
+  ],
+  "operators": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        int remainder=17%5;System.out.println(remainder);\n    }\n}\n"
+    }
+  ],
+  "conditions": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        int score=60;if(score>=60)System.out.println(\"PASS\");else System.out.println(\"RETRY\");\n    }\n}\n"
+    }
+  ],
+  "loops": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        int sum=0;for(int i=1;i<=5;i++)sum+=i;System.out.println(sum);\n    }\n}\n"
+    }
+  ],
+  "arrays": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        int sum=0;for(int v:new int[]{3,5,8})sum+=v;System.out.println(sum);\n    }\n}\n"
+    }
+  ],
+  "methods": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    static int doubleOf(int n) { return n*2; }\n    public static void main(String[] args) throws Exception {\n        System.out.println(doubleOf(7));\n    }\n}\n"
+    }
+  ],
+  "strings": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        System.out.println(\"  java  \".trim().toUpperCase(java.util.Locale.ROOT));\n    }\n}\n"
+    }
+  ],
+  "exceptions": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        try {Integer.parseInt(\"abc\");}catch(NumberFormatException e){System.out.println(\"INVALID\");}\n    }\n}\n"
+    }
+  ],
+  "hello-lines": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        System.out.println(\"Java\");System.out.println(\"Quest\");\n    }\n}\n"
+    }
+  ],
+  "hello-profile": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        System.out.println(\"Name: Learner\");System.out.println(\"Language: Java\");System.out.println(\"Goal: Build\");\n    }\n}\n"
+    }
+  ],
+  "balance-update": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        int balance=20;balance+=5;System.out.println(balance);\n    }\n}\n"
+    }
+  ],
+  "input-points": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        var in = new java.util.Scanner(System.in); int points=in.nextInt(), delta=in.nextInt();System.out.println(points+delta);\n    }\n}\n"
+    }
+  ],
+  "long-overflow": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        long distance=50000L*50000L;System.out.println(distance);\n    }\n}\n"
+    }
+  ],
+  "mean-value": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        var in = new java.util.Scanner(System.in); long a=in.nextLong(), b=in.nextLong();System.out.println((a+b)/2.0);\n    }\n}\n"
+    }
+  ],
+  "discount-precedence": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        System.out.println((100-20)*2);\n    }\n}\n"
+    }
+  ],
+  "range-multiple": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        var in = new java.util.Scanner(System.in); int n=in.nextInt();System.out.println(n>=10&&n<=99&&n%3==0);\n    }\n}\n"
+    }
+  ],
+  "grade-boundary": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        int score=60;System.out.println(score>=60?\"PASS\":\"RETRY\");\n    }\n}\n"
+    }
+  ],
+  "grade-bands": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        var in = new java.util.Scanner(System.in); int s=in.nextInt();System.out.println(s<0||s>100?\"INVALID\":s>=90?\"A\":s>=80?\"B\":s>=60?\"C\":\"D\");\n    }\n}\n"
+    }
+  ],
+  "reverse-sum": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        int sum=0;for(int i=5;i>=1;i--)sum+=i;System.out.println(sum);\n    }\n}\n"
+    }
+  ],
+  "sum-to-n": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        var in = new java.util.Scanner(System.in); int n=in.nextInt();int sum=0;for(int i=1;i<=n;i++)sum+=i;System.out.println(sum);\n    }\n}\n"
+    }
+  ],
+  "array-boundary": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        int[] a={2,4,6};int sum=0;for(int i=0;i<a.length;i++)sum+=a[i];System.out.println(sum);\n    }\n}\n"
+    }
+  ],
+  "array-maximum": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        var in = new java.util.Scanner(System.in); int n=in.nextInt();int max=Integer.MIN_VALUE;for(int i=0;i<n;i++)max=Math.max(max,in.nextInt());System.out.println(max);\n    }\n}\n"
+    }
+  ],
+  "method-arguments": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    static int subtract(int a,int b){return a-b;}\n    public static void main(String[] args) throws Exception {\n        System.out.println(subtract(9,3));\n    }\n}\n"
+    }
+  ],
+  "clamp-value": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    static int clamp(int value,int min,int max){return Math.max(min,Math.min(value,max));}\n    public static void main(String[] args) throws Exception {\n        var in = new java.util.Scanner(System.in); System.out.println(clamp(in.nextInt(),in.nextInt(),in.nextInt()));\n    }\n}\n"
+    }
+  ],
+  "string-equality": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        String a=new String(\"Java\"), b=new String(\"Java\");System.out.println(a.equals(b));\n    }\n}\n"
+    }
+  ],
+  "normalized-tags": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        var in = new java.util.Scanner(System.in); String a=in.nextLine(), b=in.nextLine();System.out.println(a.trim().toLowerCase(java.util.Locale.ROOT).equals(b.trim().toLowerCase(java.util.Locale.ROOT)));\n    }\n}\n"
+    }
+  ],
+  "catch-correct-type": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        try{Integer.parseInt(\"abc\");}catch(NumberFormatException e){System.out.println(\"INVALID\");}\n    }\n}\n"
+    }
+  ],
+  "parse-or-invalid": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        var in = new java.util.Scanner(System.in); String text=in.nextLine();try{System.out.println(Integer.parseInt(text.trim()));}catch(NumberFormatException e){System.out.println(\"INVALID\");}\n    }\n}\n"
+    }
+  ],
+  "account-constructor": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        System.out.println(new Account(10).balance());\n    }\n}\n"
+    },
+    {
+      "name": "Account.java",
+      "content": "public class Account { private int balance; public Account(int balance){this.balance=balance;} public int balance(){return balance;} }"
+    }
+  ],
+  "account-state": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        Account a=new Account(10);a.deposit(5);System.out.println(a.balance());\n    }\n}\n"
+    },
+    {
+      "name": "Account.java",
+      "content": "public class Account { private int balance; public Account(int balance){this.balance=balance;} public int balance(){return balance;}  public void deposit(int amount){balance+=amount;} }"
+    }
+  ],
+  "account-withdraw": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        var in = new java.util.Scanner(System.in); Account a=new Account(in.nextInt());boolean ok=a.withdraw(in.nextInt());System.out.println(ok+\" \"+a.balance());\n    }\n}\n"
+    },
+    {
+      "name": "Account.java",
+      "content": "public class Account { private int balance; public Account(int balance){this.balance=balance;} public int balance(){return balance;} public void deposit(int amount){balance+=amount;} public boolean withdraw(int amount){if(amount<0||amount>balance)return false;balance-=amount;return true;} }"
+    }
+  ],
+  "map-increment": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        var counts=new java.util.HashMap<String,Integer>();for(String word:new String[]{\"java\",\"java\",\"map\"})counts.merge(word,1,Integer::sum);System.out.println(counts.get(\"java\"));\n    }\n}\n"
+    }
+  ],
+  "map-count-debug": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        var in = new java.util.Scanner(System.in); int n=in.nextInt();var counts=new java.util.HashMap<String,Integer>();for(int i=0;i<n;i++){String word=in.next();counts.put(word,counts.getOrDefault(word,0)+1);}System.out.println(counts.getOrDefault(\"java\",0));\n    }\n}\n"
+    }
+  ],
+  "word-report": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        var in = new java.util.Scanner(System.in); int n=in.nextInt();var counts=new java.util.TreeMap<String,Integer>();for(int i=0;i<n;i++)counts.merge(in.next().toLowerCase(java.util.Locale.ROOT),1,Integer::sum);counts.forEach((k,v)->System.out.println(k+\":\"+v));\n    }\n}\n"
+    }
+  ],
+  "thread-join": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        var count=new java.util.concurrent.atomic.AtomicInteger();Thread worker=new Thread(()->{for(int i=0;i<3;i++)count.incrementAndGet();});worker.start();worker.join();System.out.println(count.get());\n    }\n}\n"
+    }
+  ],
+  "atomic-lost-update": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        var barrier=new java.util.concurrent.CyclicBarrier(2);var count=new java.util.concurrent.atomic.AtomicInteger();Runnable job=()->{int before=count.get();try{barrier.await();}catch(Exception e){throw new RuntimeException(e);}count.incrementAndGet();};Thread a=new Thread(job), b=new Thread(job);a.start();b.start();a.join();b.join();System.out.println(count.get());\n    }\n}\n"
+    }
+  ],
+  "atomic-counter": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        var in = new java.util.Scanner(System.in); int n=in.nextInt();var count=new java.util.concurrent.atomic.AtomicInteger();Runnable job=()->{for(int i=0;i<n;i++)count.incrementAndGet();};Thread a=new Thread(job), b=new Thread(job);a.start();b.start();a.join();b.join();System.out.println(count.get());\n    }\n}\n"
+    }
+  ],
+  "order-subtotal": [
+    {
+      "name": "src/main/java/quest/orders/Application.java",
+      "content": "package quest.orders;\nimport java.util.*;\npublic class Application {\n public static void main(String[] args) {\n  var in=new Scanner(System.in);int n=in.nextInt();var lines=new ArrayList<OrderLine>();\n  try { for(int i=0;i<n;i++)lines.add(new OrderLine(in.nextInt(),in.nextInt()));\n   int discount=in.nextInt();System.out.println(OrderReport.render(PricingService.total(lines,discount)));\n  } catch(IllegalArgumentException e) { System.out.println(\"ERROR\"); }\n }\n}\n"
+    },
+    {
+      "name": "src/main/java/quest/orders/OrderLine.java",
+      "content": "package quest.orders; public record OrderLine(int unitPrice,int quantity) { public int subtotal(){return unitPrice*quantity;} }"
+    },
+    {
+      "name": "src/main/java/quest/orders/PricingService.java",
+      "content": "package quest.orders; import java.util.List; public class PricingService { public static int total(List<OrderLine> lines,int discount){int sum=0;for(OrderLine line:lines)sum+=line.subtotal();return sum;} }"
+    },
+    {
+      "name": "src/main/java/quest/orders/OrderReport.java",
+      "content": "package quest.orders; public class OrderReport { public static String render(int amount){return \"TOTAL=\"+amount;} }"
+    }
+  ],
+  "order-discount": [
+    {
+      "name": "src/main/java/quest/orders/Application.java",
+      "content": "package quest.orders;\nimport java.util.*;\npublic class Application {\n public static void main(String[] args) {\n  var in=new Scanner(System.in);int n=in.nextInt();var lines=new ArrayList<OrderLine>();\n  try { for(int i=0;i<n;i++)lines.add(new OrderLine(in.nextInt(),in.nextInt()));\n   int discount=in.nextInt();System.out.println(OrderReport.render(PricingService.total(lines,discount)));\n  } catch(IllegalArgumentException e) { System.out.println(\"ERROR\"); }\n }\n}\n"
+    },
+    {
+      "name": "src/main/java/quest/orders/OrderLine.java",
+      "content": "package quest.orders; public record OrderLine(int unitPrice,int quantity) { public int subtotal(){return unitPrice*quantity;} }"
+    },
+    {
+      "name": "src/main/java/quest/orders/PricingService.java",
+      "content": "package quest.orders; import java.util.List; public class PricingService { public static int total(List<OrderLine> lines,int discount){int sum=0;for(OrderLine line:lines)sum+=line.subtotal();return sum*(100-discount)/100;} }"
+    },
+    {
+      "name": "src/main/java/quest/orders/OrderReport.java",
+      "content": "package quest.orders; public class OrderReport { public static String render(int amount){return \"TOTAL=\"+amount;} }"
+    }
+  ],
+  "order-release": [
+    {
+      "name": "src/main/java/quest/orders/Application.java",
+      "content": "package quest.orders;\nimport java.util.*;\npublic class Application {\n public static void main(String[] args) {\n  var in=new Scanner(System.in);int n=in.nextInt();var lines=new ArrayList<OrderLine>();\n  try { for(int i=0;i<n;i++)lines.add(new OrderLine(in.nextInt(),in.nextInt()));\n   int discount=in.nextInt();System.out.println(OrderReport.render(PricingService.total(lines,discount)));\n  } catch(IllegalArgumentException e) { System.out.println(\"ERROR\"); }\n }\n}\n"
+    },
+    {
+      "name": "src/main/java/quest/orders/OrderLine.java",
+      "content": "package quest.orders; public record OrderLine(int unitPrice,int quantity) { public OrderLine { if(unitPrice<0||quantity<0)throw new IllegalArgumentException(); } public int subtotal(){return unitPrice*quantity;} }"
+    },
+    {
+      "name": "src/main/java/quest/orders/PricingService.java",
+      "content": "package quest.orders; import java.util.List; public class PricingService { public static int total(List<OrderLine> lines,int discount){if(discount<0||discount>100)throw new IllegalArgumentException();int sum=0;for(OrderLine line:lines)sum+=line.subtotal();return sum*(100-discount)/100;} }"
+    },
+    {
+      "name": "src/main/java/quest/orders/OrderReport.java",
+      "content": "package quest.orders; public class OrderReport { public static String render(int amount){return \"PAYABLE=\"+amount;} }"
+    }
+  ],
+  "final-config": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {  public static void main(String[] args) throws Exception { var in=new java.util.Scanner(System.in); int n=in.nextInt();final int price=12;System.out.println(n*price); } }"
+    }
+  ],
+  "narrowing-cast": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {  public static void main(String[] args) throws Exception { var in=new java.util.Scanner(System.in); double n=in.nextDouble();System.out.println((int)(n*100)); } }"
+    }
+  ],
+  "null-short-circuit": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {  public static void main(String[] args) throws Exception { var in=new java.util.Scanner(System.in); String s=in.nextLine();if(s.equals(\"_\"))s=null;System.out.println(s!=null && s.length()>=3); } }"
+    }
+  ],
+  "loop-control": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {  public static void main(String[] args) throws Exception { var in=new java.util.Scanner(System.in); int n=in.nextInt(),sum=0;for(int i=0;i<n;i++){int v=in.nextInt();if(v==0)break;if(v<0)continue;sum+=v;}System.out.println(sum); } }"
+    }
+  ],
+  "unicode-count": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {  public static void main(String[] args) throws Exception { var in=new java.util.Scanner(System.in); String s=in.nextLine();System.out.println(s.codePointCount(0,s.length())); } }"
+    }
+  ],
+  "resource-closing": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {  public static void main(String[] args) throws Exception { Resource.closed=false;try{Work.execute();}catch(IllegalStateException expected){}System.out.println(Resource.closed); } }"
+    },
+    {
+      "name": "Resource.java",
+      "content": "public class Resource implements AutoCloseable { public static boolean closed; public void close(){closed=true;} }"
+    },
+    {
+      "name": "Work.java",
+      "content": "public class Work { public static void execute(){try(Resource r=new Resource()){throw new IllegalStateException();}} }"
+    }
+  ],
+  "list-remove": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {  public static void main(String[] args) throws Exception { var in=new java.util.Scanner(System.in); int n=in.nextInt();var a=new java.util.ArrayList<Integer>();for(int i=0;i<n;i++)a.add(in.nextInt());a.removeIf(v->v<0);System.out.println(a.toString()); } }"
+    }
+  ],
+  "parentheses-check": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {  public static void main(String[] args) throws Exception { var in=new java.util.Scanner(System.in); String s=in.nextLine();var stack=new java.util.ArrayDeque<Character>();boolean ok=true;for(char c:s.toCharArray()){if(c=='(')stack.push(c);else if(c==')'){if(stack.isEmpty()){ok=false;break;}stack.pop();}}System.out.println(ok&&stack.isEmpty()); } }"
+    }
+  ],
+  "pom-release": [
+    {
+      "name": "Main.java",
+      "content": "public class Main { static org.w3c.dom.Document xml(String file)throws Exception {var f=javax.xml.parsers.DocumentBuilderFactory.newInstance();f.setNamespaceAware(true);f.setFeature(\"http://apache.org/xml/features/disallow-doctype-decl\",true);f.setFeature(\"http://xml.org/sax/features/external-general-entities\",false);f.setFeature(\"http://xml.org/sax/features/external-parameter-entities\",false);f.setXIncludeAware(false);f.setExpandEntityReferences(false);return f.newDocumentBuilder().parse(new java.io.File(file));} static String value(org.w3c.dom.Node root,String path)throws Exception{return (String)javax.xml.xpath.XPathFactory.newInstance().newXPath().evaluate(path,root,javax.xml.xpath.XPathConstants.STRING);} public static void main(String[] args) throws Exception { var doc=xml(\"pom.xml\");System.out.println(value(doc,\"/*[local-name()='project']/*[local-name()='properties']/*[local-name()='maven.compiler.release']\").equals(\"21\")?\"POM_OK\":\"RELEASE_MUST_BE_21\"); } }"
+    },
+    {
+      "name": "pom.xml",
+      "content": "<project xmlns=\"http://maven.apache.org/POM/4.0.0\"><modelVersion>4.0.0</modelVersion><groupId>quest</groupId><artifactId>demo</artifactId><version>1.0</version><properties><maven.compiler.release>21</maven.compiler.release></properties></project>"
+    }
+  ],
+  "pom-test-dependency": [
+    {
+      "name": "Main.java",
+      "content": "public class Main { static org.w3c.dom.Document xml(String file)throws Exception {var f=javax.xml.parsers.DocumentBuilderFactory.newInstance();f.setNamespaceAware(true);f.setFeature(\"http://apache.org/xml/features/disallow-doctype-decl\",true);f.setFeature(\"http://xml.org/sax/features/external-general-entities\",false);f.setFeature(\"http://xml.org/sax/features/external-parameter-entities\",false);f.setXIncludeAware(false);f.setExpandEntityReferences(false);return f.newDocumentBuilder().parse(new java.io.File(file));} static String value(org.w3c.dom.Node root,String path)throws Exception{return (String)javax.xml.xpath.XPathFactory.newInstance().newXPath().evaluate(path,root,javax.xml.xpath.XPathConstants.STRING);} public static void main(String[] args) throws Exception { var d=xml(\"pom.xml\");String p=\"//*[local-name()='dependency'][*[local-name()='groupId']='org.junit.jupiter' and *[local-name()='artifactId']='junit-jupiter']\";System.out.println(value(d,p+\"/*[local-name()='scope']\").equals(\"test\")&&value(d,p+\"/*[local-name()='version']\").equals(\"5.11.4\")?\"DEPENDENCY_OK\":\"CHECK_JUNIT_SCOPE_VERSION\"); } }"
+    },
+    {
+      "name": "pom.xml",
+      "content": "<project xmlns=\"http://maven.apache.org/POM/4.0.0\"><modelVersion>4.0.0</modelVersion><groupId>quest</groupId><artifactId>demo</artifactId><version>1.0</version><dependencies><dependency><groupId>org.junit.jupiter</groupId><artifactId>junit-jupiter</artifactId><version>5.11.4</version><scope>test</scope></dependency></dependencies></project>"
+    }
+  ],
+  "pom-modules": [
+    {
+      "name": "Main.java",
+      "content": "public class Main { static org.w3c.dom.Document xml(String file)throws Exception {var f=javax.xml.parsers.DocumentBuilderFactory.newInstance();f.setNamespaceAware(true);f.setFeature(\"http://apache.org/xml/features/disallow-doctype-decl\",true);f.setFeature(\"http://xml.org/sax/features/external-general-entities\",false);f.setFeature(\"http://xml.org/sax/features/external-parameter-entities\",false);f.setXIncludeAware(false);f.setExpandEntityReferences(false);return f.newDocumentBuilder().parse(new java.io.File(file));} static String value(org.w3c.dom.Node root,String path)throws Exception{return (String)javax.xml.xpath.XPathFactory.newInstance().newXPath().evaluate(path,root,javax.xml.xpath.XPathConstants.STRING);} public static void main(String[] args) throws Exception { var root=xml(\"pom.xml\");String p=\"/*[local-name()='project']\";boolean ok=value(root,p+\"/*[local-name()='packaging']\").equals(\"pom\");for(String module:new String[]{\"core\",\"app\"}){var child=xml(module+\"/pom.xml\");ok&=value(root,p+\"/*[local-name()='modules']/*[local-name()='module'][text()='\"+module+\"']\").equals(module);ok&=value(child,p+\"/*[local-name()='parent']/*[local-name()='artifactId']\").equals(\"workspace\");ok&=value(child,p+\"/*[local-name()='artifactId']\").equals(module);}System.out.println(ok?\"MODULES_OK\":\"CHECK_PARENT_AND_MODULES\"); } }"
+    },
+    {
+      "name": "pom.xml",
+      "content": "<project xmlns=\"http://maven.apache.org/POM/4.0.0\"><modelVersion>4.0.0</modelVersion><groupId>quest</groupId><artifactId>workspace</artifactId><version>1.0</version><packaging>pom</packaging><modules><module>core</module><module>app</module></modules></project>"
+    },
+    {
+      "name": "core/pom.xml",
+      "content": "<project xmlns=\"http://maven.apache.org/POM/4.0.0\"><modelVersion>4.0.0</modelVersion><parent><groupId>quest</groupId><artifactId>workspace</artifactId><version>1.0</version><relativePath>../pom.xml</relativePath></parent><artifactId>core</artifactId></project>"
+    },
+    {
+      "name": "app/pom.xml",
+      "content": "<project xmlns=\"http://maven.apache.org/POM/4.0.0\"><modelVersion>4.0.0</modelVersion><parent><groupId>quest</groupId><artifactId>workspace</artifactId><version>1.0</version><relativePath>../pom.xml</relativePath></parent><artifactId>app</artifactId></project>"
+    }
+  ],
+  "spring-constructor": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {  public static void main(String[] args) throws Exception { ((ch.qos.logback.classic.LoggerContext)org.slf4j.LoggerFactory.getILoggerFactory()).getLogger(\"ROOT\").setLevel(ch.qos.logback.classic.Level.OFF);var in=new java.util.Scanner(System.in); String name=in.nextLine();try(var ctx=new org.springframework.context.annotation.AnnotationConfigApplicationContext(GreetingService.class,GreetingController.class)){System.out.println(ctx.getBean(GreetingController.class).greet(name));} } }"
+    },
+    {
+      "name": "GreetingService.java",
+      "content": "@org.springframework.stereotype.Service public class GreetingService { public String greet(String name){return \"Hello, \"+name+\"!\";} }"
+    },
+    {
+      "name": "GreetingController.java",
+      "content": "public class GreetingController { private final GreetingService service; public GreetingController(GreetingService service){this.service=service;} public String greet(String name){return service.greet(name);} }"
+    }
+  ],
+  "spring-qualifier": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {  public static void main(String[] args) throws Exception { ((ch.qos.logback.classic.LoggerContext)org.slf4j.LoggerFactory.getILoggerFactory()).getLogger(\"ROOT\").setLevel(ch.qos.logback.classic.Level.OFF);var in=new java.util.Scanner(System.in); String name=in.nextLine();try(var ctx=new org.springframework.context.annotation.AnnotationConfigApplicationContext(FriendlyPolicy.class,FormalPolicy.class,GreetingService.class)){System.out.println(ctx.getBean(GreetingService.class).greet(name));} } }"
+    },
+    {
+      "name": "GreetingPolicy.java",
+      "content": "public interface GreetingPolicy { String greet(String name); }"
+    },
+    {
+      "name": "FriendlyPolicy.java",
+      "content": "@org.springframework.stereotype.Component(\"friendly\") public class FriendlyPolicy implements GreetingPolicy {public String greet(String name){return \"Hi \"+name;}}"
+    },
+    {
+      "name": "FormalPolicy.java",
+      "content": "@org.springframework.stereotype.Component(\"formal\") public class FormalPolicy implements GreetingPolicy {public String greet(String name){return \"Dear \"+name;}}"
+    },
+    {
+      "name": "GreetingService.java",
+      "content": "@org.springframework.stereotype.Service public class GreetingService {private final GreetingPolicy policy;public GreetingService(@org.springframework.beans.factory.annotation.Qualifier(\"friendly\") GreetingPolicy policy){this.policy=policy;}public String greet(String name){return policy.greet(name);}}"
+    }
+  ],
+  "spring-validation": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {  public static void main(String[] args) throws Exception { ((ch.qos.logback.classic.LoggerContext)org.slf4j.LoggerFactory.getILoggerFactory()).getLogger(\"ROOT\").setLevel(ch.qos.logback.classic.Level.OFF);var in=new java.util.Scanner(System.in); String name=in.next(),email=in.next();int age=in.nextInt();if(name.equals(\"_\"))name=\"\";var validator=new org.springframework.validation.beanvalidation.LocalValidatorFactoryBean();validator.afterPropertiesSet();try{var errors=validator.validate(new Registration(name,email,age));System.out.println(errors.isEmpty()?\"OK\":errors.stream().map(e->e.getPropertyPath().toString()).sorted().collect(java.util.stream.Collectors.joining(\",\")));}finally{validator.close();} } }"
+    },
+    {
+      "name": "Registration.java",
+      "content": "public record Registration(@jakarta.validation.constraints.NotBlank String name,@jakarta.validation.constraints.Email String email,@jakarta.validation.constraints.Min(18) int age) {}"
+    }
+  ],
+  "stock-version": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {  public static void main(String[] args) throws Exception { var in=new java.util.Scanner(System.in); Stock s=new Stock(in.nextInt(),in.nextInt());boolean ok=s.reserve(in.nextInt(),in.nextInt());System.out.println(ok+\" \"+s.quantity()+\" \"+s.version()); } }"
+    },
+    {
+      "name": "Stock.java",
+      "content": "public class Stock {private int quantity,version;public Stock(int q,int v){quantity=q;version=v;}public boolean reserve(int expected,int count){if(expected!=version||count<0||count>quantity)return false;quantity-=count;version++;return true;}public int quantity(){return quantity;}public int version(){return version;}}"
+    }
+  ],
+  "bounded-work-queue": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {  public static void main(String[] args) throws Exception { var in=new java.util.Scanner(System.in); WorkQueue q=new WorkQueue(in.nextInt());int n=in.nextInt(),accepted=0;for(int i=0;i<n;i++)if(q.submit(in.next()))accepted++;System.out.println(accepted+\" \"+(n-accepted)); } }"
+    },
+    {
+      "name": "WorkQueue.java",
+      "content": "public class WorkQueue {private final java.util.concurrent.ArrayBlockingQueue<String> queue;public WorkQueue(int capacity){queue=new java.util.concurrent.ArrayBlockingQueue<>(capacity);}public boolean submit(String task){return queue.offer(task);}}"
+    }
+  ],
+  "idempotent-ledger": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {  public static void main(String[] args) throws Exception { var in=new java.util.Scanner(System.in); int n=in.nextInt();Ledger ledger=new Ledger();for(int i=0;i<n;i++)System.out.println(ledger.apply(in.next(),in.nextInt())); } }"
+    },
+    {
+      "name": "Receipt.java",
+      "content": "public record Receipt(int amount,int balanceAfter) {}"
+    },
+    {
+      "name": "Ledger.java",
+      "content": "public class Ledger {private int balance;private final java.util.Map<String,Receipt> seen=new java.util.HashMap<>();public String apply(String id,int amount){if(amount<0)return \"INVALID\";Receipt old=seen.get(id);if(old!=null)return old.amount()==amount?String.valueOf(old.balanceAfter()):\"CONFLICT\";balance+=amount;seen.put(id,new Receipt(amount,balance));return String.valueOf(balance);}}"
+    }
+  ],
+  "account-invariant": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {public static void main(String[] args)throws Exception{var in=new java.util.Scanner(System.in);int n=in.nextInt();try{System.out.println(new Balance(n).value());}catch(IllegalArgumentException e){System.out.println(\"INVALID\");}}}"
+    },
+    {
+      "name": "Balance.java",
+      "content": "public class Balance {private final int value;public Balance(int value){if(value<0)throw new IllegalArgumentException();this.value=value;}public int value(){return value;}}"
+    }
+  ],
+  "defensive-snapshot": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {public static void main(String[] args)throws Exception{var in=new java.util.Scanner(System.in);int n=in.nextInt();var list=new java.util.ArrayList<String>();for(int i=0;i<n;i++)list.add(in.next());Snapshot s=new Snapshot(list);list.clear();String result=\"MUTABLE\";try{s.items().add(\"x\");}catch(UnsupportedOperationException e){result=\"IMMUTABLE\";}System.out.println(s.items().size()+\" \"+result);}}"
+    },
+    {
+      "name": "Snapshot.java",
+      "content": "public class Snapshot {private final java.util.List<String> items;public Snapshot(java.util.List<String> items){this.items=java.util.List.copyOf(items);}public java.util.List<String> items(){return items;}}"
+    }
+  ],
+  "array-independent-copy": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {public static void main(String[] args)throws Exception{var in=new java.util.Scanner(System.in);int n=in.nextInt();int[] a=new int[n];for(int i=0;i<n;i++)a[i]=in.nextInt();int[] b=Copy.of(a);if(n>0)b[0]=999;System.out.println(java.util.Arrays.toString(a));}}"
+    },
+    {
+      "name": "Copy.java",
+      "content": "public class Copy {public static int[] of(int[] input){return java.util.Arrays.copyOf(input,input.length);}}"
+    }
+  ],
+  "clamp-contract": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {public static void main(String[] args)throws Exception{var in=new java.util.Scanner(System.in);int v=in.nextInt(),min=in.nextInt(),max=in.nextInt();try{System.out.println(Range.clamp(v,min,max));}catch(IllegalArgumentException e){System.out.println(\"INVALID\");}}}"
+    },
+    {
+      "name": "Range.java",
+      "content": "public class Range {public static int clamp(int value,int min,int max){if(min>max)throw new IllegalArgumentException();return Math.max(min,Math.min(value,max));}}"
+    }
+  ],
+  "map-merge-reports": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {public static void main(String[] args)throws Exception{var in=new java.util.Scanner(System.in);var a=new java.util.HashMap<String,Integer>();var b=new java.util.HashMap<String,Integer>();int n=in.nextInt();for(int i=0;i<n;i++)a.put(in.next(),in.nextInt());int m=in.nextInt();for(int i=0;i<m;i++)b.put(in.next(),in.nextInt());Merger.combine(a,b).forEach((k,v)->System.out.println(k+\":\"+v));}}"
+    },
+    {
+      "name": "Merger.java",
+      "content": "public class Merger {public static java.util.Map<String,Integer> combine(java.util.Map<String,Integer> a,java.util.Map<String,Integer> b){var result=new java.util.TreeMap<String,Integer>(a);b.forEach((k,v)->result.merge(k,v,Integer::sum));return result;}}"
+    }
+  ],
+  "atomic-reservation": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {public static void main(String[] args)throws Exception{var in=new java.util.Scanner(System.in);StockCounter c=new StockCounter(in.nextInt());var barrier=new java.util.concurrent.CyclicBarrier(2);var accepted=new java.util.concurrent.atomic.AtomicInteger();Runnable task=()->{int seen=c.remaining();try{barrier.await();}catch(Exception e){throw new RuntimeException(e);}if(c.reserve(seen))accepted.incrementAndGet();};Thread a=new Thread(task),b=new Thread(task);a.start();b.start();a.join();b.join();System.out.println(accepted.get()+\" \"+c.remaining());}}"
+    },
+    {
+      "name": "StockCounter.java",
+      "content": "public class StockCounter {private final java.util.concurrent.atomic.AtomicInteger stock;public StockCounter(int n){stock=new java.util.concurrent.atomic.AtomicInteger(n);}public int remaining(){return stock.get();}public boolean reserve(int expected){return expected>0&&stock.compareAndSet(expected,expected-1);}}"
+    }
+  ]
+}

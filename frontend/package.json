@@ -1,0 +1,31 @@
+{
+  "name": "java-quest-web",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "test:e2e": "playwright test",
+    "format": "prettier --write src tests *.ts *.json index.html",
+    "test:local": "playwright test -c playwright.local.config.ts",
+    "test:process": "playwright test -c playwright.process.config.ts"
+  },
+  "dependencies": {
+    "lucide-vue-next": "^0.468.0",
+    "monaco-editor": "^0.54.0",
+    "pinia": "^3.0.3",
+    "vue": "^3.5.22",
+    "vue-router": "^4.6.3"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.1",
+    "@types/node": "^24.9.1",
+    "@vitejs/plugin-vue": "^6.0.1",
+    "prettier": "^3.6.2",
+    "typescript": "~5.9.3",
+    "vite": "^7.1.12",
+    "vue-tsc": "^3.1.1"
+  }
+}

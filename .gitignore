@@ -1,0 +1,14 @@
+.env
+**/node_modules/
+**/dist/
+**/target/
+**/__pycache__/
+.artifacts/
+*.log
+.DS_Store
+*.tsbuildinfo
+.local-data/
+*.mv.db
+*.trace.db
+*.lock.db
+*.class
