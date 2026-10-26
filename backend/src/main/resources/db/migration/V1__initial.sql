@@ -1,0 +1,48 @@
+CREATE TABLE app_user (
+ id BIGINT AUTO_INCREMENT PRIMARY KEY,
+ email VARCHAR(254) NOT NULL UNIQUE,
+ display_name VARCHAR(40) NOT NULL,
+ password_hash VARCHAR(100) NOT NULL,
+ created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE auth_session (
+ token_hash VARCHAR(64) PRIMARY KEY,
+ user_id BIGINT NOT NULL,
+ expires_at TIMESTAMP NOT NULL,
+ FOREIGN KEY (user_id) REFERENCES app_user(id) ON DELETE CASCADE
+);
+CREATE INDEX session_expiry ON auth_session(expires_at);
+CREATE TABLE submission (
+ id BIGINT AUTO_INCREMENT PRIMARY KEY,
+ user_id BIGINT NOT NULL,
+ lesson_id VARCHAR(60) NOT NULL,
+ files_json MEDIUMTEXT NOT NULL,
+ result_json MEDIUMTEXT NOT NULL,
+ status VARCHAR(30) NOT NULL,
+ created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ FOREIGN KEY (user_id) REFERENCES app_user(id) ON DELETE CASCADE
+);
+CREATE INDEX submission_user ON submission(user_id, id);
+CREATE TABLE progress (
+ user_id BIGINT NOT NULL,
+ lesson_id VARCHAR(60) NOT NULL,
+ completed_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ PRIMARY KEY(user_id, lesson_id),
+ FOREIGN KEY (user_id) REFERENCES app_user(id) ON DELETE CASCADE
+);
+CREATE TABLE draft (
+ user_id BIGINT NOT NULL,
+ lesson_id VARCHAR(60) NOT NULL,
+ files_json MEDIUMTEXT NOT NULL,
+ updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ PRIMARY KEY(user_id, lesson_id),
+ FOREIGN KEY (user_id) REFERENCES app_user(id) ON DELETE CASCADE
+);
+CREATE TABLE note (
+ user_id BIGINT NOT NULL,
+ lesson_id VARCHAR(60) NOT NULL,
+ body TEXT NOT NULL,
+ updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ PRIMARY KEY(user_id, lesson_id),
+ FOREIGN KEY (user_id) REFERENCES app_user(id) ON DELETE CASCADE
+);

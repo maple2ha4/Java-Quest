@@ -1,0 +1,9 @@
+.env
+**/node_modules/
+**/dist/
+**/target/
+**/__pycache__/
+.artifacts/
+*.log
+.DS_Store
+*.tsbuildinfo

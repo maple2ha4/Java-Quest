@@ -1,0 +1,332 @@
+[
+  {
+    "id": "hello-world",
+    "order": 1,
+    "title": "Hello, Java Quest!",
+    "shortTitle": "你的第一行 Java",
+    "summary": "输出你的第一条消息，认识程序的入口。",
+    "concept": "入口与输出",
+    "xp": 30,
+    "minutes": 5,
+    "paragraphs": [
+      "Java 从 public static void main(String[] args) 方法开始执行。先把它看成程序的大门，之后会逐一学习这些关键字。",
+      "System.out.println(...) 会把括号中的内容写到控制台，并在末尾换行。文字需要用英文双引号包起来。",
+      "每条输出语句以英文分号结束。大小写、空格与标点都属于字符串内容。"
+    ],
+    "task": "修改 Main.java，让程序只输出一行：Hello, Java Quest!",
+    "hints": [
+      "找到 main 方法里的 println。保留外层结构，只改括号中的文字。",
+      "字符串要写在英文双引号中，注意逗号后有一个空格。",
+      "将语句改为 System.out.println(\"Hello, Java Quest!\");"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {\n    public static void main(String[] args) {\n        System.out.println(\"Hello, learner!\");\n    }\n}\n"
+      }
+    ],
+    "tests": [
+      {
+        "input": "",
+        "expected": "Hello, Java Quest!\n"
+      }
+    ]
+  },
+  {
+    "id": "variables",
+    "order": 2,
+    "title": "给数据一个名字",
+    "shortTitle": "变量",
+    "summary": "用变量保存一份可以重复使用的数据。",
+    "concept": "变量",
+    "xp": 35,
+    "minutes": 5,
+    "paragraphs": [
+      "变量像一个有名字的盒子。int points = 10; 声明一个整数变量并赋值。",
+      "可以通过 points = 20; 更新值。赋值符号 = 不是数学中的相等判断。",
+      "把变量放进 println 会输出它保存的值，不要给变量名加引号。"
+    ],
+    "task": "声明整数变量 points，初值 10，再增加 5，最后输出 15。",
+    "hints": [
+      "在声明后更新 points。",
+      "可以使用 points = points + 5;。",
+      "更新后调用 System.out.println(points);。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {\n    public static void main(String[] args) {\n        int points = 10;\n        // 增加 5，再输出 points\n    }\n}\n"
+      }
+    ],
+    "tests": [
+      {
+        "input": "",
+        "expected": "15\n"
+      }
+    ]
+  },
+  {
+    "id": "types",
+    "order": 3,
+    "title": "整数也会有小数吗？",
+    "shortTitle": "数据类型",
+    "summary": "让除法保留小数部分。",
+    "concept": "数据类型",
+    "xp": 35,
+    "minutes": 6,
+    "paragraphs": [
+      "int 保存整数，double 保存小数。5 / 2 的两边都是整数，所以结果为 2。",
+      "让一个操作数成为 double，例如 5.0 / 2，结果就是 2.5。",
+      "先做整数除法再赋给 double 不能恢复丢掉的小数；类型会影响运算发生的方式。"
+    ],
+    "task": "计算 5 除以 2 并保留小数，只输出 2.5。",
+    "hints": [
+      "问题发生在除法运算时。",
+      "把 5 改成 5.0。",
+      "double result = 5.0 / 2;"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {\n    public static void main(String[] args) {\n        double result = 5 / 2;\n        System.out.println(result);\n    }\n}\n"
+      }
+    ],
+    "tests": [
+      {
+        "input": "",
+        "expected": "2.5\n"
+      }
+    ]
+  },
+  {
+    "id": "operators",
+    "order": 4,
+    "title": "让数字动起来",
+    "shortTitle": "运算符",
+    "summary": "用余数判断整除。",
+    "concept": "运算符",
+    "xp": 40,
+    "minutes": 6,
+    "paragraphs": [
+      "+、-、*、/ 分别表示加减乘除，% 返回除法的余数。",
+      "17 % 5 等于 2，因为 17 = 3 × 5 + 2。",
+      "括号可以明确运算顺序。先计算余数，再打印结果。"
+    ],
+    "task": "计算 17 除以 5 的余数，只输出结果。",
+    "hints": [
+      "把 0 换成一个表达式。",
+      "余数运算符是 %。",
+      "int remainder = 17 % 5;"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {\n    public static void main(String[] args) {\n        int remainder = 0; // 使用 %\n        System.out.println(remainder);\n    }\n}\n"
+      }
+    ],
+    "tests": [
+      {
+        "input": "",
+        "expected": "2\n"
+      }
+    ]
+  },
+  {
+    "id": "conditions",
+    "order": 5,
+    "title": "做一次选择",
+    "shortTitle": "条件判断",
+    "summary": "让程序根据分数选择输出。",
+    "concept": "条件",
+    "xp": 40,
+    "minutes": 7,
+    "paragraphs": [
+      "if 后的括号中放布尔条件。条件为 true 才执行花括号中的代码。",
+      ">= 表示大于或等于。else 分支在条件不满足时执行。",
+      "分数等于 60 也应该及格，所以这里不要写成 > 60。"
+    ],
+    "task": "已有 score = 60。补全条件，60 分及以上输出 PASS，否则输出 RETRY。",
+    "hints": [
+      "修改 if 的条件。",
+      "比较 score 和 60，包含相等的情况。",
+      "使用 score >= 60。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {\n    public static void main(String[] args) {\n        int score = 60;\n        if (false) {\n            System.out.println(\"PASS\");\n        } else {\n            System.out.println(\"RETRY\");\n        }\n    }\n}\n"
+      }
+    ],
+    "tests": [
+      {
+        "input": "",
+        "expected": "PASS\n"
+      }
+    ]
+  },
+  {
+    "id": "loops",
+    "order": 6,
+    "title": "重复，也可以很优雅",
+    "shortTitle": "循环",
+    "summary": "用 for 循环累加数字。",
+    "concept": "循环",
+    "xp": 45,
+    "minutes": 7,
+    "paragraphs": [
+      "for 包含初值、继续条件与每轮更新。for (int i = 1; i <= 5; i++) 会访问 1 到 5。",
+      "累加器在循环前声明，在循环体中更新，循环后输出。",
+      "注意 <= 和 < 的区别：边界漏掉一次会让结果不对。"
+    ],
+    "task": "使用循环计算 1 到 5 的和，循环结束后输出 15。",
+    "hints": [
+      "观察循环有没有包含 5。",
+      "循环条件需要包含上界。",
+      "将 i < 5 改为 i <= 5。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {\n    public static void main(String[] args) {\n        int sum = 0;\n        for (int i = 1; i < 5; i++) {\n            sum += i;\n        }\n        System.out.println(sum);\n    }\n}\n"
+      }
+    ],
+    "tests": [
+      {
+        "input": "",
+        "expected": "15\n"
+      }
+    ]
+  },
+  {
+    "id": "arrays",
+    "order": 7,
+    "title": "把数据排成一列",
+    "shortTitle": "数组",
+    "summary": "遍历一组固定长度的数据。",
+    "concept": "数组",
+    "xp": 45,
+    "minutes": 8,
+    "paragraphs": [
+      "int[] values = {3, 5, 8}; 创建一个整数数组，索引从 0 开始。",
+      "values.length 是数组长度。下标必须小于长度，否则会抛出异常。",
+      "增强 for 循环 for (int value : values) 可以依次取得每个元素。"
+    ],
+    "task": "遍历数组 {3, 5, 8} 并输出所有元素的总和 16。",
+    "hints": [
+      "你可以在输出之前写增强 for 循环。",
+      "for (int value : values) 会拿到每个元素。",
+      "循环体中写 sum += value;。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {\n    public static void main(String[] args) {\n        int[] values = {3, 5, 8};\n        int sum = 0;\n        // 遍历数组并累加\n        System.out.println(sum);\n    }\n}\n"
+      }
+    ],
+    "tests": [
+      {
+        "input": "",
+        "expected": "16\n"
+      }
+    ]
+  },
+  {
+    "id": "methods",
+    "order": 8,
+    "title": "把能力封装成方法",
+    "shortTitle": "方法",
+    "summary": "定义并调用一个有返回值的方法。",
+    "concept": "方法",
+    "xp": 50,
+    "minutes": 8,
+    "paragraphs": [
+      "方法把一段行为命名，方便重复调用。int doubleOf(int n) 表示接收整数、返回整数。",
+      "这里 main 是 static，因此我们也使用 static 辅助方法。",
+      "return 把计算结果交回调用位置；它不等于打印。"
+    ],
+    "task": "在类中补全 doubleOf 方法，让已有 main 调用 doubleOf(7) 后输出 14。",
+    "hints": [
+      "修改 doubleOf 中的 return。",
+      "参数 n 是调用者传进来的数字。",
+      "return n * 2;"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {\n    static int doubleOf(int n) {\n        return n; // 返回 n 的两倍\n    }\n\n    public static void main(String[] args) {\n        System.out.println(doubleOf(7));\n    }\n}\n"
+      }
+    ],
+    "tests": [
+      {
+        "input": "",
+        "expected": "14\n"
+      }
+    ]
+  },
+  {
+    "id": "strings",
+    "order": 9,
+    "title": "与文字打个招呼",
+    "shortTitle": "字符串",
+    "summary": "使用字符串的方法。",
+    "concept": "字符串",
+    "xp": 50,
+    "minutes": 9,
+    "paragraphs": [
+      "String 保存文字。trim() 去掉开头和末尾空白，toUpperCase() 返回大写版本。",
+      "String 不可变。方法返回新字符串，不会直接修改原来的变量。",
+      "可以链接调用：text.trim().toUpperCase(java.util.Locale.ROOT)。指定 Locale 可避免系统语言影响。"
+    ],
+    "task": "把 \"  java  \" 去除首尾空格并变成大写，只输出 JAVA。",
+    "hints": [
+      "在打印前处理 text。",
+      "使用 trim() 和 toUpperCase(java.util.Locale.ROOT)。",
+      "System.out.println(text.trim().toUpperCase(java.util.Locale.ROOT));"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {\n    public static void main(String[] args) {\n        String text = \"  java  \";\n        System.out.println(text);\n    }\n}\n"
+      }
+    ],
+    "tests": [
+      {
+        "input": "",
+        "expected": "JAVA\n"
+      }
+    ]
+  },
+  {
+    "id": "exceptions",
+    "order": 10,
+    "title": "让错误可以被理解",
+    "shortTitle": "异常处理",
+    "summary": "捕获一个可预期的格式错误。",
+    "concept": "异常",
+    "xp": 60,
+    "minutes": 9,
+    "paragraphs": [
+      "Integer.parseInt(\"abc\") 无法把文字变成整数，会抛出 NumberFormatException。",
+      "try 中放可能失败的操作，catch 中处理对应异常。只捕获能合理处理的异常。",
+      "错误处理让程序能解释失败，而不是悄悄忽略问题或直接崩溃。"
+    ],
+    "task": "捕获 Integer.parseInt(\"abc\") 抛出的 NumberFormatException，并只输出 INVALID。",
+    "hints": [
+      "用 try 包住转换语句。",
+      "catch (NumberFormatException e) 处理格式错误。",
+      "在 catch 内调用 System.out.println(\"INVALID\");，成功路径无需额外输出。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {\n    public static void main(String[] args) {\n        // 使用 try / catch 处理格式错误\n        int value = Integer.parseInt(\"abc\");\n        System.out.println(value);\n    }\n}\n"
+      }
+    ],
+    "tests": [
+      {
+        "input": "",
+        "expected": "INVALID\n"
+      }
+    ]
+  }
+]
