@@ -1,176 +1,120 @@
 # Java Quest
 
-公司电脑运行与依赖网络说明见 [本地运行指南](docs/LOCAL-RUN.md)。运行本项目不需要访问 chatgpt.site。
+在实践中学会 Java：Vue 3 + TypeScript + Monaco 互动课堂，Java 21 / Spring Boot 3 API，独立 Java 判题服务。运行不依赖 ChatGPT 或 chatgpt.site。源码通过 GitHub 的 `java-quest-mvp` 分支交付。
 
-在实践中学会 Java。Vue 3 + TypeScript + Monaco 互动课堂，Spring Boot 3 / Java 21 API，MySQL 8，独立 Java 判题服务（本地进程 / Docker）。
+当前是**本地开发版本**，开放 **65 个真实练习**，包含账户、进度、XP、草稿、多文件、笔记和失败记录。课程目录有 6 阶段、28 章、106 知识点、600 个练习标题；其中 **535 项仍为规划**。每知识点按概念、边界、故障与迁移场景安排 3–9 项，未固定题数。逐条状态见 [课程总目录](docs/COURSE-ROADMAP.md)。
 
-当前为**本地开发版本**：42 个递进练习和多文件工程项目，注册登录、进度与经验、草稿、多文件、笔记和失败提交记录。提交按所选模式经独立进程或容器真实编译/执行；判题不可用会报错，不会模拟通关。当前是输出判题，不能证明源码使用了指定语法，也不提供防作弊保证。完整方案见 [产品设计](docs/PRODUCT.md)、[架构与接口](docs/ARCHITECTURE.md)、[API 使用说明](docs/API.md) 和 [验证记录](docs/VALIDATION.md)。
+## 先体验每门课程
 
-## 目录
+启动后打开导航中的 **课程体验**（`/samples`），六类课程各精选三个代表练习，共 18 个。可直接看讲解、编辑代码；登录并启用判题后可跳过前置要求真实运行。体验不计 XP、通关或提交历史，正式学习仍按前置关系解锁。体验与正式课程共用本关草稿。
 
-```text
-frontend/     Vue + Vite + Pinia + Vue Router + Monaco
-backend/      Spring Boot REST API、课程 JSON、Flyway 迁移、测试
-backend/.../runner/ 独立 Java 判题服务，支持 process/docker
-judge/        原 Python Docker 协调器（兼容保留）
-scripts/      环境加载与黑盒验证
-compose.yml   MySQL 8.4（命名卷持久化）
-docs/         产品、架构、实施计划与验证证据
-```
+| 课程 | 体验内容 |
+|---|---|
+| Java 语言与程序设计 | 空值短路、Unicode、资源关闭 |
+| 集合与算法 | 词频报表、集合删除、括号栈 |
+| Maven 与工程化 | JDK 编译目标、测试依赖、父子模块坐标 |
+| Spring 服务端 | 构造器注入、Qualifier、字段校验 |
+| 并发与 JVM | join、丢失更新、原子计数 |
+| 高级工程实践 | 版本库存、有界接收、幂等响应 |
 
-## 课程结构与多文件工程练习
+具体入口与验证边界见 [课程体验说明](docs/COURSE-SAMPLES.md)。
 
-课程现按「阶段 → 章节 → 知识点 → 递进练习」组织，目录覆盖 Java 语言、集合与算法、Maven 工程化、Spring 服务端、并发/JVM 和高级工程实践。完整细目及逐条开放状态见 [课程总目录](docs/COURSE-ROADMAP.md)。当前 42 个可运行练习，106 个知识点下共 318 个练习标题；其余 276 个是规划，不是已交付课程。
+## 环境与首次准备
 
-每个已开放知识点包含模仿/补全、定位/修复、独立实现或项目验收。新练习按显式前置关系解锁，原 10 关 ID、分数与进度保留。推荐路线优先走完当前知识点；旧关保留原前置关系，避免已学习用户被强制回退。
+必需：**完整 JDK 21、Maven 3.9+、Node.js 22.12+ 或 24、Chrome/Edge**。使用 process 模式不需要 Docker、MySQL 或 Python；H2 文件数据库随 API 依赖提供。首次构建需要可访问公司批准的 Maven/npm 仓库，依赖下载后学习无需 ChatGPT 网络。
 
-订单结算项目实际使用 `src/main/java/quest/orders/` 的 4 个 Java 文件，按 3 个需求步骤修改领域对象、价格服务和报表。Main/Application 调用方可设为只读，由前后端共同保护；判题按服务器指定入口编译、运行整个源码项目。当前构建器是 javac，Maven 生命周期、Spring API 项目和完整高级课程仍待交付。
+在仓库根目录执行，Windows PowerShell 和 Bash 均适用：
 
-作者可选验证（需要 Python，仅为开发检查，不是运行依赖）：`python scripts/verify-curriculum.py --mode process --allow-local-process`。它逐关执行作者参考实现并确认起始代码不能直接通关。参考实现仅在测试资源中，课程 API 不返回测试或参考解。
-
-## 可切换的真实判题（无需 Python）
-
-公司电脑可明确选择本地独立 Java 进程判题；个人电脑可选择 Docker 容器判题。进程模式只用于自己信任的代码，没有文件/网络/CPU/PID 隔离。两模式都是真编译、真测试，学习者代码不在 Spring API JVM 内执行。
-
-```powershell
+```bash
+git switch java-quest-mvp
+git pull --ff-only
 npm ci --prefix frontend
 mvn -f backend/pom.xml verify
-# 终端 1，以下二选一：
-.\scripts\start-learning.ps1 -Mode process
-# 或已安装 Docker 时：.\scripts\start-learning.ps1 -Mode docker
-# 终端 2：
+```
+
+Maven 会运行真实 javac/java 测试并生成两个 jar。每次拉取更新后重新构建，并停止旧服务再启动；否则网页可能仍显示旧课程。**Linux 云环境已验证，Windows PowerShell 尚未实机验证。**
+
+## Bash / Codespaces / Linux 启动
+
+终端 1（仓库根目录）：
+
+```bash
+bash scripts/start-learning.sh process
+```
+
+终端 2（同一仓库根目录）：
+
+```bash
 npm run dev --prefix frontend
 ```
 
-切换前在终端 1 Ctrl+C 停止，再以另一模式启动，前端刷新。两种模式在同一台电脑共用 H2 数据；不同电脑不会自动同步。默认 `-Mode off` 不执行代码。完整说明与无需运行 PowerShell 脚本的手动启动方式见 [判题模式切换指南](docs/JUDGE-MODES.md)。首次 Docker 模式需 `docker pull eclipse-temurin:21-jdk`；这些命令不使用 MySQL 容器或 Python。
-
-## 不安装 Docker：只读学习模式
-
-只需 JDK 21、Maven 3.9+、Node.js 22.12+ 或 24。H2 文件数据库随依赖安装，无需 MySQL、Python 或 .env。更新 `java-quest-mvp` 分支后：
-
-```powershell
-npm ci --prefix frontend
-mvn -f backend/pom.xml verify
-# 终端 1
-java -jar backend/target/java-quest-api-0.1.0.jar --spring.profiles.active=local
-# 终端 2（同一项目根目录）
-npm run dev --prefix frontend
-```
-
-访问 `http://localhost:5173`。可以注册、阅读课程、编辑和保存草稿/笔记；未接入隔离判题时不能在线运行或通关，界面与 API 均明确禁用。数据保存在 Java 用户主目录的 `.java-quest` 文件夹，重启后保留；不会自动导入 MySQL 数据。完整说明见 [无 Docker 启动指南](docs/NO-DOCKER.md)。
-
-以下原有环境要求及启动方式适用于完整 Docker 判题模式。
-
-## 前置条件
-
-- JDK 21（`java -version` 与 `javac -version` 都需可用），Maven 3.9+
-- Node.js 22.12+ 或 24，Python 3.11+
-- Docker Desktop（Windows 启用 WSL2 / Linux containers）或 Linux Docker Engine，Docker Compose v2
-- 首次可访问 Maven Central、npm registry 和 Docker Hub。普通开发不需要第三方 API key。
-
-判题服务持有 Docker 管理权限，**仅在可信本地机器运行**。API 不挂载 Docker socket。不要把本项目或判题协调器直接暴露给不受信任的互联网用户；生产部署方案在阶段 4，普通 Docker 共享宿主内核不等于强多租户隔离。
+本机浏览器访问 `http://localhost:5173`。Codespaces 从“端口”面板打开 **5173**；Bash 启动器会采用该 Codespace 对应的精确前端 origin，Vite 允许对应转发主机。保留端口的私有访问设置。不要在 Bash 中执行 `.\scripts\start-learning.ps1`，这是 PowerShell 语法。
 
 ## Windows PowerShell 启动
 
-在仓库根目录执行：
+终端 1：
 
 ```powershell
-Copy-Item .env.example .env
-# 用编辑器将 .env 中三个 replace-with-* 值换成不同的长随机值。
-# JUDGE_TOKEN 至少 32 字符。不要把 .env 加入 Git。
-# 推荐用密码管理器生成。然后启动 Docker Desktop。
-docker pull eclipse-temurin:21-jdk
-docker compose up -d --wait
-npm ci --prefix frontend
-mvn -f backend/pom.xml verify
+.\scripts\start-learning.ps1 -Mode process
 ```
 
-保留三个终端，每个终端工作目录都是**仓库根目录**：
+终端 2：
 
 ```powershell
-# 终端 1：独立判题协调器（仅监听 127.0.0.1:8091）
-. .\scripts\dev-env.ps1
-python judge/server.py
-```
-
-```powershell
-# 终端 2：API（MySQL 自动执行 Flyway 初始化迁移）
-. .\scripts\dev-env.ps1
-mvn -f backend/pom.xml spring-boot:run
-```
-
-```powershell
-# 终端 3：前端
 npm run dev --prefix frontend
 ```
 
-浏览器打开 `http://localhost:5173`，注册账户，进入第一关。把输出修改为 `Hello, Java Quest!`，点击运行；全部测试通过后才会计入进度并开放下一关。首关原始代码应判为输出不符。
+如果公司禁止脚本，按 [判题模式指南](docs/JUDGE-MODES.md) 手动启动 Java，不修改组织执行策略。
 
-```powershell
-# 活性和接口文档
-Invoke-RestMethod http://localhost:8080/api/health
-Invoke-RestMethod http://127.0.0.1:8091/health
-# 浏览器访问 http://localhost:8080/swagger-ui.html
-# 黑盒测试会在数据库新增唯一 smoke-* 用户与真实提交。
-python scripts/smoke.py
-npm run build --prefix frontend
-python -m unittest discover -s judge -v
-```
+## 可切换的真实判题
 
-PowerShell 脚本受本机执行策略管理；若组织策略禁止 dot-source，可在终端通过 `$env:DB_PASSWORD='...'` 等手动设置同名变量，勿在聊天中粘贴凭据。首次 Docker/MySQL 启动可能需数十秒。
+| 模式 | 用法与能力 |
+|---|---|
+| process | 本地独立 JVM 中真实编译/运行，只用于自己编写并信任的代码。**没有文件、网络、CPU 或 PID 隔离** |
+| docker | 已安装且允许 Docker 时，使用一次性非 root、无网络、只读根文件系统和资源受限容器 |
+| off | 阅读、编辑、保存草稿与笔记；关闭运行和新通关 |
 
-## Linux / macOS
+Bash 把末尾参数换成 `docker` 或 `off`；PowerShell 换 `-Mode docker` 或 `-Mode off`。切换前在终端 1 按 Ctrl+C，等待退出，再启动新模式并刷新网页。Docker 首次需要 `docker pull eclipse-temurin:21-jdk`。两种判题均不在 Spring API JVM 内执行学习者代码，故障时明确报错，不回退或模拟成功。
+
+脚本生成临时内部认证 token，不需要 `.env`。同一电脑的各模式使用 Java 用户主目录 `.java-quest` 中同一 H2 数据，重启保留账户与进度；不同电脑不会自动同步。可用 `QUEST_DATA_DIR` 指定自己的数据目录。详细手动启动、端口与安全边界见 [判题模式](docs/JUDGE-MODES.md)、[本地运行](docs/LOCAL-RUN.md)。
+
+## 教学和工程练习的实际范围
+
+正式学习：阅读 → 修改 → 真实测试 → 首次通关保存 → 下一关。原始关卡 ID、XP 与进度保留。只有可信判题通过才写入通关；重复通过不重复加 XP。课程数据驱动，规划内容没有提交入口。
+
+- Java 和集合题使用 javac、多组输入与边界断言。并发题使用 join/屏障等确定性同步验证不变量，避免依赖随机调度。
+- 订单项目有 `src/main/java/quest/orders/` 下四个文件，逐步修改领域对象、服务和报表；整套源码实际编译。只读调用方由编辑器和 API 同时保护。
+- 三个 Maven 练习实际解析和校验 POM XML，支持编辑多模块配置。**不执行 Maven 生命周期，不下载学习者依赖、不生成 Maven 构建产物。**
+- 三个 Spring 练习实际执行 Spring 容器注入/Qualifier 和 Jakarta Bean Validation。可信框架依赖从已构建的判题 jar 提供。**尚无完整 Spring Boot HTTP 应用/数据库实验。**
+- 库存/任务接收/幂等样例验证内存中的业务契约；不宣称提供 MySQL 事务、分布式幂等或生产任务系统。
+
+当前主要根据可观察行为判题，不能证明源码用了指定语法，也不是防作弊系统。未实现完整高级课程、数据结构/线程动画、完整 Maven/HTTP 项目执行器、课程管理、邮件找回密码或生产强隔离多租户部署。
+
+## 验证与开发
 
 ```bash
-cp .env.example .env   # 编辑随机密码和 JUDGE_TOKEN
-# 每个需要变量的终端都执行：
-source scripts/dev-env.sh
-docker pull eclipse-temurin:21-jdk
-docker compose up -d --wait
-npm ci --prefix frontend
 mvn -f backend/pom.xml verify
-# 分别在三个终端运行
-python3 judge/server.py
-mvn -f backend/pom.xml spring-boot:run
-npm run dev --prefix frontend
+npm run build --prefix frontend
+# 可选：作者课程回归，需要 Python 3.11+，不是学习网站的运行依赖
+python scripts/verify-curriculum.py --mode process --allow-local-process
+# 可选：真实服务启动后，需要 Playwright Chromium
+npm run test:process --prefix frontend
 ```
 
-测试命令与 Windows 相同，Python 可使用 `python3`。
+作者回归逐关确认起始代码不能直接通过、参考实现可以通过。参考解只在测试资源中，课程 API 不返回参考解或测试。浏览器测试不模拟判题，详见 [验证记录](docs/VALIDATION.md)。
 
-## 浏览器端测试
+## 目录与其他部署
 
-先启动 MySQL、判题、API 与前端，然后执行：
-
-```powershell
-# 仅首次安装 Chromium（有网络、按组织策略安装）
-cd frontend
-npx playwright install chromium
-cd ..
-npm run test:e2e --prefix frontend
+```text
+frontend/                Vue / Vite / Pinia / Router / Monaco
+backend/                 Spring API、课程 JSON、Flyway、测试
+backend/.../runner/      独立 Java process/docker 判题服务
+scripts/                 Bash/PowerShell 启动器与作者回归
+judge/                   旧 Python Docker 协调器，兼容基础任务
+compose.yml              可选 MySQL 8.4
+docs/                   产品、架构、课程、API 与验证说明
 ```
 
-浏览器测试直接调用真实后端，不注入假判题：验证注册、错误输出、编译错误、Monaco 修改、草稿刷新、真实通关、下一关、笔记、复习记录、深色模式和 390px 布局。测试新增唯一用户，截图与失败 trace 位于被忽略的 `.artifacts/`。已有 Chromium 时可设 `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH`，例如云环境 `/usr/bin/chromium`。后端自动化测试使用 H2 和明确标注的判题契约替身；真实 MySQL / Docker 检查由 `scripts/smoke.py` 负责。
+数据库初始化为 `backend/src/main/resources/db/migration/V1__initial.sql`，由 Flyway 自动执行。已有 MySQL 8 时可按 [架构](docs/ARCHITECTURE.md) 设置 DB_URL/DB_USER/DB_PASSWORD，启动非 local profile API；独立 Java 判题 jar 不变。旧 Python 协调器不支持新 package/POM/Spring 任务，学习当前课程请使用 Java 启动器。
 
-## 数据库与持久化
-
-`backend/src/main/resources/db/migration/V1__initial.sql` 是数据库初始化脚本。Compose 用 MYSQL_DATABASE/MYSQL_USER 创建专用数据库和账户，API 使用 Flyway 自动迁移；不要再手工重复导入同一脚本。也可使用已有 MySQL 8：创建空库及账户，设置 DB_URL/DB_USER/DB_PASSWORD，再启动 API。数据库结构见架构文档。
-
-MySQL 数据保留在命名卷。关闭 API、判题和前端用 Ctrl+C；`docker compose stop` 停数据库；`docker compose down` 保留数据库卷。`docker compose down -v` 会删除全部学习数据，请仅在明确要重置时使用。换了 .env 密码不会改变已有卷中的 MySQL 用户密码。
-
-账户密码 BCrypt 存储；会话随机 token 的 SHA-256 存数据库，cookie HttpOnly / SameSite Strict。写接口需 `X-Quest-Client: 1`，CORS 仅允许 FRONTEND_ORIGIN。进度只能由后端在可信判题通过后更新；没有客户端“通关”接口。草稿本机缓存按用户与关卡区分，登录后自动保存到数据库；手动保存按钮可重试云端保存。重置需要确认。未登录草稿在登录后可选择导入，不会自动覆盖账户草稿；代码修改后会清除旧判题反馈，需重新运行。
-
-## 判题与故障排查
-
-- `/api/health` 验证 API 与数据库；`/health` 验证 Docker 和镜像存在，只有真实代码提交能验证完整沙盒。
-- 503：确认协调器已启动、两个终端的 JUDGE_TOKEN 相同、镜像已拉取、Docker 可运行且支持资源限制。服务不会回退至宿主执行。
-- 编译错误：阅读 stderr 的文件与行号；主类须为 `Main` 且位于 `Main.java`，包含标准 main 入口。
-- 限制：每测试 15 秒编译 + 3 秒运行（协调器全流程 25 秒），1 CPU / 256MiB / 64 PIDs，Java heap 96MiB，输出 64KiB，8 个平面 Java 文件/32KiB 字符。无网络；不支持 package 目录或外部依赖。
-- 本地源文件使用 UTF-8。前端使用 `/api` Vite 代理；跨源调用则设置精确 FRONTEND_ORIGIN，不使用 `*` credentials。
-- Java 在受管代理网络无法下载 Maven 依赖时，配置 Maven `settings.xml` 的官方代理设置并将环境颁发 CA 加入专用 truststore；不得关闭 TLS 或使用 insecure 参数。本次云环境的专用工具配置在仓库外，不包含在项目内。
-- Windows 上协调器使用标准 Python + Docker CLI，设计避免宿主绑定目录；**尚未在 Windows 实机验证**，具体平台状态见验证记录。
-
-## 实际范围与后续
-
-已实现学习闭环、层级课程地图及多文件订单项目。未开放课程在地图中逐条标记规划中。未实现：继承/多态完整专题、源码语义评分、Maven/Spring API 沙盒、并发可视化、完整课程管理、搜索、有效学习时长、邮件验证/找回密码、生产分布式队列与监控、强隔离多租户部署。API 文档由 springdoc 自动生成，不代表上述未实现能力已存在。
-
-当前提交等待阶段 1 验收，确认后再进入阶段 2。
+[产品设计](docs/PRODUCT.md) · [API](docs/API.md) · [课程总目录](docs/COURSE-ROADMAP.md) · [验证记录](docs/VALIDATION.md)

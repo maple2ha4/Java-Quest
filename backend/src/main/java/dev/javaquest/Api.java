@@ -17,7 +17,7 @@ public class Api {
     public record Registration(@NotBlank @Email @Size(max=254) String email,
         @NotBlank @Size(min=2,max=40) String name, @NotBlank @Size(min=8,max=72) String password) {}
     public record Login(@NotBlank @Email @Size(max=254) String email,@NotBlank @Size(max=72) String password) {}
-    public record Submission(@NotBlank @Size(max=60) String lessonId,@NotNull List<Curriculum.SourceFile> files) {}
+    public record Submission(@NotBlank @Size(max=60) String lessonId,@NotNull List<Curriculum.SourceFile> files,boolean preview) {}
     public record Draft(@NotNull List<Curriculum.SourceFile> files) {}
     public record Note(@NotNull @Size(max=10000) String body) {}
     @GetMapping("/health") public Object health() { db.queryForObject("SELECT 1",Integer.class);return Map.of("status","ok"); }
@@ -36,7 +36,8 @@ public class Api {
     @GetMapping("/me") public Object me(HttpServletRequest req) { return learning.me(accounts.require(req)); }
     @PostMapping("/submissions") public Object submit(@Valid @RequestBody Submission body,HttpServletRequest req) {
         long user=accounts.require(req); accounts.limit("run:"+user,1,2000);
-        var result=learning.run(user,body.lessonId(),body.files());
+        var result=learning.run(user,body.lessonId(),body.files(),body.preview());
+        if(body.preview())return Map.of("result",result,"preview",true,"newlyCompleted",false,"awardedXp",0,"profile",learning.me(user));
         return learning.saveResult(user,body.lessonId(),body.files(),result);
     }
     @GetMapping("/submissions") public Object submissions(HttpServletRequest req) { return learning.submissions(accounts.require(req)); }

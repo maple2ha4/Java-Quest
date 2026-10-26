@@ -128,6 +128,20 @@ class ApiTest {
             .andExpect(status().isBadRequest());
         mvc.perform(get("/api/curriculum")).andExpect(status().isOk()).andExpect(jsonPath("$[0].chapters[0].topics[0].exercises[0].lessonId").value("hello-world"));
     }
+    @Test @Order(9) void previewCanBypassPrerequisitesButNeverWritesProgressOrHistory() throws Exception {
+        var registration=mvc.perform(post("/api/auth/register").header("X-Quest-Client","1").contentType("application/json")
+            .content("{\"email\":\"preview@example.com\",\"name\":\"课程体验者\",\"password\":\"preview-test-password\"}"))
+            .andExpect(status().isOk()).andReturn().getResponse();
+        Cookie current=new Cookie("quest_session",registration.getHeader("Set-Cookie").split(";",2)[0].split("=",2)[1]);
+        var body=mapper.readTree(submission("variables","Main.java"));
+        ((com.fasterxml.jackson.databind.node.ObjectNode)body).put("preview",true);judgePass.set(true);
+        mvc.perform(post("/api/submissions").cookie(current).header("X-Quest-Client","1").contentType("application/json").content(mapper.writeValueAsString(body)))
+            .andExpect(status().isOk()).andExpect(jsonPath("$.preview").value(true)).andExpect(jsonPath("$.awardedXp").value(0)).andExpect(jsonPath("$.newlyCompleted").value(false));
+        mvc.perform(get("/api/me").cookie(current)).andExpect(jsonPath("$.xp").value(0)).andExpect(jsonPath("$.submissions").value(0)).andExpect(jsonPath("$.completed").isEmpty());
+        Thread.sleep(2050);
+        ((com.fasterxml.jackson.databind.node.ObjectNode)body).put("preview",false);
+        mvc.perform(post("/api/submissions").cookie(current).header("X-Quest-Client","1").contentType("application/json").content(mapper.writeValueAsString(body))).andExpect(status().isForbidden());
+    }
     private String submission(String lesson,String name) throws Exception {
         return mapper.writeValueAsString(Map.of("lessonId",lesson,"files",List.of(Map.of("name",name,"content","public class Main {}"))));
     }

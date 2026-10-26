@@ -17,6 +17,10 @@ quest_cleanup() {
 trap quest_cleanup EXIT
 trap 'exit 130' INT TERM
 quest_api_port=${PORT:-8080}
+# Codespaces forwards the browser through HTTPS; keep CORS restricted to that exact origin.
+if [[ -z "${FRONTEND_ORIGIN:-}" && -n "${CODESPACE_NAME:-}" ]]; then
+  export FRONTEND_ORIGIN="https://${CODESPACE_NAME}-${FRONTEND_PORT:-5173}.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN:-app.github.dev}"
+fi
 export JUDGE_PORT=${JUDGE_PORT:-8091}
 quest_ports=("$quest_api_port")
 [[ "$quest_mode" != off ]] && quest_ports+=("$JUDGE_PORT")

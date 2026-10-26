@@ -31,7 +31,8 @@
                 "kind": "challenge",
                 "lessonId": "hello-profile"
               }
-            ]
+            ],
+            "practiceRationale": "概念相对集中，用少量任务分别确认理解、修复和迁移。"
           },
           {
             "id": "jdk-model",
@@ -56,7 +57,8 @@
                 "kind": "challenge",
                 "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "概念相对集中，用少量任务分别确认理解、修复和迁移。"
           },
           {
             "id": "input",
@@ -80,8 +82,27 @@
                 "title": "实现带边界检查的输入解析",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "input-4",
+                "title": "处理 nextInt 后的换行",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "input-5",
+                "title": "循环读取到 EOF",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "input-6",
+                "title": "拒绝缺失和多余的输入字段",
+                "kind": "integration",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验处理 nextInt 后的换行、循环读取到 EOF、拒绝缺失和多余的输入字段等独立目标；因此安排 6 项，而不是统一三题。"
           }
         ]
       },
@@ -111,8 +132,27 @@
                 "title": "根据输入计算总积分",
                 "kind": "challenge",
                 "lessonId": "input-points"
+              },
+              {
+                "id": "variables-4",
+                "title": "区分字段与局部变量",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "variables-5",
+                "title": "使用 final 保护不变配置",
+                "kind": "guided",
+                "lessonId": "final-config"
+              },
+              {
+                "id": "variables-6",
+                "title": "追踪复合赋值的计算顺序",
+                "kind": "integration",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验区分字段与局部变量、使用 final 保护不变配置、追踪复合赋值的计算顺序等独立目标；因此安排 6 项，而不是统一三题。"
           },
           {
             "id": "types",
@@ -136,8 +176,33 @@
                 "title": "选择正确类型计算平均值",
                 "kind": "challenge",
                 "lessonId": "mean-value"
+              },
+              {
+                "id": "types-4",
+                "title": "识别窄化转换的数据丢失",
+                "kind": "trace",
+                "lessonId": "narrowing-cast"
+              },
+              {
+                "id": "types-5",
+                "title": "区分包装类型与空值拆箱",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "types-6",
+                "title": "处理 NaN 与无穷值",
+                "kind": "integration",
+                "lessonId": null
+              },
+              {
+                "id": "types-7",
+                "title": "选择可表达范围的整数类型",
+                "kind": "boundary",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验识别窄化转换的数据丢失、区分包装类型与空值拆箱、处理 NaN 与无穷值等独立目标；因此安排 7 项，而不是统一三题。"
           },
           {
             "id": "operators",
@@ -161,8 +226,27 @@
                 "title": "判断区间与整除条件",
                 "kind": "challenge",
                 "lessonId": "range-multiple"
+              },
+              {
+                "id": "operators-4",
+                "title": "用短路运算保护除法",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "operators-5",
+                "title": "区分前置后置自增",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "operators-6",
+                "title": "验证按位掩码的权限组合",
+                "kind": "integration",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验用短路运算保护除法、区分前置后置自增、验证按位掩码的权限组合等独立目标；因此安排 6 项，而不是统一三题。"
           },
           {
             "id": "money",
@@ -186,8 +270,33 @@
                 "title": "按规则结算多项金额",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "money-4",
+                "title": "为多次折扣选择舍入时机",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "money-5",
+                "title": "拒绝从 double 构造金额",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "money-6",
+                "title": "保持 equals 与 compareTo 的语义一致",
+                "kind": "integration",
+                "lessonId": null
+              },
+              {
+                "id": "money-7",
+                "title": "为分摊余数制定可核对规则",
+                "kind": "boundary",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验为多次折扣选择舍入时机、拒绝从 double 构造金额、保持 equals 与 compareTo 的语义一致等独立目标；因此安排 7 项，而不是统一三题。"
           },
           {
             "id": "references",
@@ -211,8 +320,27 @@
                 "title": "解释方法调用后哪些状态发生变化",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "references-4",
+                "title": "区分引用重绑定与对象修改",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "references-5",
+                "title": "修复包装类型的缓存误判",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "references-6",
+                "title": "解释传递数组后的可见修改",
+                "kind": "integration",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验区分引用重绑定与对象修改、修复包装类型的缓存误判、解释传递数组后的可见修改等独立目标；因此安排 6 项，而不是统一三题。"
           }
         ]
       },
@@ -242,8 +370,27 @@
                 "title": "实现多档成绩判定",
                 "kind": "challenge",
                 "lessonId": "grade-bands"
+              },
+              {
+                "id": "conditions-4",
+                "title": "用短路条件保护空值",
+                "kind": "debug",
+                "lessonId": "null-short-circuit"
+              },
+              {
+                "id": "conditions-5",
+                "title": "消除重复分支中的遗漏",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "conditions-6",
+                "title": "把嵌套判断改为卫语句",
+                "kind": "integration",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验用短路条件保护空值、消除重复分支中的遗漏、把嵌套判断改为卫语句等独立目标；因此安排 6 项，而不是统一三题。"
           },
           {
             "id": "loops",
@@ -267,8 +414,33 @@
                 "title": "对输入区间求和",
                 "kind": "challenge",
                 "lessonId": "sum-to-n"
+              },
+              {
+                "id": "loops-4",
+                "title": "用 break 和 continue 处理输入流",
+                "kind": "challenge",
+                "lessonId": "loop-control"
+              },
+              {
+                "id": "loops-5",
+                "title": "拒绝无法终止的更新条件",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "loops-6",
+                "title": "对比 while 与 do-while 边界",
+                "kind": "integration",
+                "lessonId": null
+              },
+              {
+                "id": "loops-7",
+                "title": "通过循环不变量解释正确性",
+                "kind": "boundary",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验用 break 和 continue 处理输入流、拒绝无法终止的更新条件、对比 while 与 do-while 边界等独立目标；因此安排 7 项，而不是统一三题。"
           },
           {
             "id": "switch",
@@ -292,8 +464,21 @@
                 "title": "用 switch 表达式转换状态",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "switch-4",
+                "title": "处理 null 和未知枚举值",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "switch-5",
+                "title": "合并共享行为的分支",
+                "kind": "refactor",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验处理 null 和未知枚举值、合并共享行为的分支等独立目标；因此安排 5 项，而不是统一三题。"
           }
         ]
       },
@@ -323,8 +508,33 @@
                 "title": "查找含负数数组的最大值",
                 "kind": "challenge",
                 "lessonId": "array-maximum"
+              },
+              {
+                "id": "arrays-4",
+                "title": "正确复制数组而非共享别名",
+                "kind": "boundary",
+                "lessonId": "array-independent-copy"
+              },
+              {
+                "id": "arrays-5",
+                "title": "处理空数组与二维不规则数组",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "arrays-6",
+                "title": "实现原地去重并返回有效长度",
+                "kind": "integration",
+                "lessonId": null
+              },
+              {
+                "id": "arrays-7",
+                "title": "比较排序前后的输入是否被修改",
+                "kind": "boundary",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验正确复制数组而非共享别名、处理空数组与二维不规则数组、实现原地去重并返回有效长度等独立目标；因此安排 7 项，而不是统一三题。"
           },
           {
             "id": "methods",
@@ -348,8 +558,33 @@
                 "title": "实现可复用的区间夹取函数",
                 "kind": "challenge",
                 "lessonId": "clamp-value"
+              },
+              {
+                "id": "methods-4",
+                "title": "区分重载选择与参数提升",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "methods-5",
+                "title": "修复参数遮蔽和副作用",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "methods-6",
+                "title": "定义方法对非法区间的契约",
+                "kind": "boundary",
+                "lessonId": "clamp-contract"
+              },
+              {
+                "id": "methods-7",
+                "title": "把长方法拆成可测试的纯计算",
+                "kind": "boundary",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验区分重载选择与参数提升、修复参数遮蔽和副作用、定义方法对非法区间的契约等独立目标；因此安排 7 项，而不是统一三题。"
           },
           {
             "id": "strings",
@@ -373,8 +608,33 @@
                 "title": "实现规范化标签匹配",
                 "kind": "challenge",
                 "lessonId": "normalized-tags"
+              },
+              {
+                "id": "strings-4",
+                "title": "区分 UTF-16 长度与字符数量",
+                "kind": "boundary",
+                "lessonId": "unicode-count"
+              },
+              {
+                "id": "strings-5",
+                "title": "处理空白但非空的字符串",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "strings-6",
+                "title": "避免循环中无界拼接",
+                "kind": "integration",
+                "lessonId": null
+              },
+              {
+                "id": "strings-7",
+                "title": "实现保留内部空格的规范化",
+                "kind": "boundary",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验区分 UTF-16 长度与字符数量、处理空白但非空的字符串、避免循环中无界拼接等独立目标；因此安排 7 项，而不是统一三题。"
           },
           {
             "id": "recursion",
@@ -398,8 +658,21 @@
                 "title": "实现目录树节点计数",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "recursion-4",
+                "title": "识别栈深度和重复计算",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "recursion-5",
+                "title": "用显式栈替代深递归",
+                "kind": "refactor",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验识别栈深度和重复计算、用显式栈替代深递归等独立目标；因此安排 5 项，而不是统一三题。"
           }
         ]
       },
@@ -429,8 +702,39 @@
                 "title": "实现拒绝透支的账户对象",
                 "kind": "challenge",
                 "lessonId": "account-withdraw"
+              },
+              {
+                "id": "objects-4",
+                "title": "保持构造后的对象不变量",
+                "kind": "boundary",
+                "lessonId": "account-invariant"
+              },
+              {
+                "id": "objects-5",
+                "title": "用组合替代不恰当继承",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "objects-6",
+                "title": "区分实体身份与值相等",
+                "kind": "integration",
+                "lessonId": null
+              },
+              {
+                "id": "objects-7",
+                "title": "重构泄露内部集合的访问器",
+                "kind": "boundary",
+                "lessonId": "defensive-snapshot"
+              },
+              {
+                "id": "objects-8",
+                "title": "用工厂表达合法创建路径",
+                "kind": "refactor",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验保持构造后的对象不变量、用组合替代不恰当继承、区分实体身份与值相等等独立目标；因此安排 8 项，而不是统一三题。"
           },
           {
             "id": "inheritance",
@@ -454,8 +758,33 @@
                 "title": "为订单增加折扣策略",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "inheritance-4",
+                "title": "识别静态方法隐藏与动态分派",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "inheritance-5",
+                "title": "检查里氏替换下的前置条件",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "inheritance-6",
+                "title": "为测试替换外部支付实现",
+                "kind": "integration",
+                "lessonId": null
+              },
+              {
+                "id": "inheritance-7",
+                "title": "消除基类对实现细节的依赖",
+                "kind": "boundary",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验识别静态方法隐藏与动态分派、检查里氏替换下的前置条件、为测试替换外部支付实现等独立目标；因此安排 7 项，而不是统一三题。"
           },
           {
             "id": "contracts",
@@ -479,8 +808,27 @@
                 "title": "设计不可变订单快照",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "contracts-4",
+                "title": "验证 equals 的对称与传递",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "contracts-5",
+                "title": "修复数组字段的浅拷贝",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "contracts-6",
+                "title": "为 record 的可变成员提供防御拷贝",
+                "kind": "integration",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验验证 equals 的对称与传递、修复数组字段的浅拷贝、为 record 的可变成员提供防御拷贝等独立目标；因此安排 6 项，而不是统一三题。"
           },
           {
             "id": "exceptions",
@@ -504,8 +852,39 @@
                 "title": "实现可恢复的数字解析",
                 "kind": "challenge",
                 "lessonId": "parse-or-invalid"
+              },
+              {
+                "id": "exceptions-4",
+                "title": "用 try-with-resources 保证关闭",
+                "kind": "debug",
+                "lessonId": "resource-closing"
+              },
+              {
+                "id": "exceptions-5",
+                "title": "保留异常原因而非覆盖堆栈",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "exceptions-6",
+                "title": "区分业务拒绝与系统故障",
+                "kind": "integration",
+                "lessonId": null
+              },
+              {
+                "id": "exceptions-7",
+                "title": "分析 suppressed 异常",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "exceptions-8",
+                "title": "避免在 finally 中覆盖返回值",
+                "kind": "refactor",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验用 try-with-resources 保证关闭、保留异常原因而非覆盖堆栈、区分业务拒绝与系统故障等独立目标；因此安排 8 项，而不是统一三题。"
           },
           {
             "id": "language-boundaries",
@@ -530,7 +909,8 @@
                 "kind": "challenge",
                 "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "概念相对集中，用少量任务分别确认理解、修复和迁移。"
           }
         ]
       },
@@ -560,8 +940,33 @@
                 "title": "设计带上下界的复制方法",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "basic-generics-4",
+                "title": "区分 extends 与 super 的读写能力",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "basic-generics-5",
+                "title": "说明类型擦除的运行时限制",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "basic-generics-6",
+                "title": "修复泛型数组的不安全假设",
+                "kind": "integration",
+                "lessonId": null
+              },
+              {
+                "id": "basic-generics-7",
+                "title": "使用有界类型参数表达比较能力",
+                "kind": "boundary",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验区分 extends 与 super 的读写能力、说明类型擦除的运行时限制、修复泛型数组的不安全假设等独立目标；因此安排 7 项，而不是统一三题。"
           },
           {
             "id": "functional",
@@ -585,8 +990,45 @@
                 "title": "实现分组、排序与聚合报表",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "functional-4",
+                "title": "拆解有副作用的 Stream 管道",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "functional-5",
+                "title": "比较 map 与 flatMap 的结果",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "functional-6",
+                "title": "组合 groupingBy 与下游收集器",
+                "kind": "integration",
+                "lessonId": null
+              },
+              {
+                "id": "functional-7",
+                "title": "修复并行流中的共享状态",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "functional-8",
+                "title": "避免滥用 Optional.get",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "functional-9",
+                "title": "用可读循环替换难懂的流",
+                "kind": "integration",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验拆解有副作用的 Stream 管道、比较 map 与 flatMap 的结果、组合 groupingBy 与下游收集器等独立目标；因此安排 9 项，而不是统一三题。"
           },
           {
             "id": "records",
@@ -610,8 +1052,21 @@
                 "title": "设计受限的事件类型集合",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "records-4",
+                "title": "校验紧凑构造器的边界",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "records-5",
+                "title": "为 sealed 层级增加新分支",
+                "kind": "refactor",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验校验紧凑构造器的边界、为 sealed 层级增加新分支等独立目标；因此安排 5 项，而不是统一三题。"
           },
           {
             "id": "io",
@@ -635,8 +1090,39 @@
                 "title": "流式处理大文本而不整文件加载",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "io-4",
+                "title": "为大文件采用有界缓冲",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "io-5",
+                "title": "检测错误编码与部分写入",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "io-6",
+                "title": "安全构造用户提供的相对路径",
+                "kind": "integration",
+                "lessonId": null
+              },
+              {
+                "id": "io-7",
+                "title": "实现原子替换与失败恢复",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "io-8",
+                "title": "避免一次读取整个文件",
+                "kind": "refactor",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验为大文件采用有界缓冲、检测错误编码与部分写入、安全构造用户提供的相对路径等独立目标；因此安排 8 项，而不是统一三题。"
           },
           {
             "id": "reflection",
@@ -660,8 +1146,27 @@
                 "title": "实现受控的组件注册器",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "reflection-4",
+                "title": "区分注解保留策略",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "reflection-5",
+                "title": "拒绝反射访问不允许的类型",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "reflection-6",
+                "title": "用 ServiceLoader 注册扩展点",
+                "kind": "integration",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验区分注解保留策略、拒绝反射访问不允许的类型、用 ServiceLoader 注册扩展点等独立目标；因此安排 6 项，而不是统一三题。"
           },
           {
             "id": "time-text",
@@ -686,7 +1191,8 @@
                 "kind": "challenge",
                 "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "概念相对集中，用少量任务分别确认理解、修复和迁移。"
           },
           {
             "id": "serialization",
@@ -711,7 +1217,8 @@
                 "kind": "challenge",
                 "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "概念相对集中，用少量任务分别确认理解、修复和迁移。"
           }
         ]
       },
@@ -741,11 +1248,35 @@
                 "title": "完成订单报表与边界验证",
                 "kind": "project",
                 "lessonId": "order-release"
+              },
+              {
+                "id": "order-project-4",
+                "title": "为税费和分摊制定金额契约",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "order-project-5",
+                "title": "按商品分组生成明细报表",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "order-project-6",
+                "title": "为错误输入提供可读诊断",
+                "kind": "integration",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验为税费和分摊制定金额契约、按商品分组生成明细报表、为错误输入提供可读诊断等独立目标；因此安排 6 项，而不是统一三题。"
           }
         ]
       }
+    ],
+    "sampleLessonIds": [
+      "null-short-circuit",
+      "unicode-count",
+      "resource-closing"
     ]
   },
   {
@@ -779,8 +1310,27 @@
                 "title": "依据访问模式选择列表实现",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "list-4",
+                "title": "删除满足条件的元素而不跳项",
+                "kind": "debug",
+                "lessonId": "list-remove"
+              },
+              {
+                "id": "list-5",
+                "title": "比较迭代器与索引遍历成本",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "list-6",
+                "title": "设计只读视图与不可变副本",
+                "kind": "integration",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验删除满足条件的元素而不跳项、比较迭代器与索引遍历成本、设计只读视图与不可变副本等独立目标；因此安排 6 项，而不是统一三题。"
           },
           {
             "id": "maps",
@@ -804,8 +1354,33 @@
                 "title": "实现大小写无关的词频报表",
                 "kind": "challenge",
                 "lessonId": "word-report"
+              },
+              {
+                "id": "maps-4",
+                "title": "区分不存在的键与 null 值",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "maps-5",
+                "title": "使用 merge 合并增量统计",
+                "kind": "boundary",
+                "lessonId": "map-merge-reports"
+              },
+              {
+                "id": "maps-6",
+                "title": "按值排序时定义稳定次序",
+                "kind": "integration",
+                "lessonId": null
+              },
+              {
+                "id": "maps-7",
+                "title": "限制缓存大小并实现淘汰",
+                "kind": "boundary",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验区分不存在的键与 null 值、使用 merge 合并增量统计、按值排序时定义稳定次序等独立目标；因此安排 7 项，而不是统一三题。"
           },
           {
             "id": "map-order",
@@ -829,8 +1404,21 @@
                 "title": "实现范围查询与稳定榜单",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "map-order-4",
+                "title": "实现访问序的 LRU 模型",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "map-order-5",
+                "title": "校验比较器与 equals 的一致性",
+                "kind": "refactor",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验实现访问序的 LRU 模型、校验比较器与 equals 的一致性等独立目标；因此安排 5 项，而不是统一三题。"
           },
           {
             "id": "sets",
@@ -854,8 +1442,21 @@
                 "title": "按输入顺序输出去重结果",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "sets-4",
+                "title": "处理嵌套可变对象的去重",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "sets-5",
+                "title": "比较排序去重与哈希去重成本",
+                "kind": "refactor",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验处理嵌套可变对象的去重、比较排序去重与哈希去重成本等独立目标；因此安排 5 项，而不是统一三题。"
           }
         ]
       },
@@ -885,8 +1486,27 @@
                 "title": "验证括号匹配与滑动窗口",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "stack-queue-4",
+                "title": "验证嵌套括号与提前闭合",
+                "kind": "challenge",
+                "lessonId": "parentheses-check"
+              },
+              {
+                "id": "stack-queue-5",
+                "title": "实现单调队列的最大值窗口",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "stack-queue-6",
+                "title": "跟踪双端队列两端的操作",
+                "kind": "integration",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验验证嵌套括号与提前闭合、实现单调队列的最大值窗口、跟踪双端队列两端的操作等独立目标；因此安排 6 项，而不是统一三题。"
           },
           {
             "id": "linked",
@@ -910,8 +1530,27 @@
                 "title": "反转链表并覆盖空链表",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "linked-4",
+                "title": "检测链表环并寻找入口",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "linked-5",
+                "title": "合并两条有序链表",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "linked-6",
+                "title": "处理共享尾节点的别名关系",
+                "kind": "integration",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验检测链表环并寻找入口、合并两条有序链表、处理共享尾节点的别名关系等独立目标；因此安排 6 项，而不是统一三题。"
           },
           {
             "id": "hashing",
@@ -935,8 +1574,27 @@
                 "title": "实现带扩容的小型哈希表",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "hashing-4",
+                "title": "处理恶意碰撞与最坏情况",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "hashing-5",
+                "title": "解释扰动函数与容量选择",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "hashing-6",
+                "title": "验证扩容后所有元素仍可查询",
+                "kind": "integration",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验处理恶意碰撞与最坏情况、解释扰动函数与容量选择、验证扩容后所有元素仍可查询等独立目标；因此安排 6 项，而不是统一三题。"
           }
         ]
       },
@@ -967,7 +1625,8 @@
                 "kind": "challenge",
                 "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "概念相对集中，用少量任务分别确认理解、修复和迁移。"
           },
           {
             "id": "heap",
@@ -992,7 +1651,8 @@
                 "kind": "challenge",
                 "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "概念相对集中，用少量任务分别确认理解、修复和迁移。"
           },
           {
             "id": "graphs",
@@ -1017,7 +1677,8 @@
                 "kind": "challenge",
                 "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "概念相对集中，用少量任务分别确认理解、修复和迁移。"
           }
         ]
       },
@@ -1048,7 +1709,8 @@
                 "kind": "challenge",
                 "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "概念相对集中，用少量任务分别确认理解、修复和迁移。"
           },
           {
             "id": "search-sort",
@@ -1072,8 +1734,27 @@
                 "title": "实现稳定的排序结果合并",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "search-sort-4",
+                "title": "为重复元素寻找左右边界",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "search-sort-5",
+                "title": "避免比较器减法导致溢出",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "search-sort-6",
+                "title": "合并有序数据流而不整体加载",
+                "kind": "integration",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验为重复元素寻找左右边界、避免比较器减法导致溢出、合并有序数据流而不整体加载等独立目标；因此安排 6 项，而不是统一三题。"
           },
           {
             "id": "patterns",
@@ -1097,8 +1778,21 @@
                 "title": "计算指定范围内的最优子数组",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "patterns-4",
+                "title": "对比前缀和与滑动窗口适用条件",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "patterns-5",
+                "title": "正确处理包含负数的数组",
+                "kind": "refactor",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验对比前缀和与滑动窗口适用条件、正确处理包含负数的数组等独立目标；因此安排 5 项，而不是统一三题。"
           },
           {
             "id": "dp",
@@ -1122,11 +1816,35 @@
                 "title": "对比三种解法的正确性与成本",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "dp-4",
+                "title": "还原最优解而非只求最优值",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "dp-5",
+                "title": "压缩状态并保持依赖方向",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "dp-6",
+                "title": "用反例否定错误贪心策略",
+                "kind": "integration",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验还原最优解而非只求最优值、压缩状态并保持依赖方向、用反例否定错误贪心策略等独立目标；因此安排 6 项，而不是统一三题。"
           }
         ]
       }
+    ],
+    "sampleLessonIds": [
+      "word-report",
+      "list-remove",
+      "parentheses-check"
     ]
   },
   {
@@ -1160,8 +1878,27 @@
                 "title": "从空项目构建可运行 jar",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "pom-4",
+                "title": "声明编译目标 JDK 21",
+                "kind": "config",
+                "lessonId": "pom-release"
+              },
+              {
+                "id": "pom-5",
+                "title": "解释资源目录与最终包内容",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "pom-6",
+                "title": "辨别继承坐标与独立坐标",
+                "kind": "integration",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验声明编译目标 JDK 21、解释资源目录与最终包内容、辨别继承坐标与独立坐标等独立目标；因此安排 6 项，而不是统一三题。"
           },
           {
             "id": "lifecycle",
@@ -1185,8 +1922,27 @@
                 "title": "建立开发和生产构建配置",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "lifecycle-4",
+                "title": "避免 package 与 install 的混淆",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "lifecycle-5",
+                "title": "用插件执行绑定测试阶段",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "lifecycle-6",
+                "title": "区分跳过测试执行与跳过编译",
+                "kind": "integration",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验避免 package 与 install 的混淆、用插件执行绑定测试阶段、区分跳过测试执行与跳过编译等独立目标；因此安排 6 项，而不是统一三题。"
           }
         ]
       },
@@ -1216,8 +1972,33 @@
                 "title": "用 BOM 固定统一依赖版本",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "dependencies-4",
+                "title": "将 JUnit 声明为测试依赖",
+                "kind": "config",
+                "lessonId": "pom-test-dependency"
+              },
+              {
+                "id": "dependencies-5",
+                "title": "定位最近路径优先的版本选择",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "dependencies-6",
+                "title": "用 exclusions 切断冲突链",
+                "kind": "integration",
+                "lessonId": null
+              },
+              {
+                "id": "dependencies-7",
+                "title": "区分 dependencyManagement 与实际依赖",
+                "kind": "boundary",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验将 JUnit 声明为测试依赖、定位最近路径优先的版本选择、用 exclusions 切断冲突链等独立目标；因此安排 7 项，而不是统一三题。"
           },
           {
             "id": "modules",
@@ -1241,8 +2022,27 @@
                 "title": "构建具有清晰 API 边界的多模块工程",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "modules-4",
+                "title": "校验根模块与子模块的坐标关系",
+                "kind": "config",
+                "lessonId": "pom-modules"
+              },
+              {
+                "id": "modules-5",
+                "title": "避免父 POM 相对路径指错",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "modules-6",
+                "title": "区分聚合构建与继承配置",
+                "kind": "integration",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验校验根模块与子模块的坐标关系、避免父 POM 相对路径指错、区分聚合构建与继承配置等独立目标；因此安排 6 项，而不是统一三题。"
           },
           {
             "id": "reproducible",
@@ -1267,7 +2067,8 @@
                 "kind": "challenge",
                 "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "概念相对集中，用少量任务分别确认理解、修复和迁移。"
           }
         ]
       },
@@ -1297,8 +2098,33 @@
                 "title": "隔离外部依赖并验证失败行为",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "junit-4",
+                "title": "覆盖异常分支与边界组合",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "junit-5",
+                "title": "避免只验证 mock 被调用",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "junit-6",
+                "title": "识别依赖测试执行顺序的用例",
+                "kind": "integration",
+                "lessonId": null
+              },
+              {
+                "id": "junit-7",
+                "title": "用性质测试补充例子测试",
+                "kind": "boundary",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验覆盖异常分支与边界组合、避免只验证 mock 被调用、识别依赖测试执行顺序的用例等独立目标；因此安排 7 项，而不是统一三题。"
           },
           {
             "id": "quality",
@@ -1322,8 +2148,27 @@
                 "title": "建立格式、检查和质量门禁",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "quality-4",
+                "title": "为重构保留可观察行为",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "quality-5",
+                "title": "拒绝只为指标而拆分的方法",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "quality-6",
+                "title": "用评审解释设计选择",
+                "kind": "integration",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验为重构保留可观察行为、拒绝只为指标而拆分的方法、用评审解释设计选择等独立目标；因此安排 6 项，而不是统一三题。"
           },
           {
             "id": "ci",
@@ -1347,8 +2192,27 @@
                 "title": "发布可追溯制品并扫描依赖",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "ci-4",
+                "title": "防止测试失败后仍发布制品",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "ci-5",
+                "title": "为不可信 PR 隔离凭据",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "ci-6",
+                "title": "用产物校验定位构建差异",
+                "kind": "integration",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验防止测试失败后仍发布制品、为不可信 PR 隔离凭据、用产物校验定位构建差异等独立目标；因此安排 6 项，而不是统一三题。"
           },
           {
             "id": "git-review",
@@ -1373,10 +2237,16 @@
                 "kind": "challenge",
                 "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "概念相对集中，用少量任务分别确认理解、修复和迁移。"
           }
         ]
       }
+    ],
+    "sampleLessonIds": [
+      "pom-release",
+      "pom-test-dependency",
+      "pom-modules"
     ]
   },
   {
@@ -1410,8 +2280,39 @@
                 "title": "按职责拆分可替换的组件",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "ioc-4",
+                "title": "修复构造器参数未保存",
+                "kind": "lab",
+                "lessonId": "spring-constructor"
+              },
+              {
+                "id": "ioc-5",
+                "title": "在多个实现之间指定 Qualifier",
+                "kind": "lab",
+                "lessonId": "spring-qualifier"
+              },
+              {
+                "id": "ioc-6",
+                "title": "区分单例与请求作用域",
+                "kind": "integration",
+                "lessonId": null
+              },
+              {
+                "id": "ioc-7",
+                "title": "跟踪初始化与销毁回调",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "ioc-8",
+                "title": "拒绝依赖字段注入的隐式耦合",
+                "kind": "refactor",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验修复构造器参数未保存、在多个实现之间指定 Qualifier、区分单例与请求作用域等独立目标；因此安排 8 项，而不是统一三题。"
           },
           {
             "id": "config",
@@ -1435,8 +2336,27 @@
                 "title": "为不同环境建立最小差异配置",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "config-4",
+                "title": "校验必需配置并尽早失败",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "config-5",
+                "title": "在日志中隐藏敏感配置",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "config-6",
+                "title": "分析环境变量与 profile 优先级",
+                "kind": "integration",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验校验必需配置并尽早失败、在日志中隐藏敏感配置、分析环境变量与 profile 优先级等独立目标；因此安排 6 项，而不是统一三题。"
           },
           {
             "id": "aop",
@@ -1460,8 +2380,27 @@
                 "title": "用切面实现明确边界的审计",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "aop-4",
+                "title": "识别 final 方法与代理限制",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "aop-5",
+                "title": "区分 JDK 代理与类代理",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "aop-6",
+                "title": "正确安排事务与审计切面顺序",
+                "kind": "integration",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验识别 final 方法与代理限制、区分 JDK 代理与类代理、正确安排事务与审计切面顺序等独立目标；因此安排 6 项，而不是统一三题。"
           }
         ]
       },
@@ -1491,8 +2430,39 @@
                 "title": "按契约开发分页筛选接口",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "rest-4",
+                "title": "处理请求参数与缺省值",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "rest-5",
+                "title": "区分请求体 DTO 与领域实体",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "rest-6",
+                "title": "设置内容类型和字符编码",
+                "kind": "integration",
+                "lessonId": null
+              },
+              {
+                "id": "rest-7",
+                "title": "为创建和删除选择正确状态码",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "rest-8",
+                "title": "验证映射冲突与路径歧义",
+                "kind": "refactor",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验处理请求参数与缺省值、区分请求体 DTO 与领域实体、设置内容类型和字符编码等独立目标；因此安排 8 项，而不是统一三题。"
           },
           {
             "id": "validation",
@@ -1516,8 +2486,33 @@
                 "title": "统一错误契约并覆盖失败路径",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "validation-4",
+                "title": "组合字段约束与错误报告",
+                "kind": "lab",
+                "lessonId": "spring-validation"
+              },
+              {
+                "id": "validation-5",
+                "title": "返回稳定的字段错误路径",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "validation-6",
+                "title": "为嵌套对象触发级联校验",
+                "kind": "integration",
+                "lessonId": null
+              },
+              {
+                "id": "validation-7",
+                "title": "验证枚举与未知 JSON 字段",
+                "kind": "boundary",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验组合字段约束与错误报告、返回稳定的字段错误路径、为嵌套对象触发级联校验等独立目标；因此安排 7 项，而不是统一三题。"
           },
           {
             "id": "api-design",
@@ -1541,8 +2536,33 @@
                 "title": "为兼容升级设计版本和幂等键",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "api-design-4",
+                "title": "使用游标避免深分页",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "api-design-5",
+                "title": "为重复请求返回相同结果",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "api-design-6",
+                "title": "保持新增字段向后兼容",
+                "kind": "integration",
+                "lessonId": null
+              },
+              {
+                "id": "api-design-7",
+                "title": "为分页排序提供稳定次序",
+                "kind": "boundary",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验使用游标避免深分页、为重复请求返回相同结果、保持新增字段向后兼容等独立目标；因此安排 7 项，而不是统一三题。"
           },
           {
             "id": "networking",
@@ -1567,7 +2587,8 @@
                 "kind": "challenge",
                 "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "概念相对集中，用少量任务分别确认理解、修复和迁移。"
           }
         ]
       },
@@ -1597,8 +2618,27 @@
                 "title": "封装可测试的仓储接口",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "jdbc-4",
+                "title": "处理批量操作的失败边界",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "jdbc-5",
+                "title": "关闭连接不等于关闭连接池",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "jdbc-6",
+                "title": "验证参数绑定而非拼接 SQL",
+                "kind": "integration",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验处理批量操作的失败边界、关闭连接不等于关闭连接池、验证参数绑定而非拼接 SQL等独立目标；因此安排 6 项，而不是统一三题。"
           },
           {
             "id": "orm",
@@ -1622,8 +2662,27 @@
                 "title": "依据查询需求选择访问方案",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "orm-4",
+                "title": "控制抓取策略与事务范围",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "orm-5",
+                "title": "避免把持久化实体直接返回接口",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "orm-6",
+                "title": "观察批量写入产生的 SQL",
+                "kind": "integration",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验控制抓取策略与事务范围、避免把持久化实体直接返回接口、观察批量写入产生的 SQL等独立目标；因此安排 6 项，而不是统一三题。"
           },
           {
             "id": "transactions",
@@ -1647,8 +2706,33 @@
                 "title": "在服务层定义一致性边界",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "transactions-4",
+                "title": "修复代理外自调用导致的事务失效",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "transactions-5",
+                "title": "区分 checked 异常与回滚规则",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "transactions-6",
+                "title": "验证 REQUIRES_NEW 的独立提交",
+                "kind": "integration",
+                "lessonId": null
+              },
+              {
+                "id": "transactions-7",
+                "title": "为乐观锁失败设计有限重试",
+                "kind": "boundary",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验修复代理外自调用导致的事务失效、区分 checked 异常与回滚规则、验证 REQUIRES_NEW 的独立提交等独立目标；因此安排 7 项，而不是统一三题。"
           },
           {
             "id": "migrations",
@@ -1672,8 +2756,27 @@
                 "title": "在真实数据库验证版本升级",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "migrations-4",
+                "title": "演练旧版本与新字段共存",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "migrations-5",
+                "title": "修复不可重复的数据回填",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "migrations-6",
+                "title": "验证索引创建对业务写入的影响",
+                "kind": "integration",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验演练旧版本与新字段共存、修复不可重复的数据回填、验证索引创建对业务写入的影响等独立目标；因此安排 6 项，而不是统一三题。"
           }
         ]
       },
@@ -1703,8 +2806,27 @@
                 "title": "设计可撤销的认证流程",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "auth-4",
+                "title": "撤销被泄露的会话",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "auth-5",
+                "title": "防止认证错误泄露账号存在性",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "auth-6",
+                "title": "安全实现密码重置与邮件验证",
+                "kind": "integration",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验撤销被泄露的会话、防止认证错误泄露账号存在性、安全实现密码重置与邮件验证等独立目标；因此安排 6 项，而不是统一三题。"
           },
           {
             "id": "authorization",
@@ -1728,8 +2850,27 @@
                 "title": "建立服务端权限与审计测试",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "authorization-4",
+                "title": "按资源所有权进行授权",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "authorization-5",
+                "title": "验证后台管理接口的服务端权限",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "authorization-6",
+                "title": "拒绝仅靠前端按钮隐藏的保护",
+                "kind": "integration",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验按资源所有权进行授权、验证后台管理接口的服务端权限、拒绝仅靠前端按钮隐藏的保护等独立目标；因此安排 6 项，而不是统一三题。"
           },
           {
             "id": "web-security",
@@ -1753,8 +2894,33 @@
                 "title": "建立上传、输入与速率限制",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "web-security-4",
+                "title": "为上传文件限制路径与类型",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "web-security-5",
+                "title": "用精确 origin 配置 CORS",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "web-security-6",
+                "title": "区分 XSS 与 CSRF 的防护边界",
+                "kind": "integration",
+                "lessonId": null
+              },
+              {
+                "id": "web-security-7",
+                "title": "防止日志中的用户输入伪造记录",
+                "kind": "boundary",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验为上传文件限制路径与类型、用精确 origin 配置 CORS、区分 XSS 与 CSRF 的防护边界等独立目标；因此安排 7 项，而不是统一三题。"
           },
           {
             "id": "security-frameworks",
@@ -1779,7 +2945,8 @@
                 "kind": "challenge",
                 "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "概念相对集中，用少量任务分别确认理解、修复和迁移。"
           },
           {
             "id": "threat-model",
@@ -1804,7 +2971,8 @@
                 "kind": "challenge",
                 "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "概念相对集中，用少量任务分别确认理解、修复和迁移。"
           }
         ]
       },
@@ -1834,8 +3002,27 @@
                 "title": "验证真实请求到持久化的闭环",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "spring-tests-4",
+                "title": "区分框架单元实验与完整 HTTP 测试",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "spring-tests-5",
+                "title": "使用真实数据库验证事务回滚",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "spring-tests-6",
+                "title": "验证未登录和无权限请求",
+                "kind": "integration",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验区分框架单元实验与完整 HTTP 测试、使用真实数据库验证事务回滚、验证未登录和无权限请求等独立目标；因此安排 6 项，而不是统一三题。"
           },
           {
             "id": "observability",
@@ -1859,8 +3046,27 @@
                 "title": "定位延迟来自连接池还是下游",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "observability-4",
+                "title": "把一次慢请求关联到下游跨度",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "observability-5",
+                "title": "避免敏感信息进入链路属性",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "observability-6",
+                "title": "为关键业务不变量建立告警",
+                "kind": "integration",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验把一次慢请求关联到下游跨度、避免敏感信息进入链路属性、为关键业务不变量建立告警等独立目标；因此安排 6 项，而不是统一三题。"
           },
           {
             "id": "resilience",
@@ -1884,11 +3090,35 @@
                 "title": "设计降级并验证故障恢复",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "resilience-4",
+                "title": "为重试加入退避和抖动",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "resilience-5",
+                "title": "拒绝对非幂等写入盲目重试",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "resilience-6",
+                "title": "避免降级响应被误判为业务成功",
+                "kind": "integration",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验为重试加入退避和抖动、拒绝对非幂等写入盲目重试、避免降级响应被误判为业务成功等独立目标；因此安排 6 项，而不是统一三题。"
           }
         ]
       }
+    ],
+    "sampleLessonIds": [
+      "spring-constructor",
+      "spring-qualifier",
+      "spring-validation"
     ]
   },
   {
@@ -1922,8 +3152,33 @@
                 "title": "实现可重复验证的并发计数",
                 "kind": "challenge",
                 "lessonId": "atomic-counter"
+              },
+              {
+                "id": "atomic-count-4",
+                "title": "比较原子自增与复合更新",
+                "kind": "boundary",
+                "lessonId": "atomic-reservation"
+              },
+              {
+                "id": "atomic-count-5",
+                "title": "验证 join 前后输出的可见性",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "atomic-count-6",
+                "title": "在失败线程中传播异常",
+                "kind": "integration",
+                "lessonId": null
+              },
+              {
+                "id": "atomic-count-7",
+                "title": "保持每轮并发实验状态隔离",
+                "kind": "boundary",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验比较原子自增与复合更新、验证 join 前后输出的可见性、在失败线程中传播异常等独立目标；因此安排 7 项，而不是统一三题。"
           },
           {
             "id": "jmm",
@@ -1947,8 +3202,27 @@
                 "title": "解释并验证安全发布方案",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "jmm-4",
+                "title": "画出可见性的 happens-before 链",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "jmm-5",
+                "title": "区分原子性与有序性",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "jmm-6",
+                "title": "发现不安全发布的半初始化对象",
+                "kind": "integration",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验画出可见性的 happens-before 链、区分原子性与有序性、发现不安全发布的半初始化对象等独立目标；因此安排 6 项，而不是统一三题。"
           },
           {
             "id": "locks",
@@ -1972,8 +3246,33 @@
                 "title": "实现有界生产者消费者队列",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "locks-4",
+                "title": "识别锁顺序中的环",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "locks-5",
+                "title": "正确处理中断与超时获取锁",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "locks-6",
+                "title": "避免在临界区进行外部 I/O",
+                "kind": "integration",
+                "lessonId": null
+              },
+              {
+                "id": "locks-7",
+                "title": "用条件循环抵抗虚假唤醒",
+                "kind": "boundary",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验识别锁顺序中的环、正确处理中断与超时获取锁、避免在临界区进行外部 I/O等独立目标；因此安排 7 项，而不是统一三题。"
           },
           {
             "id": "thread-local",
@@ -1997,8 +3296,21 @@
                 "title": "正确清理与传播异步上下文",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "thread-local-4",
+                "title": "确保线程池任务结束时 remove",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "thread-local-5",
+                "title": "区分继承上下文与显式传递",
+                "kind": "refactor",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验确保线程池任务结束时 remove、区分继承上下文与显式传递等独立目标；因此安排 5 项，而不是统一三题。"
           },
           {
             "id": "cas-aqs",
@@ -2022,8 +3334,21 @@
                 "title": "解释同步器的等待、唤醒与公平性取舍",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "cas-aqs-4",
+                "title": "用版本标记识别 ABA",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "cas-aqs-5",
+                "title": "把条件等待与自旋重试分开",
+                "kind": "refactor",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验用版本标记识别 ABA、把条件等待与自旋重试分开等独立目标；因此安排 5 项，而不是统一三题。"
           },
           {
             "id": "liveness",
@@ -2048,7 +3373,8 @@
                 "kind": "challenge",
                 "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "概念相对集中，用少量任务分别确认理解、修复和迁移。"
           }
         ]
       },
@@ -2078,8 +3404,33 @@
                 "title": "根据业务预算设计线程池",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "pools-4",
+                "title": "选择有界队列而非无界堆积",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "pools-5",
+                "title": "把拒绝策略映射为业务反馈",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "pools-6",
+                "title": "关闭执行器并等待已接受任务",
+                "kind": "integration",
+                "lessonId": null
+              },
+              {
+                "id": "pools-7",
+                "title": "观察队列长度和尾延迟",
+                "kind": "boundary",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验选择有界队列而非无界堆积、把拒绝策略映射为业务反馈、关闭执行器并等待已接受任务等独立目标；因此安排 7 项，而不是统一三题。"
           },
           {
             "id": "futures",
@@ -2103,8 +3454,33 @@
                 "title": "实现超时、取消和部分失败处理",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "futures-4",
+                "title": "区分 thenApply 与 thenCompose",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "futures-5",
+                "title": "将多任务异常汇总而非吞掉",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "futures-6",
+                "title": "确保取消真正传播到任务",
+                "kind": "integration",
+                "lessonId": null
+              },
+              {
+                "id": "futures-7",
+                "title": "为阻塞 I/O 选择专用执行器",
+                "kind": "boundary",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验区分 thenApply 与 thenCompose、将多任务异常汇总而非吞掉、确保取消真正传播到任务等独立目标；因此安排 7 项，而不是统一三题。"
           },
           {
             "id": "coordination",
@@ -2128,8 +3504,27 @@
                 "title": "构建确定性的多线程测试",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "coordination-4",
+                "title": "修复屏障参与者数量错误",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "coordination-5",
+                "title": "区分并发集合与复合操作安全",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "coordination-6",
+                "title": "避免把 sleep 当作同步机制",
+                "kind": "integration",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验修复屏障参与者数量错误、区分并发集合与复合操作安全、避免把 sleep 当作同步机制等独立目标；因此安排 6 项，而不是统一三题。"
           },
           {
             "id": "virtual-threads",
@@ -2153,8 +3548,27 @@
                 "title": "对比吞吐、延迟与外部资源瓶颈",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "virtual-threads-4",
+                "title": "限制下游连接而非只限制线程",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "virtual-threads-5",
+                "title": "用证据识别 pinning 问题",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "virtual-threads-6",
+                "title": "为取消与超时保留中断语义",
+                "kind": "integration",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验限制下游连接而非只限制线程、用证据识别 pinning 问题、为取消与超时保留中断语义等独立目标；因此安排 6 项，而不是统一三题。"
           }
         ]
       },
@@ -2185,7 +3599,8 @@
                 "kind": "challenge",
                 "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "概念相对集中，用少量任务分别确认理解、修复和迁移。"
           },
           {
             "id": "memory-gc",
@@ -2209,8 +3624,27 @@
                 "title": "用证据区分分配压力与内存泄漏",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "memory-gc-4",
+                "title": "用支配树追踪持有关系",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "memory-gc-5",
+                "title": "比较分配速率与存活对象",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "memory-gc-6",
+                "title": "区分堆外占用与 Java heap",
+                "kind": "integration",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验用支配树追踪持有关系、比较分配速率与存活对象、区分堆外占用与 Java heap等独立目标；因此安排 6 项，而不是统一三题。"
           },
           {
             "id": "references-gc",
@@ -2235,7 +3669,8 @@
                 "kind": "challenge",
                 "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "概念相对集中，用少量任务分别确认理解、修复和迁移。"
           },
           {
             "id": "gc-tuning",
@@ -2260,7 +3695,8 @@
                 "kind": "challenge",
                 "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "概念相对集中，用少量任务分别确认理解、修复和迁移。"
           }
         ]
       },
@@ -2290,8 +3726,27 @@
                 "title": "用 JFR 定位一次服务延迟",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "profiling-4",
+                "title": "在压力场景下采集而非空闲采集",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "profiling-5",
+                "title": "用火焰图定位热点路径",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "profiling-6",
+                "title": "区分采样现象与因果结论",
+                "kind": "integration",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验在压力场景下采集而非空闲采集、用火焰图定位热点路径、区分采样现象与因果结论等独立目标；因此安排 6 项，而不是统一三题。"
           },
           {
             "id": "benchmark",
@@ -2315,11 +3770,35 @@
                 "title": "以吞吐和尾延迟验证优化收益",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "benchmark-4",
+                "title": "避免死代码消除影响结论",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "benchmark-5",
+                "title": "隔离预热和测量阶段",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "benchmark-6",
+                "title": "报告误差而非单次最快值",
+                "kind": "integration",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验避免死代码消除影响结论、隔离预热和测量阶段、报告误差而非单次最快值等独立目标；因此安排 6 项，而不是统一三题。"
           }
         ]
       }
+    ],
+    "sampleLessonIds": [
+      "thread-join",
+      "atomic-lost-update",
+      "atomic-counter"
     ]
   },
   {
@@ -2353,8 +3832,33 @@
                 "title": "比较不同执行计划与写入成本",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "sql-4",
+                "title": "分析复合索引最左前缀",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "sql-5",
+                "title": "区分覆盖索引与回表",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "sql-6",
+                "title": "观察排序、分页与锁范围",
+                "kind": "integration",
+                "lessonId": null
+              },
+              {
+                "id": "sql-7",
+                "title": "为写多读少场景权衡索引成本",
+                "kind": "boundary",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验分析复合索引最左前缀、区分覆盖索引与回表、观察排序、分页与锁范围等独立目标；因此安排 7 项，而不是统一三题。"
           },
           {
             "id": "isolation",
@@ -2378,8 +3882,33 @@
                 "title": "按业务不变量设计并发事务",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "isolation-4",
+                "title": "复现幻读与不可重复读",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "isolation-5",
+                "title": "修复无版本检查的库存扣减",
+                "kind": "project",
+                "lessonId": "stock-version"
+              },
+              {
+                "id": "isolation-6",
+                "title": "用可重试事务处理死锁",
+                "kind": "integration",
+                "lessonId": null
+              },
+              {
+                "id": "isolation-7",
+                "title": "避免长事务拖住历史版本",
+                "kind": "boundary",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验复现幻读与不可重复读、修复无版本检查的库存扣减、用可重试事务处理死锁等独立目标；因此安排 7 项，而不是统一三题。"
           },
           {
             "id": "schema",
@@ -2403,8 +3932,27 @@
                 "title": "执行兼容迁移和数据回填",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "schema-4",
+                "title": "为逻辑唯一性添加数据库约束",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "schema-5",
+                "title": "安全发布非空字段",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "schema-6",
+                "title": "校验回填前后的行数与业务总量",
+                "kind": "integration",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验为逻辑唯一性添加数据库约束、安全发布非空字段、校验回填前后的行数与业务总量等独立目标；因此安排 6 项，而不是统一三题。"
           }
         ]
       },
@@ -2434,8 +3982,33 @@
                 "title": "设计有测量依据的缓存策略",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "cache-4",
+                "title": "为热点数据合并并发回源",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "cache-5",
+                "title": "避免用缓存 TTL 代替一致性设计",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "cache-6",
+                "title": "处理删除缓存失败的补偿",
+                "kind": "integration",
+                "lessonId": null
+              },
+              {
+                "id": "cache-7",
+                "title": "限制大 key 与无界本地缓存",
+                "kind": "boundary",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验为热点数据合并并发回源、避免用缓存 TTL 代替一致性设计、处理删除缓存失败的补偿等独立目标；因此安排 7 项，而不是统一三题。"
           },
           {
             "id": "messaging",
@@ -2459,8 +4032,33 @@
                 "title": "用事务消息或 outbox 保证可恢复交付",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "messaging-4",
+                "title": "处理重复投递与重复消费",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "messaging-5",
+                "title": "明确先持久化还是先确认",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "messaging-6",
+                "title": "为毒消息设计隔离队列",
+                "kind": "integration",
+                "lessonId": null
+              },
+              {
+                "id": "messaging-7",
+                "title": "验证重启后的消息恢复",
+                "kind": "boundary",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验处理重复投递与重复消费、明确先持久化还是先确认、为毒消息设计隔离队列等独立目标；因此安排 7 项，而不是统一三题。"
           },
           {
             "id": "consistency",
@@ -2484,8 +4082,27 @@
                 "title": "比较 Saga、outbox 与同步事务方案",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "consistency-4",
+                "title": "建立 outbox 的投递与清理策略",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "consistency-5",
+                "title": "实现可重放的补偿动作",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "consistency-6",
+                "title": "区分技术重试与业务重复",
+                "kind": "integration",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验建立 outbox 的投递与清理策略、实现可重放的补偿动作、区分技术重试与业务重复等独立目标；因此安排 6 项，而不是统一三题。"
           },
           {
             "id": "leases",
@@ -2509,8 +4126,21 @@
                 "title": "用版本栅栏保护业务资源",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "leases-4",
+                "title": "为租约过期提供 fencing token",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "leases-5",
+                "title": "校验持有者身份而非只检查键存在",
+                "kind": "refactor",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验为租约过期提供 fencing token、校验持有者身份而非只检查键存在等独立目标；因此安排 5 项，而不是统一三题。"
           },
           {
             "id": "distributed-theory",
@@ -2535,7 +4165,8 @@
                 "kind": "challenge",
                 "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "概念相对集中，用少量任务分别确认理解、修复和迁移。"
           },
           {
             "id": "identifiers",
@@ -2559,8 +4190,27 @@
                 "title": "设计可追溯且可去重的业务协议",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "identifiers-4",
+                "title": "缓存重复请求的首次响应",
+                "kind": "project",
+                "lessonId": "idempotent-ledger"
+              },
+              {
+                "id": "identifiers-5",
+                "title": "拒绝同一幂等键的不同载荷",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "identifiers-6",
+                "title": "在请求去重记录过期后定义行为",
+                "kind": "integration",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验缓存重复请求的首次响应、拒绝同一幂等键的不同载荷、在请求去重记录过期后定义行为等独立目标；因此安排 6 项，而不是统一三题。"
           }
         ]
       },
@@ -2590,8 +4240,27 @@
                 "title": "实现可追踪且可重试的调度任务",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "quartz-4",
+                "title": "阻止同一任务并发重入",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "quartz-5",
+                "title": "定义补跑与跳过的 misfire 策略",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "quartz-6",
+                "title": "用幂等键抵抗重复触发",
+                "kind": "integration",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验阻止同一任务并发重入、定义补跑与跳过的 misfire 策略、用幂等键抵抗重复触发等独立目标；因此安排 6 项，而不是统一三题。"
           },
           {
             "id": "websocket",
@@ -2615,8 +4284,27 @@
                 "title": "设计鉴权、限流和消息恢复",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "websocket-4",
+                "title": "为连接建立鉴权上下文",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "websocket-5",
+                "title": "限制慢消费者的消息积压",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "websocket-6",
+                "title": "在重连后恢复订阅位置",
+                "kind": "integration",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验为连接建立鉴权上下文、限制慢消费者的消息积压、在重连后恢复订阅位置等独立目标；因此安排 6 项，而不是统一三题。"
           },
           {
             "id": "statistics",
@@ -2640,8 +4328,27 @@
                 "title": "设计可验证的实时与离线报表",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "statistics-4",
+                "title": "用半开区间处理时间边界",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "statistics-5",
+                "title": "避免分页聚合漏算或重复",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "statistics-6",
+                "title": "核对增量统计与全量重算",
+                "kind": "integration",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验用半开区间处理时间边界、避免分页聚合漏算或重复、核对增量统计与全量重算等独立目标；因此安排 6 项，而不是统一三题。"
           },
           {
             "id": "network-io",
@@ -2666,7 +4373,8 @@
                 "kind": "challenge",
                 "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "概念相对集中，用少量任务分别确认理解、修复和迁移。"
           }
         ]
       },
@@ -2696,8 +4404,27 @@
                 "title": "记录有约束依据的架构决策",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "architecture-4",
+                "title": "用业务不变量检查模块边界",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "architecture-5",
+                "title": "记录方案被否定的约束理由",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "architecture-6",
+                "title": "避免为未来猜测过早引入分布式",
+                "kind": "integration",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验用业务不变量检查模块边界、记录方案被否定的约束理由、避免为未来猜测过早引入分布式等独立目标；因此安排 6 项，而不是统一三题。"
           },
           {
             "id": "operations",
@@ -2721,8 +4448,27 @@
                 "title": "演练备份恢复并定义 SLO",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "operations-4",
+                "title": "验证回滚与数据库迁移兼容",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "operations-5",
+                "title": "演练备份恢复而非只检查备份存在",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "operations-6",
+                "title": "用就绪与存活检查表达不同含义",
+                "kind": "integration",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验验证回滚与数据库迁移兼容、演练备份恢复而非只检查备份存在、用就绪与存活检查表达不同含义等独立目标；因此安排 6 项，而不是统一三题。"
           },
           {
             "id": "system-design",
@@ -2746,8 +4492,27 @@
                 "title": "用负载和故障实验验证设计",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "system-design-4",
+                "title": "给容量估算注明假设与误差",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "system-design-5",
+                "title": "用压测检验尾延迟目标",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "system-design-6",
+                "title": "分析依赖失效时的容量退化",
+                "kind": "integration",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验给容量估算注明假设与误差、用压测检验尾延迟目标、分析依赖失效时的容量退化等独立目标；因此安排 6 项，而不是统一三题。"
           },
           {
             "id": "traffic",
@@ -2772,7 +4537,8 @@
                 "kind": "challenge",
                 "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "概念相对集中，用少量任务分别确认理解、修复和迁移。"
           }
         ]
       },
@@ -2802,8 +4568,27 @@
                 "title": "交付带迁移和合约测试的服务",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "library-project-4",
+                "title": "为借阅状态机补齐非法转移",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "library-project-5",
+                "title": "通过接口契约驱动跨层实现",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "library-project-6",
+                "title": "为并发借阅设计冲突反馈",
+                "kind": "integration",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验为借阅状态机补齐非法转移、通过接口契约驱动跨层实现、为并发借阅设计冲突反馈等独立目标；因此安排 6 项，而不是统一三题。"
           },
           {
             "id": "queue-project",
@@ -2827,8 +4612,27 @@
                 "title": "完成调度、实时推送和可观测性验收",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "queue-project-4",
+                "title": "实现有界任务接收与拒绝",
+                "kind": "project",
+                "lessonId": "bounded-work-queue"
+              },
+              {
+                "id": "queue-project-5",
+                "title": "为取消、重试和结果查询设计状态",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "queue-project-6",
+                "title": "验证工作线程失败后的恢复",
+                "kind": "integration",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验实现有界任务接收与拒绝、为取消、重试和结果查询设计状态、验证工作线程失败后的恢复等独立目标；因此安排 6 项，而不是统一三题。"
           },
           {
             "id": "order-system",
@@ -2852,11 +4656,35 @@
                 "title": "交付性能、故障恢复和架构取舍报告",
                 "kind": "challenge",
                 "lessonId": null
+              },
+              {
+                "id": "order-system-4",
+                "title": "保持库存和支付的业务不变量",
+                "kind": "boundary",
+                "lessonId": null
+              },
+              {
+                "id": "order-system-5",
+                "title": "为重复请求保存首次响应",
+                "kind": "refactor",
+                "lessonId": null
+              },
+              {
+                "id": "order-system-6",
+                "title": "在部分失败后执行可追踪补偿",
+                "kind": "integration",
+                "lessonId": null
               }
-            ]
+            ],
+            "practiceRationale": "基础任务之外，还需检验保持库存和支付的业务不变量、为重复请求保存首次响应、在部分失败后执行可追踪补偿等独立目标；因此安排 6 项，而不是统一三题。"
           }
         ]
       }
+    ],
+    "sampleLessonIds": [
+      "stock-version",
+      "bounded-work-queue",
+      "idempotent-ledger"
     ]
   }
 ]

@@ -2,6 +2,7 @@
 import { onMounted, onBeforeUnmount, ref, watch } from 'vue'
 import * as monaco from 'monaco-editor/esm/vs/editor/editor.api'
 import 'monaco-editor/esm/vs/basic-languages/java/java.contribution'
+import 'monaco-editor/esm/vs/basic-languages/xml/xml.contribution'
 import EditorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker'
 const props = defineProps<{ modelValue: string; filename: string; readonly?: boolean }>()
 const emit = defineEmits<{ 'update:modelValue': [value: string] }>()
@@ -14,7 +15,7 @@ function theme() {
 onMounted(() => {
   editor = monaco.editor.create(host.value!, {
     value: props.modelValue,
-    language: 'java',
+    language: props.filename.endsWith('.xml') ? 'xml' : 'java',
     theme: theme(),
     fontSize: 14,
     fontFamily: '"SFMono-Regular",Consolas,"Liberation Mono",monospace',
@@ -39,6 +40,14 @@ watch(
   () => props.modelValue,
   (v) => {
     if (editor && editor.getValue() !== v) editor.setValue(v)
+  },
+)
+watch(
+  () => props.filename,
+  () => {
+    const model = editor?.getModel()
+    if (model)
+      monaco.editor.setModelLanguage(model, props.filename.endsWith('.xml') ? 'xml' : 'java')
   },
 )
 watch(

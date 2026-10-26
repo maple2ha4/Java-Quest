@@ -13,9 +13,9 @@ public class Curriculum {
     public record SourceFile(String name, String content) {}
     public record TestCase(String input, String expected) {}
     public record Exercise(String id,String title,String kind,String lessonId) {}
-    public record Topic(String id,String title,String goal,List<Exercise> exercises) {}
+    public record Topic(String id,String title,String goal,String practiceRationale,List<Exercise> exercises) {}
     public record Chapter(String id,String title,List<Topic> topics) {}
-    public record Stage(String id,String title,String goal,List<Chapter> chapters) {}
+    public record Stage(String id,String title,String goal,List<String> sampleLessonIds,List<Chapter> chapters) {}
     public record Lesson(String id, int order, String title, String shortTitle, String summary,
                          String concept, int xp, int minutes, List<String> paragraphs,
                          String task, List<String> hints, List<SourceFile> starter, List<TestCase> tests,
@@ -47,10 +47,10 @@ public class Curriculum {
         for(var lesson:lessons) {
             require(ids.add(lesson.id()),"Duplicate lesson");require(orders.add(""+lesson.order()),"Duplicate order");
             require(lesson.paragraphs().size()>=2 && lesson.hints().size()>=3 && !lesson.task().isBlank(),"Incomplete teaching content");
-            require("javac".equals(lesson.buildKind()),"Unsupported published build kind");
+            require(Set.of("javac","pom-check","spring-component").contains(lesson.buildKind()),"Unsupported published build kind");
             var files=lesson.starter().stream().map(f->new JudgeRunner.Source(f.name(),f.content())).toList();
             var tests=lesson.tests().stream().map(t->new JudgeRunner.TestCase(t.input(),t.expected())).toList();
-            JudgeRunner.validate(new JudgeRunner.Request(files,tests,lesson.entryClass()));
+            JudgeRunner.validate(new JudgeRunner.Request(files,tests,lesson.entryClass(),lesson.buildKind()));
             require(lesson.editableFiles()!=null && !lesson.editableFiles().isEmpty() &&
                 lesson.editableFiles().stream().allMatch(n->lesson.starter().stream().anyMatch(f->f.name().equals(n))),"Invalid editable files");
         }
@@ -59,7 +59,7 @@ public class Curriculum {
             for(var chapter:stage.chapters()) {
                 require(structureIds.add("c:"+chapter.id()),"Duplicate chapter");
                 for(var topic:chapter.topics()) {
-                    require(topics.add(topic.id()) && topic.exercises().size()>=3,"Missing progression");
+                    require(topics.add(topic.id()) && !topic.exercises().isEmpty() && topic.practiceRationale()!=null && !topic.practiceRationale().isBlank(),"Missing progression");
                     for(var exercise:topic.exercises()) {
                         require(planIds.add(exercise.id()) && !exercise.title().isBlank(),"Duplicate/empty exercise");
                         if(exercise.lessonId()!=null) {
@@ -72,6 +72,11 @@ public class Curriculum {
             }
         }
         require(refs.equals(ids),"Unlisted published lessons");
+        for(var stage:stages) {
+            var stageTopics=stage.chapters().stream().flatMap(c->c.topics().stream()).map(Topic::id).toList();
+            require(stage.sampleLessonIds()!=null && stage.sampleLessonIds().size()>=3,"Stage samples missing");
+            for(String id:stage.sampleLessonIds())require(ids.contains(id) && stageTopics.contains(get(id).topicId()),"Invalid stage sample");
+        }
         for(var lesson:lessons) {
             require(topics.contains(lesson.topicId()) && lesson.prerequisites().stream().allMatch(ids::contains),"Missing prerequisite/topic");
             visit(lesson.id(),new HashSet<>(),new HashSet<>());

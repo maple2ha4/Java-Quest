@@ -111,6 +111,8 @@ def normalize(value):
 
 
 def validate(data):
+    if data.get('buildKind','javac')!='javac':
+        raise ValueError('Framework/configuration labs require the Java judge jar')
     if data.get('entryClass', 'Main') != 'Main':
         raise ValueError('Packaged projects require the Java judge jar; legacy Python judge supports Main only')
     files = data.get('files', [])

@@ -29,7 +29,7 @@ public class Learning {
         this.judgeMode=judgeMode;
         if(judgeEnabled && token.length()<32) throw new IllegalArgumentException("JUDGE_TOKEN must contain at least 32 characters");
         var factory=new SimpleClientHttpRequestFactory();
-        factory.setConnectTimeout(3000); factory.setReadTimeout(240000);
+        factory.setConnectTimeout(3000); factory.setReadTimeout(420000);
         judge=judgeEnabled?RestClient.builder().baseUrl(url).requestFactory(factory).defaultHeader("X-Judge-Token",token).defaultHeader("X-Judge-Mode",judgeMode).build():null;
     }
     public boolean judgingEnabled() { return judgeEnabled; }
@@ -54,6 +54,7 @@ public class Learning {
     }
     private void validateLessonFiles(Curriculum.Lesson lesson,List<Curriculum.SourceFile> files) {
         validateFiles(files);
+        if(!lesson.buildKind().equals("pom-check") && files.stream().anyMatch(f->f.name().endsWith(".xml")))throw new ApiError(400,"本关不接受 POM 文件");
         var names=files.stream().map(Curriculum.SourceFile::name).toList();
         if(!dev.javaquest.runner.JudgeRunner.hasEntry(names,lesson.entryClass()))throw new ApiError(400,"缺少课程要求的入口文件");
         for(var required:lesson.starter()) {
@@ -63,17 +64,18 @@ public class Learning {
                 throw new ApiError(400,"此关需要保留只读文件："+required.name());
         }
     }
-    public JsonNode run(long user,String lessonId,List<Curriculum.SourceFile> files) {
+    public JsonNode run(long user,String lessonId,List<Curriculum.SourceFile> files) { return run(user,lessonId,files,false); }
+    public JsonNode run(long user,String lessonId,List<Curriculum.SourceFile> files,boolean preview) {
         // Local study mode never compiles or executes learner code on the host.
         if(!judgeEnabled) throw new ApiError(503,"当前未启用隔离判题服务；可以保存草稿和笔记，但不能运行代码或通关");
         var lesson=curriculum.get(lessonId); validateLessonFiles(lesson,files);
-        for(String required:lesson.prerequisites()) {
+        if(!preview) for(String required:lesson.prerequisites()) {
             if(db.queryForObject("SELECT COUNT(*) FROM progress WHERE user_id=? AND lesson_id=?",Integer.class,user,required)==0)
                 throw new ApiError(403,"请先完成前置练习："+curriculum.get(required).title());
         }
         if(!capacity.tryAcquire()) throw new ApiError(429,"判题服务繁忙，请稍后重试");
         try {
-            byte[] payload=mapper.writeValueAsBytes(Map.of("files",files,"tests",lesson.tests(),"entryClass",lesson.entryClass()));
+            byte[] payload=mapper.writeValueAsBytes(Map.of("files",files,"tests",lesson.tests(),"entryClass",lesson.entryClass(),"buildKind",lesson.buildKind()));
             JsonNode result=judge.post().uri("/judge").contentType(org.springframework.http.MediaType.APPLICATION_JSON)
                 .contentLength(payload.length).body(payload).retrieve().body(JsonNode.class);
             if(judgeMode.equals("process") && (result==null || !"process".equals(result.path("mode").asText())))

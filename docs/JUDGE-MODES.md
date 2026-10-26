@@ -115,11 +115,21 @@ Linux/macOS 可用 `bash scripts/start-learning.sh process`（或 docker/off）�
 - 默认 off；必须明确选择 process。独立判题服务的 process 模式还要求 `--allow-local-process`；API 必须携带匹配的 X-Judge-Mode，模式不一致在执行前返回 409。Docker 故障不会回退为 process。
 - 进程模式：每次测试独立临时目录，编译 15 秒、运行 3 秒，输出合计上限 64KiB，Java heap 96MiB、metaspace 64MiB。超时/输出超限终止已知进程和后代；这是善意程序的预算控制，不能保证捕获恶意脱离的子进程。
 - 进程模式没有操作系统级 CPU、总内存、文件、网络或 PID 隔离。`-Xmx` 不是整个进程的硬内存上限；ActiveProcessorCount 不是 CPU 配额。不能运行陌生代码，不能开放给互联网用户；Java SecurityManager 也不能被当作可靠替代。
-- Docker 模式：每测试新容器，无宿主目录/凭据/socket 挂载；非 root、network none、cap-drop ALL、no-new-privileges、1 CPU、256MiB、64 PIDs、64MiB tmpfs。容器创建/复制/清理另有超时，API 等待预算 240 秒；正常编译 15 秒、执行 3 秒。Docker 共享内核，不等于生产强多租户隔离。
-- 两种模式都支持多文件、真实 stdout/stderr、编译错误、运行错误、时间/输出超限与输出比较。判题器和课程测试仍以当前已开放的 42 个练习为范围，不能保证源码用了指定语法。
-- Maven/Spring Boot 接口实验、多线程可视化等课程扩展没有因此自动实现。
+- Docker 模式：每测试新容器，无宿主目录/凭据/socket 挂载；非 root、network none、cap-drop ALL、no-new-privileges、1 CPU、256MiB、64 PIDs、64MiB tmpfs。容器创建/复制/清理另有超时，API 等待预算 420 秒；正常编译 15 秒、执行 3 秒。Docker 共享内核，不等于生产强多租户隔离。
+- 两种模式都支持多文件、真实 stdout/stderr、编译错误、运行错误、时间/输出超限与输出比较。判题器和课程测试仍以当前已开放的 65 个练习为范围，不能保证源码用了指定语法。
+- 已提供 POM 语义校验、真实 Spring 组件/验证器样例；完整 Maven 构建、Spring Boot HTTP 项目和多线程可视化仍未实现，边界见 [课程体验](COURSE-SAMPLES.md)。
 - 可选的 Python 黑盒脚本 `python scripts/smoke.py` 会依据 capabilities 选择检查：process 只检查环境过滤，不声称网络/文件隔离；docker 才执行隔离断言；off 会直接拒绝测试。Python 不是本地学习或 Java 判题的运行依赖。
 - `npm run test:process --prefix frontend` 使用真实服务验证本地判题的完整学习闭环；`test:local` 用于 off。运行前先以相应模式启动服务，并准备 Playwright Chromium。
 - 本次验证平台为 Linux；Windows 脚本设计兼容 PowerShell 5.1+，但没有 Windows 实机测试。若出现“Access denied/CreateProcess”等组织策略错误，停止本地判题并联系 IT，不采用权限绕过方案。
 
 远程隔离服务、虚拟机或 gVisor 等也是替代方案，但需要已有基础设施或额外权限；本次只实现 process/docker/off 的本机切换，不提供这些服务。
+
+## Spring 组件实验的资源预算
+
+三个 spring-component 课程使用构建时已随 judge jar 打包的可信框架依赖，无需另行安装 Maven 或联网下载学习者依赖。process 中仍是独立 JVM；Docker 中把这些可信 jar 流式复制到临时容器，不挂载宿主目录。
+
+普通题仍为 256MiB 容器 / 64MiB tmpfs / 96MiB heap / 64MiB metaspace / 3 秒运行。Spring 组件题为 384MiB 容器 / 128MiB tmpfs / 128MiB heap / 96MiB metaspace / 8 秒运行；编译仍为 15 秒、1 CPU、64 PIDs、64KiB 输出。框架依赖复制限时 30 秒，容器最长 90 秒；单文件大小上限 16MiB，以容纳可信框架 jar。process 的 JVM 预算不构成操作系统级隔离。
+
+POM 校验使用 JDK 自带 XML 解析器，不启动 Maven；旧 Python 协调器不支持这些新任务。请使用本页的 Java 启动脚本。
+
+Codespaces 使用 Bash：`bash scripts/start-learning.sh process`。脚本自动设置对应转发地址的精确 FRONTEND_ORIGIN；Vite 只增加当前 Codespace 的转发主机。自定义前端端口时两个终端设置同一 FRONTEND_PORT；其他地址仍需显式设置精确 FRONTEND_ORIGIN。

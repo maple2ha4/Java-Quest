@@ -8,6 +8,7 @@ const Learn = () => import('./views/Learn.vue')
 const Login = () => import('./views/Login.vue')
 const Profile = () => import('./views/Profile.vue')
 const Review = () => import('./views/Review.vue')
+const Samples = () => import('./views/Samples.vue')
 const Projects = () => import('./views/Projects.vue')
 import './style.css'
 const router = createRouter({
@@ -16,6 +17,7 @@ const router = createRouter({
   routes: [
     { path: '/', component: Home },
     { path: '/map', component: MapView },
+    { path: '/samples', component: Samples },
     { path: '/learn/:id', component: Learn },
     { path: '/login', component: Login },
     { path: '/profile', component: Profile },

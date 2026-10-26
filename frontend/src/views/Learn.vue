@@ -19,6 +19,7 @@ import {
   Lock,
 } from 'lucide-vue-next'
 import { useQuest } from '../store'
+import { exerciseKinds, buildKinds } from '../courseLabels'
 import { api, message } from '../api'
 import type { SourceFile, RunResponse, JudgeResult, Note } from '../types'
 const CodeEditor = defineAsyncComponent(() => import('../components/CodeEditor.vue'))
@@ -28,7 +29,8 @@ const route = useRoute(),
 const lesson = computed(() => quest.lessons.find((l) => l.id === route.params.id))
 const context = computed(() => quest.context(String(route.params.id)))
 const topicLessons = computed(() => quest.topicLessons(String(route.params.id)))
-const unlocked = computed(() => !!lesson.value && quest.isUnlocked(lesson.value))
+const preview = computed(() => route.query.preview === '1')
+const unlocked = computed(() => !!lesson.value && (preview.value || quest.isUnlocked(lesson.value)))
 const readOnly = computed(
   () =>
     !!lesson.value?.starter.some((f) => f.name === active.value) &&
@@ -53,7 +55,12 @@ const files = ref<SourceFile[]>([]),
 const guestDraft = ref<SourceFile[] | null>(null)
 const file = computed(() => files.value.find((f) => f.name === active.value))
 const topicStep = computed(() => topicLessons.value.findIndex((l) => l.id === lesson.value?.id) + 1)
-const next = computed(() => quest.nextForLesson(String(route.params.id)))
+const next = computed(() => {
+  if (!preview.value) return quest.nextForLesson(String(route.params.id))
+  const ids = quest.curriculum.flatMap((s) => s.sampleLessonIds),
+    index = ids.indexOf(String(route.params.id))
+  return quest.lessonById(ids[index + 1] || '')
+})
 let timer: ReturnType<typeof setTimeout> | undefined,
   runCooldownTimer: ReturnType<typeof setTimeout> | undefined,
   generation = 0
@@ -156,7 +163,9 @@ async function load() {
   files.value = initial
   loading.value = false
 }
-watch([() => route.params.id, () => quest.user?.id], load, { immediate: true })
+watch([() => route.params.id, () => route.query.preview, () => quest.user?.id], load, {
+  immediate: true,
+})
 watch(
   files,
   () => {
@@ -237,7 +246,7 @@ async function run() {
   try {
     const response = await api<RunResponse>('/submissions', {
       method: 'POST',
-      body: JSON.stringify({ lessonId: id, files: files.value }),
+      body: JSON.stringify({ lessonId: id, files: files.value, preview: preview.value }),
     })
     if (userId === quest.user?.id) quest.user = response.profile
     if (ticket === generation) {
@@ -261,12 +270,15 @@ function addFile() {
   const name = newFile.value.trim()
   if (
     name.length > 96 ||
-    !/^(?:[A-Za-z_][A-Za-z0-9_]{0,30}\/){0,8}[A-Za-z_][A-Za-z0-9_]{0,60}\.java$/.test(name) ||
+    !/^(?:[A-Za-z_][A-Za-z0-9_]{0,30}\/){0,8}(?:[A-Za-z_][A-Za-z0-9_]{0,60}\.java|pom\.xml)$/.test(
+      name,
+    ) ||
+    (name.endsWith('.xml') && lesson.value?.buildKind !== 'pom-check') ||
     files.value.some((f) => f.name.toLowerCase() === name.toLowerCase()) ||
     files.value.length >= 8
   ) {
     error.value =
-      '使用安全的 Java 路径，例如 Helper.java 或 src/main/java/demo/Helper.java（最多 8 个文件）'
+      '使用安全的 Java 路径，例如 src/main/java/demo/Helper.java；POM 课程还允许 pom.xml（最多 8 个文件）'
     return
   }
   const packageName = name
@@ -276,7 +288,9 @@ function addFile() {
     .join('.')
   files.value.push({
     name,
-    content: `${packageName ? 'package ' + packageName + ';\n\n' : ''}public class ${name.split('/').pop()!.slice(0, -5)} {\n\n}\n`,
+    content: name.endsWith('pom.xml')
+      ? '<project xmlns="http://maven.apache.org/POM/4.0.0">\n  <modelVersion>4.0.0</modelVersion>\n</project>\n'
+      : `${packageName ? 'package ' + packageName + ';\n\n' : ''}public class ${name.split('/').pop()!.slice(0, -5)} {\n\n}\n`,
   })
   active.value = name
   newFile.value = ''
@@ -324,8 +338,14 @@ onBeforeUnmount(() => {
       <RouterLink to="/map" class="subtle-link"
         ><ArrowLeft :size="16" /> {{ context?.chapter.title || '课程地图' }}</RouterLink
       ><span
-        >本知识点第 {{ topicStep }} / {{ topicLessons.length }} 步
-        <span class="pill">+{{ lesson.xp }} XP</span></span
+        >本知识点已开放第 {{ topicStep }} / {{ topicLessons.length }} 步
+        <span class="pill">{{ preview ? '体验 · 不计 XP' : `+${lesson.xp} XP` }}</span></span
+      >
+    </div>
+    <div v-if="preview" class="preview-notice" role="status">
+      课程体验：可跳过前置关卡，真实验证，但不计
+      XP、通关或提交历史。与正式学习共用本关草稿。<RouterLink to="/samples"
+        >返回全部样例</RouterLink
       >
     </div>
     <div class="learn-layout">
@@ -335,7 +355,7 @@ onBeforeUnmount(() => {
         <RouterLink
           v-for="l in topicLessons"
           :key="l.id"
-          :to="'/learn/' + l.id"
+          :to="{ path: '/learn/' + l.id, query: preview ? { preview: '1' } : {} }"
           :class="{ current: l.id === lesson.id, completed: quest.completed.includes(l.id) }"
           :aria-disabled="running"
           ><span
@@ -357,17 +377,10 @@ onBeforeUnmount(() => {
         <h1>{{ lesson.title }}</h1>
         <p class="lesson-summary">{{ lesson.summary }}</p>
         <div class="lesson-tags">
-          <span class="pill">{{
-            {
-              guided: '模仿与补全',
-              debug: '定位与修复',
-              challenge: '独立实现',
-              project: '项目验收',
-            }[lesson.kind] || lesson.kind
-          }}</span
+          <span class="pill">{{ exerciseKinds[lesson.kind] || lesson.kind }}</span
           ><span class="pill"
-            >{{ lesson.starter.length }} 文件 · {{ lesson.buildKind }} ·
-            {{ lesson.entryClass }}</span
+            >{{ lesson.starter.length }} 文件 ·
+            {{ buildKinds[lesson.buildKind] || lesson.buildKind }} · {{ lesson.entryClass }}</span
           >
         </div>
         <p v-if="!unlocked" class="scope-note">
@@ -418,7 +431,14 @@ onBeforeUnmount(() => {
           >
           <p v-else>登录后即可保存笔记。</p>
         </details>
-        <p class="scope-note">
+        <p v-if="lesson.buildKind === 'pom-check'" class="scope-note">
+          本关实际解析并校验 POM 模型，不调用 Maven，不构建 jar。只读校验程序不能修改。
+        </p>
+        <p v-else-if="lesson.buildKind === 'spring-component'" class="scope-note">
+          使用真实 Spring 容器或校验器，不启动完整 Spring Boot HTTP 服务。依赖由可信判题 jar
+          提供，无运行时下载。
+        </p>
+        <p v-else class="scope-note">
           本关验证程序输出；暂不检查源码是否使用指定语法。尝试按任务完成，才能学到背后的思路。
         </p>
       </section>
@@ -499,7 +519,8 @@ onBeforeUnmount(() => {
           <div class="editor-status">
             <span>{{ saveState || (quest.user ? '服务器草稿已载入' : '草稿保存在本机') }} </span
             ><span
-              >{{ readOnly ? '只读调用方' : '可编辑' }} · Java 21 <span class="status-dot"
+              >{{ readOnly ? '只读调用方' : '可编辑' }} ·
+              {{ active.endsWith('.xml') ? 'POM XML' : 'Java 21' }} <span class="status-dot"
             /></span>
           </div>
           <div class="run-toolbar">
@@ -584,10 +605,15 @@ onBeforeUnmount(() => {
               </div>
               <div v-if="result.passed" class="completion">
                 <span
-                  >关卡完成
-                  <strong>{{ awarded ? `+${awarded} XP` : '已计入学习进度' }}</strong></span
-                ><RouterLink v-if="next" :to="'/learn/' + next.id" class="primary"
-                  >下一关 <ArrowRight :size="16" /></RouterLink
+                  >{{ preview ? '体验验证通过' : '关卡完成' }}
+                  <strong>{{
+                    preview ? '未计入进度' : awarded ? `+${awarded} XP` : '已计入学习进度'
+                  }}</strong></span
+                ><RouterLink
+                  v-if="next"
+                  :to="{ path: '/learn/' + next.id, query: preview ? { preview: '1' } : {} }"
+                  class="primary"
+                  >{{ preview ? '下一个样例' : '下一关' }} <ArrowRight :size="16" /></RouterLink
                 ><RouterLink v-else to="/profile" class="primary"
                   >查看我的收获 <ArrowRight :size="16"
                 /></RouterLink></div

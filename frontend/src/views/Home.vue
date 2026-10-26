@@ -134,6 +134,10 @@ const stages = computed(() =>
         </p>
       </div>
     </section>
+    <RouterLink to="/samples" class="sample-shortcut"
+      ><span>先看看每门课程如何练习</span
+      ><span>六类课程 · 可直接体验 · 不计进度 <ArrowRight :size="16" /></span
+    ></RouterLink>
     <section class="learning-path">
       <div class="section-heading">
         <div>

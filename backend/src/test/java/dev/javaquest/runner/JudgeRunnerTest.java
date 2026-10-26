@@ -1,11 +1,13 @@
 package dev.javaquest.runner;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.AfterEach;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class JudgeRunnerTest {
     private final JudgeRunner runner=new JudgeRunner("process",true,"unused");
+    @AfterEach void cleanup() { runner.close(); }
     private JudgeRunner.Result run(String body,String expected) throws Exception {
         return runner.judge(new JudgeRunner.Request(List.of(new JudgeRunner.Source("Main.java",
             "public class Main { public static void main(String[] args) throws Exception { "+body+" } }")),
@@ -34,6 +36,23 @@ class JudgeRunnerTest {
         assertTrue(result.passed(),result.toString());
         assertThrows(IllegalArgumentException.class,()->JudgeRunner.validate(new JudgeRunner.Request(
             List.of(new JudgeRunner.Source("Main.java","")),List.of(new JudgeRunner.TestCase("","")),"demo.Missing")));
+    }
+    @Test void springAndPomLabsExecuteTheirRealFrameworkAndFileChecks() throws Exception {
+        var mapper=new com.fasterxml.jackson.databind.ObjectMapper();
+        try(var lessons=getClass().getResourceAsStream("/lessons.json");var references=getClass().getResourceAsStream("/course-solutions.json")) {
+            var course=mapper.readTree(lessons);var solutions=mapper.readTree(references);
+            for(String id:List.of("pom-release","pom-test-dependency","pom-modules","spring-constructor","spring-qualifier","spring-validation")) {
+                com.fasterxml.jackson.databind.JsonNode lesson=null;
+                for(var candidate:course)if(id.equals(candidate.path("id").asText()))lesson=candidate;
+                assertNotNull(lesson,id);
+                for(boolean reference:new boolean[]{false,true}) {
+                    var files=mapper.convertValue(reference?solutions.get(id):lesson.get("starter"),new com.fasterxml.jackson.core.type.TypeReference<List<JudgeRunner.Source>>(){});
+                    var tests=mapper.convertValue(lesson.get("tests"),new com.fasterxml.jackson.core.type.TypeReference<List<JudgeRunner.TestCase>>(){});
+                    var result=runner.judge(new JudgeRunner.Request(files,tests,lesson.get("entryClass").asText(),lesson.get("buildKind").asText()));
+                    assertEquals(reference,result.passed(),id+": "+result);
+                }
+            }
+        }
     }
     @Test void compilerAndRuntimeFailuresAreReal() throws Exception {
         assertEquals("COMPILE_ERROR",run("BAD","anything").status());

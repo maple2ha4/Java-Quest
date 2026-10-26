@@ -12,13 +12,17 @@ import java.util.concurrent.atomic.*;
 public final class JudgeRunner implements AutoCloseable {
     public record Source(String name, String content) {}
     public record TestCase(String input, String expected) {}
-    public record Request(List<Source> files, List<TestCase> tests, String entryClass) {
-        public Request { if(entryClass==null || entryClass.isBlank())entryClass="Main"; }
-        public Request(List<Source> files,List<TestCase> tests) { this(files,tests,"Main"); }
+    public record Request(List<Source> files, List<TestCase> tests, String entryClass, String buildKind) {
+        public Request { if(entryClass==null || entryClass.isBlank())entryClass="Main"; if(buildKind==null)buildKind="javac"; }
+        public Request(List<Source> files,List<TestCase> tests,String entryClass) { this(files,tests,entryClass,"javac"); }
+        public Request(List<Source> files,List<TestCase> tests) { this(files,tests,"Main","javac"); }
     }
     public static boolean validSourcePath(String name) {
-        if(name==null || name.length()>96 || !name.matches("(?:[A-Za-z_][A-Za-z0-9_]{0,30}/){0,8}[A-Za-z_][A-Za-z0-9_]{0,60}\\.java"))return false;
-        for(String part:name.split("/")) if(part.matches("(?i)(CON|PRN|AUX|NUL|COM[1-9]|LPT[1-9])(?:\\.java)?"))return false;
+        if(name==null || name.length()>96)return false;
+        boolean java=name.matches("(?:[A-Za-z_][A-Za-z0-9_]{0,30}/){0,8}[A-Za-z_][A-Za-z0-9_]{0,60}\\.java");
+        boolean pom=name.matches("(?:[A-Za-z_][A-Za-z0-9_]{0,30}/){0,8}pom\\.xml");
+        if(!java && !pom)return false;
+        for(String part:name.split("/"))if(part.matches("(?i)(CON|PRN|AUX|NUL|COM[1-9]|LPT[1-9])(?:\\.java)?"))return false;
         return true;
     }
     public static boolean hasEntry(List<String> names,String entry) {
@@ -35,6 +39,7 @@ public final class JudgeRunner implements AutoCloseable {
     private final Set<String> containers=ConcurrentHashMap.newKeySet();
     private final String mode;
     private final String image;
+    private final FrameworkLibraries frameworks=new FrameworkLibraries();
 
     public JudgeRunner(String mode, boolean allowLocalProcess, String image) {
         if(!Set.of("process","docker").contains(mode)) throw new IllegalArgumentException("Use process or docker explicitly");
@@ -57,11 +62,13 @@ public final class JudgeRunner implements AutoCloseable {
         if(request==null || request.files()==null || request.tests()==null || request.files().isEmpty()
             || request.files().size()>8 || request.tests().isEmpty() || request.tests().size()>5)
             throw new IllegalArgumentException("Expected 1-8 Java files and 1-5 trusted tests");
+        if(!Set.of("javac","pom-check","spring-component").contains(request.buildKind()))throw new IllegalArgumentException("Unsupported lesson build kind");
         Set<String> names=new HashSet<>(), folded=new HashSet<>(); int size=0;
         for(var file:request.files()) {
             if(file==null || file.name()==null || file.content()==null
                 || !validSourcePath(file.name()) || !names.add(file.name()) || !folded.add(file.name().toLowerCase(Locale.ROOT)))
                 throw new IllegalArgumentException("Invalid or duplicate Java filename");
+            if(file.name().endsWith(".xml") && !request.buildKind().equals("pom-check"))throw new IllegalArgumentException("POM files require a configuration lesson");
             size+=file.content().length();
         }
         if(!hasEntry(new ArrayList<>(names),request.entryClass()) || size>32768) throw new IllegalArgumentException("Entry source required; source limit 32KiB characters");
@@ -73,7 +80,7 @@ public final class JudgeRunner implements AutoCloseable {
         validate(request);
         List<CaseResult> results=new ArrayList<>();
         for(var test:request.tests()) {
-            var result=runCase(request.files(),test,request.entryClass());
+            var result=runCase(request.files(),test,request.entryClass(),request.buildKind());
             results.add(result);
             if(Set.of("COMPILE_ERROR","TIME_LIMIT","OUTPUT_LIMIT").contains(result.status())) break;
         }
@@ -81,11 +88,11 @@ public final class JudgeRunner implements AutoCloseable {
         String status=passed?"PASSED":results.stream().filter(t->!t.passed()).findFirst().orElseThrow().status();
         return new Result(status,passed,results,request.tests().size(),mode);
     }
-    private CaseResult runCase(List<Source> files, TestCase test,String entryClass) throws Exception {
+    private CaseResult runCase(List<Source> files, TestCase test,String entryClass,String buildKind) throws Exception {
         long start=System.nanoTime();
         Path directory=Files.createTempDirectory("java-quest-run-");
         String container="jq-java-"+UUID.randomUUID();
-        boolean docker=mode.equals("docker");
+        boolean docker=mode.equals("docker"), spring=buildKind.equals("spring-component");
         try {
             for(var file:files) {
                 Path path=directory.resolve(file.name()).normalize();
@@ -93,6 +100,16 @@ public final class JudgeRunner implements AutoCloseable {
                 Files.createDirectories(path.getParent());
                 Files.writeString(path,file.content(),StandardCharsets.UTF_8);
             }
+            var archiveFiles=new LinkedHashMap<String,byte[]>();
+            for(var file:files)archiveFiles.put(file.name(),file.content().getBytes(StandardCharsets.UTF_8));
+            if(spring) {
+                Path libs=Files.createDirectories(directory.resolve(".quest-libs"));
+                for(Path library:frameworks.files()) {
+                    if(docker)archiveFiles.put(".quest-libs/"+library.getFileName(),Files.readAllBytes(library));
+                    else Files.copy(library,libs.resolve(library.getFileName()),StandardCopyOption.REPLACE_EXISTING);
+                }
+            }
+            String classpath=spring?"."+(docker?":":File.pathSeparator)+".quest-libs/*":".";
             List<String> compile=new ArrayList<>();
             List<String> run=new ArrayList<>();
             if(docker) {
@@ -100,12 +117,13 @@ public final class JudgeRunner implements AutoCloseable {
                 containers.add(container);
                 required(List.of("docker","run","--rm","--name",container,"--pull=never","-d",
                     "--network=none","--read-only","--user=65534:65534","--cap-drop=ALL",
-                    "--security-opt=no-new-privileges:true","--pids-limit=64","--memory=256m",
-                    "--memory-swap=256m","--cpus=1","--ulimit=nofile=128:128","--ulimit=fsize=16384:16384",
-                    "--tmpfs=/work:rw,nosuid,nodev,size=64m,mode=1777","--workdir=/work",image,"sleep","60"),Duration.ofSeconds(10));
+                    "--security-opt=no-new-privileges:true","--pids-limit=64","--memory="+(spring?"384m":"256m"),
+                    "--memory-swap="+(spring?"384m":"256m"),"--cpus=1","--ulimit=nofile=128:128",
+                    "--ulimit=fsize="+(spring?"16777216:16777216":"16384:16384"),
+                    "--tmpfs=/work:rw,nosuid,nodev,size="+(spring?"128m":"64m")+",mode=1777","--workdir=/work",image,"sleep",spring?"90":"60"),Duration.ofSeconds(10));
                 // Stream a minimal tar into tmpfs. docker cp rejects read-only rootfs on some daemons.
                 // No host mounts and no untrusted values are interpolated into shell commands.
-                var copy=executeBytes(List.of("docker","exec","-i",container,"tar","xf","-"),null,archive(files),Duration.ofSeconds(5));
+                var copy=executeBytes(List.of("docker","exec","-i",container,"tar","xf","-"),null,archive(archiveFiles),Duration.ofSeconds(spring?30:5));
                 if(copy.exitCode()!=0 || copy.limit()!=null) throw new IOException("Source transfer failed: "+copy.stderr());
                 compile.addAll(List.of("docker","exec",container,"javac"));
                 run.addAll(List.of("docker","exec","-i",container,"java"));
@@ -114,14 +132,15 @@ public final class JudgeRunner implements AutoCloseable {
                 run.add(javaTool("java").toString());
             }
             compile.addAll(List.of("-J-Xmx96m","-J-XX:ActiveProcessorCount=1","-proc:none","-encoding","UTF-8","-d","."));
-            for(var file:files) compile.add(file.name());
+            compile.addAll(List.of("-cp",classpath));
+            for(var file:files) if(file.name().endsWith(".java"))compile.add(file.name());
             var compilation=execute(compile,directory,"",Duration.ofSeconds(15));
             if(compilation.limit()!=null || compilation.exitCode()!=0) {
                 String status=compilation.limit()!=null?compilation.limit():"COMPILE_ERROR";
                 return result(status,compilation,test,start);
             }
-            run.addAll(List.of("-Xmx96m","-XX:MaxMetaspaceSize=64m","-XX:ActiveProcessorCount=1","-Dfile.encoding=UTF-8","-cp",".",entryClass));
-            var execution=execute(run,directory,test.input(),Duration.ofSeconds(3));
+            run.addAll(List.of(spring?"-Xmx128m":"-Xmx96m",spring?"-XX:MaxMetaspaceSize=96m":"-XX:MaxMetaspaceSize=64m","-XX:ActiveProcessorCount=1","-Dfile.encoding=UTF-8","-cp",classpath,entryClass));
+            var execution=execute(run,directory,test.input(),Duration.ofSeconds(spring?8:3));
             String status=execution.limit()!=null?execution.limit():execution.exitCode()!=0?"RUNTIME_ERROR":
                 normalize(execution.stdout()).equals(normalize(test.expected()))?"PASSED":"WRONG_ANSWER";
             return result(status,execution,test,start);
@@ -149,17 +168,19 @@ public final class JudgeRunner implements AutoCloseable {
             process.descendants().forEach(child->{ if(child.isAlive()) child.destroyForcibly(); });
             if(process.isAlive()) process.destroyForcibly();
         }
+        frameworks.close();
         for(String name:List.copyOf(containers)) {
             try { execute(List.of("docker","rm","-f",name),null,"",Duration.ofSeconds(8)); }
             catch(Exception ignored) { } // --rm + 60s container lifetime is an additional cleanup bound.
         }
     }
     /** Minimal POSIX tar for already-validated source paths; no archive input is accepted. */
-    private static byte[] archive(List<Source> files) throws IOException {
+    private static byte[] archive(Map<String,byte[]> files) throws IOException {
         var output=new ByteArrayOutputStream();
-        for(var file:files) {
-            byte[] body=file.content().getBytes(StandardCharsets.UTF_8), header=new byte[512];
-            byte[] name=file.name().getBytes(StandardCharsets.US_ASCII);
+        for(var file:files.entrySet()) {
+            byte[] body=file.getValue(), header=new byte[512];
+            byte[] name=file.getKey().getBytes(StandardCharsets.US_ASCII);
+            if(name.length>100)throw new IOException("Trusted archive path too long");
             System.arraycopy(name,0,header,0,name.length);
             octal(header,100,8,0644);octal(header,108,8,65534);octal(header,116,8,65534);
             octal(header,124,12,body.length);octal(header,136,12,0);

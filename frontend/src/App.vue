@@ -12,6 +12,7 @@ import {
   ArrowUpRight,
   ChevronRight,
   Code2,
+  FlaskConical,
 } from 'lucide-vue-next'
 import { useQuest } from './store'
 import { message } from './api'
@@ -58,6 +59,7 @@ onMounted(() => {
 const nav = [
   { to: '/', label: '学习概览', icon: LayoutDashboard },
   { to: '/map', label: '课程地图', icon: Map },
+  { to: '/samples', label: '课程体验', icon: FlaskConical },
   { to: '/projects', label: '项目挑战', icon: FolderCode },
   { to: '/review', label: '错题与笔记', icon: NotebookPen },
 ]

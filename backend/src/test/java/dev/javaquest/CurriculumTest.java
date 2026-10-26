@@ -12,7 +12,8 @@ class CurriculumTest {
         var c=curriculum();Set<String> listed=new HashSet<>();int planned=0;
         assertEquals(Set.of("java","collections","maven","spring","concurrency","engineering"),new HashSet<>(c.stages().stream().map(Curriculum.Stage::id).toList()));
         for(var stage:c.stages()) for(var chapter:stage.chapters()) for(var topic:chapter.topics()) {
-            assertEquals(3,topic.exercises().size());
+            assertFalse(topic.exercises().isEmpty());
+            assertNotNull(topic.practiceRationale());
             for(var exercise:topic.exercises()) {
                 if(exercise.lessonId()==null)planned++;
                 else { assertTrue(listed.add(exercise.lessonId()));assertEquals(topic.id(),c.get(exercise.lessonId()).topicId()); }
@@ -20,6 +21,9 @@ class CurriculumTest {
         }
         assertEquals(new HashSet<>(c.all().stream().map(Curriculum.Lesson::id).toList()),listed);
         assertTrue(planned>0);
+        var counts=c.stages().stream().flatMap(s->s.chapters().stream()).flatMap(ch->ch.topics().stream()).map(t->t.exercises().size()).collect(java.util.stream.Collectors.toSet());
+        assertTrue(counts.size()>=4,"Practice counts should vary with topic needs");
+        for(var stage:c.stages())assertTrue(stage.sampleLessonIds().size()>=3);
         assertEquals(List.of("hello-world","variables","types","operators","conditions","loops","arrays","methods","strings","exceptions"),c.all().subList(0,10).stream().map(Curriculum.Lesson::id).toList());
     }
     @Test void projectContractIsReadOnlyAtTheEntryAndAllLessonsHaveAuthorSolutions() throws Exception {

@@ -2,6 +2,7 @@
 import { computed, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { Check, Lock, ArrowRight, Clock, Code2, Search } from 'lucide-vue-next'
+import { exerciseKinds } from '../courseLabels'
 import { useQuest } from '../store'
 const quest = useQuest(),
   route = useRoute(),
@@ -11,12 +12,6 @@ const quest = useQuest(),
 const selected = computed(
   () => quest.curriculum.find((s) => s.id === route.query.stage) || quest.curriculum[0],
 )
-const kind: Record<string, string> = {
-  guided: '01 · 模仿与补全',
-  debug: '02 · 定位与修复',
-  challenge: '03 · 独立实现',
-  project: '03 · 项目验收',
-}
 const plans = computed(
   () => selected.value?.chapters.flatMap((c) => c.topics.flatMap((t) => t.exercises)) || [],
 )
@@ -51,8 +46,11 @@ watch(
     <span class="eyebrow">FROM FIRST LINE TO ENGINEERING</span>
     <h1>从一个知识点，到独立交付。</h1>
     <p class="page-intro">
-      按阶段、章节、知识点展开。每个知识点依次模仿、修复、独立实现；规划中的练习不计入学习进度。
+      按阶段、章节、知识点展开。任务数量根据概念、边界、故障和工程迁移需求安排；规划中的练习不计入学习进度。
     </p>
+    <RouterLink to="/samples" class="subtle-link"
+      >先体验六大课程的代表练习 <ArrowRight :size="16"
+    /></RouterLink>
     <nav class="stage-tabs" aria-label="课程阶段">
       <button
         v-for="(stage, i) in quest.curriculum"
@@ -110,10 +108,11 @@ watch(
             {{ topic.exercises.length }} 已开放</span
           >
         </summary>
+        <p class="practice-rationale">练习安排：{{ topic.practiceRationale }}</p>
         <div class="exercise-list">
           <component
             :is="exercise.lessonId ? 'RouterLink' : 'div'"
-            v-for="exercise in topic.exercises"
+            v-for="(exercise, ei) in topic.exercises"
             :key="exercise.id"
             :to="exercise.lessonId ? '/learn/' + exercise.lessonId : undefined"
             class="exercise-row"
@@ -131,7 +130,9 @@ watch(
                 :size="16" /><Code2 v-else :size="18"
             /></span>
             <div>
-              <small>{{ kind[exercise.kind] || exercise.kind }}</small>
+              <small
+                >第 {{ ei + 1 }} 练 · {{ exerciseKinds[exercise.kind] || exercise.kind }}</small
+              >
               <h3>{{ exercise.title }}</h3>
               <p v-if="exercise.lessonId">
                 {{ quest.lessonById(exercise.lessonId)?.starter.length }} 个源码文件 ·

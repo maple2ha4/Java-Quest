@@ -37,7 +37,7 @@ API 默认端口 8080，前端在开发环境通过 Vite `/api` 同源代理。�
 
 `durationMs` 包含创建容器、编译与执行，是端到端时间，不能当作算法耗时。结果状态：PASSED / WRONG_ANSWER / COMPILE_ERROR / RUNTIME_ERROR / TIME_LIMIT / OUTPUT_LIMIT。编译/超时等提前终止时，tests 可能少于 totalTests；未执行的测试不能计作通过。TIME_LIMIT 同时覆盖某些被终止的资源超限情形，当前不细分 OOM。stdout 比较只规范化 CRLF 与结尾空白，保留内部空格。提交结果永远来自服务器判题，不接受客户端的 passed/XP 字段。
 
-未登录 401；上一关未过 403；每用户 2 秒内重复请求 429；判题基础设施失败 503 且不增加进度、不记录为学习错误。HTTP 200 的失败判题会记入真实学习提交。首次通过写入唯一 progress，重复通过 awardedXp=0。
+未登录 401；正式提交前置关卡未过 403；每用户 2 秒内重复请求 429；判题基础设施失败 503 且不增加进度、不记录为学习错误。HTTP 200 的失败判题会记入真实学习提交。首次通过写入唯一 progress，重复通过 awardedXp=0。
 
 `GET /api/submissions` 返回当前用户最近 50 条，含 id/lessonId/status/createdAt/result，不暴露他人的源码或历史。
 
@@ -64,4 +64,20 @@ GET /api/curriculum 返回阶段/章节/知识点/练习标题，lessonId=null �
 
 源文件支持 96 字符以内的安全相对 Java 路径（包括 src/main/java），拒绝绝对路径、反斜线、点段、设备名和大小写别名；仍限制 8 文件/32KiB 字符。课程指定入口类，不接受客户端选择入口。初始文件必须保留；未列入 editableFiles 的初始文件内容必须保持原样，API 在保存草稿和运行前均验证。额外帮助类可以添加。
 
-Java 判题协议增加可信 entryClass，缺省 Main 兼容旧任务；-d . 编译包目录后按入口类运行。Python 旧协调器仅支持平面 Main 任务，遇到 package 项目会拒绝，需要使用新版 Java 判题 jar。目录显示的 Maven/Spring 练习尚不可执行，不能把它们当作已支持的构建器。
+Java 判题协议增加可信 entryClass，缺省 Main 兼容旧任务；-d . 编译包目录后按入口类运行。Python 旧协调器仅支持 javac 平面 Main 任务，遇到 package/POM/Spring 项目会明确拒绝，需要使用新版 Java 判题 jar。
+
+## 课程体验与构建类型
+
+`GET /api/curriculum` 的 stage 新增 `sampleLessonIds`，每阶段精选三道已开放样例；topic 新增 `practiceRationale`，解释按学习目标安排练习的原因。exercises 为变长数组，没有统一三题的约束。当前 600 个标题 / 65 个已开放，`lessonId=null` 的 535 项仍不能运行。
+
+`POST /api/submissions` 可带 `"preview":true`（缺省 false）。仍需登录、启用判题、遵守限流、文件与只读校验；仅跳过前置要求，真实执行同一可信测试。响应包含 `preview:true`、`awardedXp:0`、`newlyCompleted:false` 和当前 profile；无论成功失败均不写进度、XP 或提交历史。草稿/笔记仍按账户和 lessonId 保存，与正式学习共享。preview 不能授予正式通关。
+
+`buildKind` 由服务器课程决定，客户端不能指定：
+
+| 值 | 实际行为 |
+|---|---|
+| javac | 编译整套 Java 源码，再按可信入口运行 |
+| pom-check | 接受安全相对路径的 pom.xml / 子目录 pom.xml；只读 Java 校验器实际解析 XML 和验证配置，不运行 Maven |
+| spring-component | 编译时加入可信 Spring/校验框架依赖，独立 JVM 或 Docker 中运行组件实验；不启动 Boot HTTP 项目 |
+
+POM 只允许 pom-check 课程，源文件与 XML 合计仍受 8 文件 / 32KiB 字符限制。额外文件必须是安全 Java/POM 路径，不能上传任意配置或可执行脚本。所有初始只读文件原样校验。框架依赖仅来自已构建的受信任 judge jar，不解析学习者的依赖列表。API 判题读取预算 420 秒，以覆盖框架多测试容器开销；单次执行依旧有限时。

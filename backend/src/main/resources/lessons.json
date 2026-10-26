@@ -2036,5 +2036,1256 @@
       "src/main/java/quest/orders/PricingService.java",
       "src/main/java/quest/orders/OrderReport.java"
     ]
+  },
+  {
+    "id": "final-config",
+    "order": 43,
+    "title": "使用 final 保护不变配置",
+    "shortTitle": "使用 final 保护不变配置",
+    "summary": "读取非负数量，使用 final 单价 12 计算并输出总价。",
+    "concept": "变量与赋值",
+    "topicId": "variables",
+    "kind": "guided",
+    "difficulty": 2,
+    "xp": 55,
+    "minutes": 12,
+    "paragraphs": [
+      "final 局部变量只能赋值一次；可以把由配置得到的不变值与不断累计的状态分开。",
+      "本关读取数量，使用固定单价 12 计算总价；不要尝试重新赋值单价。"
+    ],
+    "task": "读取非负数量，使用 final 单价 12 计算并输出总价。",
+    "hints": [
+      "先阅读输入契约与只读调用方，再运行起始版本定位失败。",
+      "final 局部变量只能赋值一次；可以把由配置得到的不变值与不断累计的状态分开。",
+      "本关读取数量，使用固定单价 12 计算总价；不要尝试重新赋值单价。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {  public static void main(String[] args) throws Exception { var in=new java.util.Scanner(System.in); int n=in.nextInt();final int price=12;System.out.println(n); } }"
+      }
+    ],
+    "tests": [
+      {
+        "input": "2",
+        "expected": "24\n"
+      },
+      {
+        "input": "0",
+        "expected": "0\n"
+      },
+      {
+        "input": "5",
+        "expected": "60\n"
+      }
+    ],
+    "prerequisites": [
+      "input-points"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Main.java"
+    ]
+  },
+  {
+    "id": "narrowing-cast",
+    "order": 44,
+    "title": "识别窄化转换的数据丢失",
+    "shortTitle": "识别窄化转换的数据丢失",
+    "summary": "读取 double 金额，乘 100 后转换为 int 输出。",
+    "concept": "基本类型与转换",
+    "topicId": "types",
+    "kind": "trace",
+    "difficulty": 2,
+    "xp": 55,
+    "minutes": 12,
+    "paragraphs": [
+      "浮点数转 int 会向零截断，不是四舍五入。先转换再相乘会更早丢失小数。",
+      "将计算放在转换之前，并用正负输入检查截断方向。"
+    ],
+    "task": "读取 double 金额，乘 100 后转换为 int 输出。输入保证乘积不超 int；本题专门观察转换，不作为生产金额方案。",
+    "hints": [
+      "先阅读输入契约与只读调用方，再运行起始版本定位失败。",
+      "浮点数转 int 会向零截断，不是四舍五入。先转换再相乘会更早丢失小数。",
+      "将计算放在转换之前，并用正负输入检查截断方向。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {  public static void main(String[] args) throws Exception { var in=new java.util.Scanner(System.in); double n=in.nextDouble();System.out.println((int)n*100); } }"
+      }
+    ],
+    "tests": [
+      {
+        "input": "1.25",
+        "expected": "125\n"
+      },
+      {
+        "input": "-1.25",
+        "expected": "-125\n"
+      },
+      {
+        "input": "0.5",
+        "expected": "50\n"
+      }
+    ],
+    "prerequisites": [
+      "mean-value"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Main.java"
+    ]
+  },
+  {
+    "id": "null-short-circuit",
+    "order": 45,
+    "title": "用短路条件保护空值",
+    "shortTitle": "用短路条件保护空值",
+    "summary": "读取一行；_ 代表 null。",
+    "concept": "条件与分支",
+    "topicId": "conditions",
+    "kind": "debug",
+    "difficulty": 2,
+    "xp": 55,
+    "minutes": 12,
+    "paragraphs": [
+      "&& 先检查左侧，左侧为 false 时不执行右侧；& 会计算两边。",
+      "把空值判断放在访问对象之前。输入 _ 在本实验代表 null。"
+    ],
+    "task": "读取一行；_ 代表 null。仅对非空且长度至少 3 的名字输出 true。",
+    "hints": [
+      "先阅读输入契约与只读调用方，再运行起始版本定位失败。",
+      "&& 先检查左侧，左侧为 false 时不执行右侧；& 会计算两边。",
+      "把空值判断放在访问对象之前。输入 _ 在本实验代表 null。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {  public static void main(String[] args) throws Exception { var in=new java.util.Scanner(System.in); String s=in.nextLine();if(s.equals(\"_\"))s=null;System.out.println(s!=null & s.length()>=3); } }"
+      }
+    ],
+    "tests": [
+      {
+        "input": "_\n",
+        "expected": "false\n"
+      },
+      {
+        "input": "Ada\n",
+        "expected": "true\n"
+      },
+      {
+        "input": "Li\n",
+        "expected": "false\n"
+      }
+    ],
+    "prerequisites": [
+      "grade-bands"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Main.java"
+    ]
+  },
+  {
+    "id": "loop-control",
+    "order": 46,
+    "title": "用 break 和 continue 处理输入流",
+    "shortTitle": "用 break 和 continue 处理输入流",
+    "summary": "输入 n 与 n 个整数：跳过负数、累计正数、遇到 0 停止，输出累计值。",
+    "concept": "循环与终止条件",
+    "topicId": "loops",
+    "kind": "challenge",
+    "difficulty": 2,
+    "xp": 55,
+    "minutes": 12,
+    "paragraphs": [
+      "continue 跳过当前轮，break 终止整个循环。",
+      "本题只累计正数；遇到 0 后，即使后面还有输入，也不再处理。"
+    ],
+    "task": "输入 n 与 n 个整数：跳过负数、累计正数、遇到 0 停止，输出累计值。",
+    "hints": [
+      "先阅读输入契约与只读调用方，再运行起始版本定位失败。",
+      "continue 跳过当前轮，break 终止整个循环。",
+      "本题只累计正数；遇到 0 后，即使后面还有输入，也不再处理。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {  public static void main(String[] args) throws Exception { var in=new java.util.Scanner(System.in); int n=in.nextInt(),sum=0;for(int i=0;i<n;i++)sum+=in.nextInt();System.out.println(sum); } }"
+      }
+    ],
+    "tests": [
+      {
+        "input": "5 2 -3 4 0 9",
+        "expected": "6\n"
+      },
+      {
+        "input": "2 -1 -2",
+        "expected": "0\n"
+      },
+      {
+        "input": "3 1 2 3",
+        "expected": "6\n"
+      }
+    ],
+    "prerequisites": [
+      "sum-to-n"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Main.java"
+    ]
+  },
+  {
+    "id": "unicode-count",
+    "order": 47,
+    "title": "区分 UTF-16 长度与字符数量",
+    "shortTitle": "区分 UTF-16 长度与字符数量",
+    "summary": "读取一行，输出 Unicode 码点数；例如 A😀 是 2，不是 3。",
+    "concept": "字符串与文本处理",
+    "topicId": "strings",
+    "kind": "boundary",
+    "difficulty": 2,
+    "xp": 55,
+    "minutes": 12,
+    "paragraphs": [
+      "String.length 返回 UTF-16 代码单元数，一个补充平面字符可能占两个单元。",
+      "codePointCount 统计 Unicode 码点。码点仍不等于用户看到的字形组合，本题不做字素簇分割。"
+    ],
+    "task": "读取一行，输出 Unicode 码点数；例如 A😀 是 2，不是 3。",
+    "hints": [
+      "先阅读输入契约与只读调用方，再运行起始版本定位失败。",
+      "String.length 返回 UTF-16 代码单元数，一个补充平面字符可能占两个单元。",
+      "codePointCount 统计 Unicode 码点。码点仍不等于用户看到的字形组合，本题不做字素簇分割。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {  public static void main(String[] args) throws Exception { var in=new java.util.Scanner(System.in); String s=in.nextLine();System.out.println(s.length()); } }"
+      }
+    ],
+    "tests": [
+      {
+        "input": "A😀\n",
+        "expected": "2\n"
+      },
+      {
+        "input": "Java\n",
+        "expected": "4\n"
+      },
+      {
+        "input": "\n",
+        "expected": "0\n"
+      }
+    ],
+    "prerequisites": [
+      "normalized-tags"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Main.java"
+    ]
+  },
+  {
+    "id": "resource-closing",
+    "order": 48,
+    "title": "用 try-with-resources 保证关闭",
+    "shortTitle": "用 try-with-resources 保证关闭",
+    "summary": "只修改 Work.java，让任务抛异常后资源仍被关闭，输出 true。",
+    "concept": "异常与资源生命周期",
+    "topicId": "exceptions",
+    "kind": "debug",
+    "difficulty": 2,
+    "xp": 55,
+    "minutes": 12,
+    "paragraphs": [
+      "try-with-resources 在正常返回和异常离开时都会调用 close。",
+      "只在正常路径末尾调用 close，会在中间抛异常时遗漏释放。"
+    ],
+    "task": "只修改 Work.java，让任务抛异常后资源仍被关闭，输出 true。",
+    "hints": [
+      "先阅读输入契约与只读调用方，再运行起始版本定位失败。",
+      "try-with-resources 在正常返回和异常离开时都会调用 close。",
+      "只在正常路径末尾调用 close，会在中间抛异常时遗漏释放。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {  public static void main(String[] args) throws Exception { Resource.closed=false;try{Work.execute();}catch(IllegalStateException expected){}System.out.println(Resource.closed); } }"
+      },
+      {
+        "name": "Resource.java",
+        "content": "public class Resource implements AutoCloseable { public static boolean closed; public void close(){closed=true;} }"
+      },
+      {
+        "name": "Work.java",
+        "content": "public class Work { public static void execute(){Resource r=new Resource();if(true)throw new IllegalStateException();r.close();} }"
+      }
+    ],
+    "tests": [
+      {
+        "input": "",
+        "expected": "true\n"
+      }
+    ],
+    "prerequisites": [
+      "parse-or-invalid"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Work.java"
+    ]
+  },
+  {
+    "id": "list-remove",
+    "order": 49,
+    "title": "删除满足条件的元素而不跳项",
+    "shortTitle": "删除满足条件的元素而不跳项",
+    "summary": "读取 n 个整数，删除全部负数后按 List.toString 格式输出，保留原顺序。",
+    "concept": "ArrayList 与 LinkedList",
+    "topicId": "list",
+    "kind": "debug",
+    "difficulty": 2,
+    "xp": 55,
+    "minutes": 12,
+    "paragraphs": [
+      "列表删除会移动后面的元素；索引直接增加可能跳过连续的待删除元素。",
+      "removeIf 明确表达删除规则，避免手动维护移动后的索引。"
+    ],
+    "task": "读取 n 个整数，删除全部负数后按 List.toString 格式输出，保留原顺序。",
+    "hints": [
+      "先阅读输入契约与只读调用方，再运行起始版本定位失败。",
+      "列表删除会移动后面的元素；索引直接增加可能跳过连续的待删除元素。",
+      "removeIf 明确表达删除规则，避免手动维护移动后的索引。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {  public static void main(String[] args) throws Exception { var in=new java.util.Scanner(System.in); int n=in.nextInt();var a=new java.util.ArrayList<Integer>();for(int i=0;i<n;i++)a.add(in.nextInt());for(int i=0;i<a.size();i++)if(a.get(i)<0)a.remove(i);System.out.println(a.toString()); } }"
+      }
+    ],
+    "tests": [
+      {
+        "input": "4 1 -2 -3 4",
+        "expected": "[1, 4]\n"
+      },
+      {
+        "input": "2 -1 -2",
+        "expected": "[]\n"
+      },
+      {
+        "input": "0",
+        "expected": "[]\n"
+      }
+    ],
+    "prerequisites": [
+      "arrays"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Main.java"
+    ]
+  },
+  {
+    "id": "parentheses-check",
+    "order": 50,
+    "title": "验证嵌套括号与提前闭合",
+    "shortTitle": "验证嵌套括号与提前闭合",
+    "summary": "读取只包含圆括号的一行，判断是否完整匹配，输出 true/false。",
+    "concept": "栈、队列与双端队列",
+    "topicId": "stack-queue",
+    "kind": "challenge",
+    "difficulty": 2,
+    "xp": 55,
+    "minutes": 12,
+    "paragraphs": [
+      "栈保存尚未匹配的左括号；遇到右括号必须先检查是否有左括号。",
+      "遍历结束后栈也必须为空，只检查总数相等不能排除提前闭合。"
+    ],
+    "task": "读取只包含圆括号的一行，判断是否完整匹配，输出 true/false。",
+    "hints": [
+      "先阅读输入契约与只读调用方，再运行起始版本定位失败。",
+      "栈保存尚未匹配的左括号；遇到右括号必须先检查是否有左括号。",
+      "遍历结束后栈也必须为空，只检查总数相等不能排除提前闭合。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {  public static void main(String[] args) throws Exception { var in=new java.util.Scanner(System.in); String s=in.nextLine();System.out.println(s.chars().filter(c->c=='(').count()==s.chars().filter(c->c==')').count()); } }"
+      }
+    ],
+    "tests": [
+      {
+        "input": "()()\n",
+        "expected": "true\n"
+      },
+      {
+        "input": ")(\n",
+        "expected": "false\n"
+      },
+      {
+        "input": "(()\n",
+        "expected": "false\n"
+      },
+      {
+        "input": "\n",
+        "expected": "true\n"
+      }
+    ],
+    "prerequisites": [
+      "arrays"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Main.java"
+    ]
+  },
+  {
+    "id": "pom-release",
+    "order": 51,
+    "title": "声明编译目标 JDK 21",
+    "shortTitle": "声明编译目标 JDK 21",
+    "summary": "将 pom.xml 的编译目标从 17 改为 21，通过真实 XML 配置校验；本关不产出 Maven jar。",
+    "concept": "目录约定、坐标与 pom",
+    "topicId": "pom",
+    "kind": "config",
+    "difficulty": 2,
+    "xp": 55,
+    "minutes": 12,
+    "paragraphs": [
+      "本关实际解析你编辑的 pom.xml 并检查构建模型属性，但不调用 Maven 命令。",
+      "maven.compiler.release 表示编译目标版本，不能用 sourceEncoding 替代它。",
+      "只修改 pom.xml，保留只读校验入口。"
+    ],
+    "task": "将 pom.xml 的编译目标从 17 改为 21，通过真实 XML 配置校验；本关不产出 Maven jar。",
+    "hints": [
+      "先阅读输入契约与只读调用方，再运行起始版本定位失败。",
+      "本关实际解析你编辑的 pom.xml 并检查构建模型属性，但不调用 Maven 命令。",
+      "只修改 pom.xml，保留只读校验入口。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main { static org.w3c.dom.Document xml(String file)throws Exception {var f=javax.xml.parsers.DocumentBuilderFactory.newInstance();f.setNamespaceAware(true);f.setFeature(\"http://apache.org/xml/features/disallow-doctype-decl\",true);f.setFeature(\"http://xml.org/sax/features/external-general-entities\",false);f.setFeature(\"http://xml.org/sax/features/external-parameter-entities\",false);f.setXIncludeAware(false);f.setExpandEntityReferences(false);return f.newDocumentBuilder().parse(new java.io.File(file));} static String value(org.w3c.dom.Node root,String path)throws Exception{return (String)javax.xml.xpath.XPathFactory.newInstance().newXPath().evaluate(path,root,javax.xml.xpath.XPathConstants.STRING);} public static void main(String[] args) throws Exception { var doc=xml(\"pom.xml\");System.out.println(value(doc,\"/*[local-name()='project']/*[local-name()='properties']/*[local-name()='maven.compiler.release']\").equals(\"21\")?\"POM_OK\":\"RELEASE_MUST_BE_21\"); } }"
+      },
+      {
+        "name": "pom.xml",
+        "content": "<project xmlns=\"http://maven.apache.org/POM/4.0.0\"><modelVersion>4.0.0</modelVersion><groupId>quest</groupId><artifactId>demo</artifactId><version>1.0</version><properties><maven.compiler.release>17</maven.compiler.release></properties></project>"
+      }
+    ],
+    "tests": [
+      {
+        "input": "",
+        "expected": "POM_OK\n"
+      }
+    ],
+    "prerequisites": [
+      "methods"
+    ],
+    "entryClass": "Main",
+    "buildKind": "pom-check",
+    "editableFiles": [
+      "pom.xml"
+    ]
+  },
+  {
+    "id": "pom-test-dependency",
+    "order": 52,
+    "title": "将 JUnit 声明为测试依赖",
+    "shortTitle": "将 JUnit 声明为测试依赖",
+    "summary": "仅修改 pom.xml，使 junit-jupiter 5.11.4 的 scope 为 test。",
+    "concept": "作用域、传递依赖与 BOM",
+    "topicId": "dependencies",
+    "kind": "config",
+    "difficulty": 2,
+    "xp": 55,
+    "minutes": 12,
+    "paragraphs": [
+      "测试依赖应在 test 作用域，避免误当成生产运行时需求。",
+      "本实验校验 groupId、artifactId、固定版本和 scope，不联网解析或下载依赖。"
+    ],
+    "task": "仅修改 pom.xml，使 junit-jupiter 5.11.4 的 scope 为 test。",
+    "hints": [
+      "先阅读输入契约与只读调用方，再运行起始版本定位失败。",
+      "测试依赖应在 test 作用域，避免误当成生产运行时需求。",
+      "本实验校验 groupId、artifactId、固定版本和 scope，不联网解析或下载依赖。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main { static org.w3c.dom.Document xml(String file)throws Exception {var f=javax.xml.parsers.DocumentBuilderFactory.newInstance();f.setNamespaceAware(true);f.setFeature(\"http://apache.org/xml/features/disallow-doctype-decl\",true);f.setFeature(\"http://xml.org/sax/features/external-general-entities\",false);f.setFeature(\"http://xml.org/sax/features/external-parameter-entities\",false);f.setXIncludeAware(false);f.setExpandEntityReferences(false);return f.newDocumentBuilder().parse(new java.io.File(file));} static String value(org.w3c.dom.Node root,String path)throws Exception{return (String)javax.xml.xpath.XPathFactory.newInstance().newXPath().evaluate(path,root,javax.xml.xpath.XPathConstants.STRING);} public static void main(String[] args) throws Exception { var d=xml(\"pom.xml\");String p=\"//*[local-name()='dependency'][*[local-name()='groupId']='org.junit.jupiter' and *[local-name()='artifactId']='junit-jupiter']\";System.out.println(value(d,p+\"/*[local-name()='scope']\").equals(\"test\")&&value(d,p+\"/*[local-name()='version']\").equals(\"5.11.4\")?\"DEPENDENCY_OK\":\"CHECK_JUNIT_SCOPE_VERSION\"); } }"
+      },
+      {
+        "name": "pom.xml",
+        "content": "<project xmlns=\"http://maven.apache.org/POM/4.0.0\"><modelVersion>4.0.0</modelVersion><groupId>quest</groupId><artifactId>demo</artifactId><version>1.0</version><dependencies><dependency><groupId>org.junit.jupiter</groupId><artifactId>junit-jupiter</artifactId><version>5.11.4</version><scope>compile</scope></dependency></dependencies></project>"
+      }
+    ],
+    "tests": [
+      {
+        "input": "",
+        "expected": "DEPENDENCY_OK\n"
+      }
+    ],
+    "prerequisites": [
+      "pom-release"
+    ],
+    "entryClass": "Main",
+    "buildKind": "pom-check",
+    "editableFiles": [
+      "pom.xml"
+    ]
+  },
+  {
+    "id": "pom-modules",
+    "order": 53,
+    "title": "校验根模块与子模块的坐标关系",
+    "shortTitle": "校验根模块与子模块的坐标关系",
+    "summary": "修改根 pom 的 packaging 与 app 的 parent，使四文件模型一致。",
+    "concept": "多模块、聚合与继承",
+    "topicId": "modules",
+    "kind": "config",
+    "difficulty": 2,
+    "xp": 55,
+    "minutes": 12,
+    "paragraphs": [
+      "聚合根使用 pom 打包类型，并声明模块目录。子模块通过 parent 表达继承。",
+      "本实验读取根与两个子 POM，校验包装类型、模块声明及父子 artifactId；这是构建模型的部分契约，不是完整 Maven effective-pom 或实际打包。"
+    ],
+    "task": "修改根 pom 的 packaging 与 app 的 parent，使四文件模型一致。",
+    "hints": [
+      "先阅读输入契约与只读调用方，再运行起始版本定位失败。",
+      "聚合根使用 pom 打包类型，并声明模块目录。子模块通过 parent 表达继承。",
+      "本实验读取根与两个子 POM，校验包装类型、模块声明及父子 artifactId；这是构建模型的部分契约，不是完整 Maven effective-pom 或实际打包。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main { static org.w3c.dom.Document xml(String file)throws Exception {var f=javax.xml.parsers.DocumentBuilderFactory.newInstance();f.setNamespaceAware(true);f.setFeature(\"http://apache.org/xml/features/disallow-doctype-decl\",true);f.setFeature(\"http://xml.org/sax/features/external-general-entities\",false);f.setFeature(\"http://xml.org/sax/features/external-parameter-entities\",false);f.setXIncludeAware(false);f.setExpandEntityReferences(false);return f.newDocumentBuilder().parse(new java.io.File(file));} static String value(org.w3c.dom.Node root,String path)throws Exception{return (String)javax.xml.xpath.XPathFactory.newInstance().newXPath().evaluate(path,root,javax.xml.xpath.XPathConstants.STRING);} public static void main(String[] args) throws Exception { var root=xml(\"pom.xml\");String p=\"/*[local-name()='project']\";boolean ok=value(root,p+\"/*[local-name()='packaging']\").equals(\"pom\");for(String module:new String[]{\"core\",\"app\"}){var child=xml(module+\"/pom.xml\");ok&=value(root,p+\"/*[local-name()='modules']/*[local-name()='module'][text()='\"+module+\"']\").equals(module);ok&=value(child,p+\"/*[local-name()='parent']/*[local-name()='artifactId']\").equals(\"workspace\");ok&=value(child,p+\"/*[local-name()='artifactId']\").equals(module);}System.out.println(ok?\"MODULES_OK\":\"CHECK_PARENT_AND_MODULES\"); } }"
+      },
+      {
+        "name": "pom.xml",
+        "content": "<project xmlns=\"http://maven.apache.org/POM/4.0.0\"><modelVersion>4.0.0</modelVersion><groupId>quest</groupId><artifactId>workspace</artifactId><version>1.0</version><packaging>jar</packaging><modules><module>core</module><module>app</module></modules></project>"
+      },
+      {
+        "name": "core/pom.xml",
+        "content": "<project xmlns=\"http://maven.apache.org/POM/4.0.0\"><modelVersion>4.0.0</modelVersion><parent><groupId>quest</groupId><artifactId>workspace</artifactId><version>1.0</version><relativePath>../pom.xml</relativePath></parent><artifactId>core</artifactId></project>"
+      },
+      {
+        "name": "app/pom.xml",
+        "content": "<project xmlns=\"http://maven.apache.org/POM/4.0.0\"><modelVersion>4.0.0</modelVersion><parent><groupId>quest</groupId><artifactId>wrong-parent</artifactId><version>1.0</version><relativePath>../pom.xml</relativePath></parent><artifactId>app</artifactId></project>"
+      }
+    ],
+    "tests": [
+      {
+        "input": "",
+        "expected": "MODULES_OK\n"
+      }
+    ],
+    "prerequisites": [
+      "pom-test-dependency"
+    ],
+    "entryClass": "Main",
+    "buildKind": "pom-check",
+    "editableFiles": [
+      "pom.xml",
+      "app/pom.xml"
+    ]
+  },
+  {
+    "id": "spring-constructor",
+    "order": 54,
+    "title": "修复构造器参数未保存",
+    "shortTitle": "修复构造器参数未保存",
+    "summary": "修复构造器，让真实容器创建的 Controller 输出 Hello, 名字!。",
+    "concept": "IoC、DI、Bean 与生命周期",
+    "topicId": "ioc",
+    "kind": "lab",
+    "difficulty": 2,
+    "xp": 55,
+    "minutes": 12,
+    "paragraphs": [
+      "本关使用真实 Spring AnnotationConfigApplicationContext，容器创建服务和调用方并完成构造器注入。",
+      "构造器收到依赖后仍需保存到字段；把字段设为 null 会在后续调用失败。",
+      "只修改 GreetingController。此实验不是完整 Spring Boot HTTP 服务，不启动数据库或外部端口。"
+    ],
+    "task": "修复构造器，让真实容器创建的 Controller 输出 Hello, 名字!。",
+    "hints": [
+      "先阅读输入契约与只读调用方，再运行起始版本定位失败。",
+      "本关使用真实 Spring AnnotationConfigApplicationContext，容器创建服务和调用方并完成构造器注入。",
+      "只修改 GreetingController。此实验不是完整 Spring Boot HTTP 服务，不启动数据库或外部端口。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {  public static void main(String[] args) throws Exception { ((ch.qos.logback.classic.LoggerContext)org.slf4j.LoggerFactory.getILoggerFactory()).getLogger(\"ROOT\").setLevel(ch.qos.logback.classic.Level.OFF);var in=new java.util.Scanner(System.in); String name=in.nextLine();try(var ctx=new org.springframework.context.annotation.AnnotationConfigApplicationContext(GreetingService.class,GreetingController.class)){System.out.println(ctx.getBean(GreetingController.class).greet(name));} } }"
+      },
+      {
+        "name": "GreetingService.java",
+        "content": "@org.springframework.stereotype.Service public class GreetingService { public String greet(String name){return \"Hello, \"+name+\"!\";} }"
+      },
+      {
+        "name": "GreetingController.java",
+        "content": "public class GreetingController { private final GreetingService service; public GreetingController(GreetingService service){this.service=null;} public String greet(String name){return service.greet(name);} }"
+      }
+    ],
+    "tests": [
+      {
+        "input": "Ada\n",
+        "expected": "Hello, Ada!\n"
+      },
+      {
+        "input": "Lin\n",
+        "expected": "Hello, Lin!\n"
+      }
+    ],
+    "prerequisites": [
+      "account-withdraw"
+    ],
+    "entryClass": "Main",
+    "buildKind": "spring-component",
+    "editableFiles": [
+      "GreetingController.java"
+    ]
+  },
+  {
+    "id": "spring-qualifier",
+    "order": 55,
+    "title": "在多个实现之间指定 Qualifier",
+    "shortTitle": "在多个实现之间指定 Qualifier",
+    "summary": "修改 GreetingService 构造器参数，注入 friendly 策略，保留所有其他文件。",
+    "concept": "IoC、DI、Bean 与生命周期",
+    "topicId": "ioc",
+    "kind": "lab",
+    "difficulty": 2,
+    "xp": 55,
+    "minutes": 12,
+    "paragraphs": [
+      "同一接口存在两个候选 Bean 时，容器需要知道应注入哪一个。",
+      "@Qualifier(\"friendly\") 在构造器参数上明确选择 Bean；这里两个候选由真实 Spring 容器创建。"
+    ],
+    "task": "修改 GreetingService 构造器参数，注入 friendly 策略，保留所有其他文件。",
+    "hints": [
+      "先阅读输入契约与只读调用方，再运行起始版本定位失败。",
+      "同一接口存在两个候选 Bean 时，容器需要知道应注入哪一个。",
+      "@Qualifier(\"friendly\") 在构造器参数上明确选择 Bean；这里两个候选由真实 Spring 容器创建。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {  public static void main(String[] args) throws Exception { ((ch.qos.logback.classic.LoggerContext)org.slf4j.LoggerFactory.getILoggerFactory()).getLogger(\"ROOT\").setLevel(ch.qos.logback.classic.Level.OFF);var in=new java.util.Scanner(System.in); String name=in.nextLine();try(var ctx=new org.springframework.context.annotation.AnnotationConfigApplicationContext(FriendlyPolicy.class,FormalPolicy.class,GreetingService.class)){System.out.println(ctx.getBean(GreetingService.class).greet(name));} } }"
+      },
+      {
+        "name": "GreetingPolicy.java",
+        "content": "public interface GreetingPolicy { String greet(String name); }"
+      },
+      {
+        "name": "FriendlyPolicy.java",
+        "content": "@org.springframework.stereotype.Component(\"friendly\") public class FriendlyPolicy implements GreetingPolicy {public String greet(String name){return \"Hi \"+name;}}"
+      },
+      {
+        "name": "FormalPolicy.java",
+        "content": "@org.springframework.stereotype.Component(\"formal\") public class FormalPolicy implements GreetingPolicy {public String greet(String name){return \"Dear \"+name;}}"
+      },
+      {
+        "name": "GreetingService.java",
+        "content": "@org.springframework.stereotype.Service public class GreetingService {private final GreetingPolicy policy;public GreetingService(GreetingPolicy policy){this.policy=policy;}public String greet(String name){return policy.greet(name);}}"
+      }
+    ],
+    "tests": [
+      {
+        "input": "Ada\n",
+        "expected": "Hi Ada\n"
+      },
+      {
+        "input": "Bo\n",
+        "expected": "Hi Bo\n"
+      }
+    ],
+    "prerequisites": [
+      "spring-constructor"
+    ],
+    "entryClass": "Main",
+    "buildKind": "spring-component",
+    "editableFiles": [
+      "GreetingService.java"
+    ]
+  },
+  {
+    "id": "spring-validation",
+    "order": 56,
+    "title": "组合字段约束与错误报告",
+    "shortTitle": "组合字段约束与错误报告",
+    "summary": "修改 Registration 的字段约束。",
+    "concept": "校验、异常与 Problem Details",
+    "topicId": "validation",
+    "kind": "lab",
+    "difficulty": 2,
+    "xp": 55,
+    "minutes": 12,
+    "paragraphs": [
+      "LocalValidatorFactoryBean 连接真实 Bean Validation 实现；约束不是前端提示，校验器会实际读取 record 的约束。",
+      "本题只做单字段组合：姓名非空、邮箱有效、年龄至少 18；错误按字段名排序。",
+      "跨字段验证属于此知识点的后续任务；本样例不启动 HTTP 服务，也不声称已实现接口参数校验链路。"
+    ],
+    "task": "修改 Registration 的字段约束。输入姓名 邮箱 年龄，合法输出 OK，否则输出排序后的字段名；_ 表示空姓名。",
+    "hints": [
+      "先阅读输入契约与只读调用方，再运行起始版本定位失败。",
+      "LocalValidatorFactoryBean 连接真实 Bean Validation 实现；约束不是前端提示，校验器会实际读取 record 的约束。",
+      "跨字段验证属于此知识点的后续任务；本样例不启动 HTTP 服务，也不声称已实现接口参数校验链路。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {  public static void main(String[] args) throws Exception { ((ch.qos.logback.classic.LoggerContext)org.slf4j.LoggerFactory.getILoggerFactory()).getLogger(\"ROOT\").setLevel(ch.qos.logback.classic.Level.OFF);var in=new java.util.Scanner(System.in); String name=in.next(),email=in.next();int age=in.nextInt();if(name.equals(\"_\"))name=\"\";var validator=new org.springframework.validation.beanvalidation.LocalValidatorFactoryBean();validator.afterPropertiesSet();try{var errors=validator.validate(new Registration(name,email,age));System.out.println(errors.isEmpty()?\"OK\":errors.stream().map(e->e.getPropertyPath().toString()).sorted().collect(java.util.stream.Collectors.joining(\",\")));}finally{validator.close();} } }"
+      },
+      {
+        "name": "Registration.java",
+        "content": "public record Registration(@jakarta.validation.constraints.NotBlank String name,String email,@jakarta.validation.constraints.Min(16) int age) {}"
+      }
+    ],
+    "tests": [
+      {
+        "input": "Ada ada@example.com 18",
+        "expected": "OK\n"
+      },
+      {
+        "input": "Ada broken 18",
+        "expected": "email\n"
+      },
+      {
+        "input": "Ada ada@example.com 17",
+        "expected": "age\n"
+      },
+      {
+        "input": "_ broken 17",
+        "expected": "age,email,name\n"
+      }
+    ],
+    "prerequisites": [
+      "spring-constructor"
+    ],
+    "entryClass": "Main",
+    "buildKind": "spring-component",
+    "editableFiles": [
+      "Registration.java"
+    ]
+  },
+  {
+    "id": "stock-version",
+    "order": 57,
+    "title": "修复无版本检查的库存扣减",
+    "shortTitle": "修复无版本检查的库存扣减",
+    "summary": "只修改 Stock.reserve。",
+    "concept": "MVCC、隔离级别与锁",
+    "topicId": "isolation",
+    "kind": "project",
+    "difficulty": 2,
+    "xp": 55,
+    "minutes": 12,
+    "paragraphs": [
+      "本实验是在内存 Stock 对象上练习乐观版本契约，不连接 MySQL，不代表已经验证数据库并发隔离。",
+      "版本不匹配、负数或库存不足时都拒绝且不改状态；成功时扣减并递增版本。"
+    ],
+    "task": "只修改 Stock.reserve。输入库存 当前版本 预期版本 扣减量，输出成功标志、剩余库存和版本。",
+    "hints": [
+      "先阅读输入契约与只读调用方，再运行起始版本定位失败。",
+      "本实验是在内存 Stock 对象上练习乐观版本契约，不连接 MySQL，不代表已经验证数据库并发隔离。",
+      "版本不匹配、负数或库存不足时都拒绝且不改状态；成功时扣减并递增版本。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {  public static void main(String[] args) throws Exception { var in=new java.util.Scanner(System.in); Stock s=new Stock(in.nextInt(),in.nextInt());boolean ok=s.reserve(in.nextInt(),in.nextInt());System.out.println(ok+\" \"+s.quantity()+\" \"+s.version()); } }"
+      },
+      {
+        "name": "Stock.java",
+        "content": "public class Stock {private int quantity,version;public Stock(int q,int v){quantity=q;version=v;}public boolean reserve(int expected,int count){if(count<0||count>quantity)return false;quantity-=count;version++;return true;}public int quantity(){return quantity;}public int version(){return version;}}"
+      }
+    ],
+    "tests": [
+      {
+        "input": "10 2 2 3",
+        "expected": "true 7 3\n"
+      },
+      {
+        "input": "10 2 1 3",
+        "expected": "false 10 2\n"
+      },
+      {
+        "input": "1 0 0 2",
+        "expected": "false 1 0\n"
+      },
+      {
+        "input": "10 2 2 -1",
+        "expected": "false 10 2\n"
+      }
+    ],
+    "prerequisites": [
+      "account-withdraw"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Stock.java"
+    ]
+  },
+  {
+    "id": "bounded-work-queue",
+    "order": 58,
+    "title": "实现有界任务接收与拒绝",
+    "shortTitle": "实现有界任务接收与拒绝",
+    "summary": "只修改 WorkQueue.submit，使用真实有界队列接收任务。",
+    "concept": "并发任务调度平台",
+    "topicId": "queue-project",
+    "kind": "project",
+    "difficulty": 2,
+    "xp": 55,
+    "minutes": 12,
+    "paragraphs": [
+      "ArrayBlockingQueue 有固定容量；offer 在满时返回 false，不会无限等待。",
+      "本样例只实现接收与拒绝，不启动工作线程；Quartz、持久化与 WebSocket 是后续工程任务。"
+    ],
+    "task": "只修改 WorkQueue.submit，使用真实有界队列接收任务。输入容量 n 和 n 个任务，输出接收数与拒绝数。",
+    "hints": [
+      "先阅读输入契约与只读调用方，再运行起始版本定位失败。",
+      "ArrayBlockingQueue 有固定容量；offer 在满时返回 false，不会无限等待。",
+      "本样例只实现接收与拒绝，不启动工作线程；Quartz、持久化与 WebSocket 是后续工程任务。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {  public static void main(String[] args) throws Exception { var in=new java.util.Scanner(System.in); WorkQueue q=new WorkQueue(in.nextInt());int n=in.nextInt(),accepted=0;for(int i=0;i<n;i++)if(q.submit(in.next()))accepted++;System.out.println(accepted+\" \"+(n-accepted)); } }"
+      },
+      {
+        "name": "WorkQueue.java",
+        "content": "public class WorkQueue {private final java.util.concurrent.ArrayBlockingQueue<String> queue;public WorkQueue(int capacity){queue=new java.util.concurrent.ArrayBlockingQueue<>(capacity);}public boolean submit(String task){return true;}}"
+      }
+    ],
+    "tests": [
+      {
+        "input": "2 3 a b c",
+        "expected": "2 1\n"
+      },
+      {
+        "input": "1 2 a b",
+        "expected": "1 1\n"
+      },
+      {
+        "input": "3 0",
+        "expected": "0 0\n"
+      }
+    ],
+    "prerequisites": [
+      "atomic-counter"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "WorkQueue.java"
+    ]
+  },
+  {
+    "id": "idempotent-ledger",
+    "order": 59,
+    "title": "缓存重复请求的首次响应",
+    "shortTitle": "缓存重复请求的首次响应",
+    "summary": "补全 Ledger.apply：相同 ID/金额返回首次余额，不同金额返回 CONFLICT，负金额 INVALID。",
+    "concept": "分布式 ID、去重与请求追踪",
+    "topicId": "identifiers",
+    "kind": "project",
+    "difficulty": 2,
+    "xp": 55,
+    "minutes": 12,
+    "paragraphs": [
+      "幂等不只是避免重复加钱，还要为重复请求返回首次结果，而不是当前最新余额。",
+      "同一 ID 不同金额是冲突；负金额无效；本实验使用内存 Map，不包含数据库事务或分布式一致性。"
+    ],
+    "task": "补全 Ledger.apply：相同 ID/金额返回首次余额，不同金额返回 CONFLICT，负金额 INVALID。",
+    "hints": [
+      "先阅读输入契约与只读调用方，再运行起始版本定位失败。",
+      "幂等不只是避免重复加钱，还要为重复请求返回首次结果，而不是当前最新余额。",
+      "同一 ID 不同金额是冲突；负金额无效；本实验使用内存 Map，不包含数据库事务或分布式一致性。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {  public static void main(String[] args) throws Exception { var in=new java.util.Scanner(System.in); int n=in.nextInt();Ledger ledger=new Ledger();for(int i=0;i<n;i++)System.out.println(ledger.apply(in.next(),in.nextInt())); } }"
+      },
+      {
+        "name": "Receipt.java",
+        "content": "public record Receipt(int amount,int balanceAfter) {}"
+      },
+      {
+        "name": "Ledger.java",
+        "content": "public class Ledger {private int balance;private final java.util.Map<String,Receipt> seen=new java.util.HashMap<>();public String apply(String id,int amount){if(amount<0)return \"INVALID\";Receipt old=seen.get(id);balance+=amount;seen.put(id,new Receipt(amount,balance));return String.valueOf(balance);}}"
+      }
+    ],
+    "tests": [
+      {
+        "input": "3 a 10 a 10 b 5",
+        "expected": "10\n10\n15\n"
+      },
+      {
+        "input": "3 a 10 b 5 a 10",
+        "expected": "10\n15\n10\n"
+      },
+      {
+        "input": "2 a 10 a 12",
+        "expected": "10\nCONFLICT\n"
+      },
+      {
+        "input": "2 a -1 a 4",
+        "expected": "INVALID\n4\n"
+      }
+    ],
+    "prerequisites": [
+      "word-report"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Ledger.java"
+    ]
+  },
+  {
+    "id": "account-invariant",
+    "order": 60,
+    "title": "保持构造后的对象不变量",
+    "shortTitle": "保持构造后的对象不变量",
+    "summary": "只改 Balance，让负初值被拒绝。",
+    "concept": "类、构造器与封装",
+    "topicId": "objects",
+    "kind": "boundary",
+    "difficulty": 3,
+    "xp": 60,
+    "minutes": 14,
+    "paragraphs": [
+      "校验应在构造完成前发生，不能让非法对象先存在再要求调用者检查。",
+      "构造器抛出异常时，调用方得不到这个对象。",
+      "负余额拒绝，零余额允许；不要把 0 当作非法值。"
+    ],
+    "task": "只改 Balance，让负初值被拒绝。读取初值，合法输出余额，非法输出 INVALID。",
+    "hints": [
+      "对照只读入口找到需要保持的业务不变量。",
+      "校验应在构造完成前发生，不能让非法对象先存在再要求调用者检查。",
+      "负余额拒绝，零余额允许；不要把 0 当作非法值。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {public static void main(String[] args)throws Exception{var in=new java.util.Scanner(System.in);int n=in.nextInt();try{System.out.println(new Balance(n).value());}catch(IllegalArgumentException e){System.out.println(\"INVALID\");}}}"
+      },
+      {
+        "name": "Balance.java",
+        "content": "public class Balance {private final int value;public Balance(int value){this.value=value;}public int value(){return value;}}"
+      }
+    ],
+    "tests": [
+      {
+        "input": "0",
+        "expected": "0\n"
+      },
+      {
+        "input": "12",
+        "expected": "12\n"
+      },
+      {
+        "input": "-1",
+        "expected": "INVALID\n"
+      }
+    ],
+    "prerequisites": [
+      "account-withdraw"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Balance.java"
+    ]
+  },
+  {
+    "id": "defensive-snapshot",
+    "order": 61,
+    "title": "重构泄露内部集合的访问器",
+    "shortTitle": "重构泄露内部集合的访问器",
+    "summary": "保存传入列表的不可变快照。",
+    "concept": "类、构造器与封装",
+    "topicId": "objects",
+    "kind": "boundary",
+    "difficulty": 3,
+    "xp": 60,
+    "minutes": 14,
+    "paragraphs": [
+      "不可修改的视图不一定是快照：原集合变化仍可影响视图。",
+      "List.copyOf 同时复制结构并拒绝通过返回集合修改元素。",
+      "本题元素是不可变 String，不讨论元素本身可变时的深拷贝。"
+    ],
+    "task": "保存传入列表的不可变快照。调用方会清空原列表，再尝试修改快照，输出原元素数量和 IMMUTABLE。",
+    "hints": [
+      "对照只读入口找到需要保持的业务不变量。",
+      "不可修改的视图不一定是快照：原集合变化仍可影响视图。",
+      "本题元素是不可变 String，不讨论元素本身可变时的深拷贝。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {public static void main(String[] args)throws Exception{var in=new java.util.Scanner(System.in);int n=in.nextInt();var list=new java.util.ArrayList<String>();for(int i=0;i<n;i++)list.add(in.next());Snapshot s=new Snapshot(list);list.clear();String result=\"MUTABLE\";try{s.items().add(\"x\");}catch(UnsupportedOperationException e){result=\"IMMUTABLE\";}System.out.println(s.items().size()+\" \"+result);}}"
+      },
+      {
+        "name": "Snapshot.java",
+        "content": "public class Snapshot {private final java.util.List<String> items;public Snapshot(java.util.List<String> items){this.items=items;}public java.util.List<String> items(){return items;}}"
+      }
+    ],
+    "tests": [
+      {
+        "input": "2 a b",
+        "expected": "2 IMMUTABLE\n"
+      },
+      {
+        "input": "0",
+        "expected": "0 IMMUTABLE\n"
+      },
+      {
+        "input": "1 x",
+        "expected": "1 IMMUTABLE\n"
+      }
+    ],
+    "prerequisites": [
+      "account-invariant"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Snapshot.java"
+    ]
+  },
+  {
+    "id": "array-independent-copy",
+    "order": 62,
+    "title": "正确复制数组而非共享别名",
+    "shortTitle": "正确复制数组而非共享别名",
+    "summary": "只改 Copy.of，返回独立数组。",
+    "concept": "数组与索引",
+    "topicId": "arrays",
+    "kind": "boundary",
+    "difficulty": 3,
+    "xp": 60,
+    "minutes": 14,
+    "paragraphs": [
+      "把数组引用赋给另一个变量，不会复制其内容。",
+      "独立副本允许调用方修改，而原数组保持不变。",
+      "空数组同样需要得到一个有效副本。"
+    ],
+    "task": "只改 Copy.of，返回独立数组。调用方修改副本后，原数组应完全保持不变。",
+    "hints": [
+      "对照只读入口找到需要保持的业务不变量。",
+      "把数组引用赋给另一个变量，不会复制其内容。",
+      "空数组同样需要得到一个有效副本。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {public static void main(String[] args)throws Exception{var in=new java.util.Scanner(System.in);int n=in.nextInt();int[] a=new int[n];for(int i=0;i<n;i++)a[i]=in.nextInt();int[] b=Copy.of(a);if(n>0)b[0]=999;System.out.println(java.util.Arrays.toString(a));}}"
+      },
+      {
+        "name": "Copy.java",
+        "content": "public class Copy {public static int[] of(int[] input){return input;}}"
+      }
+    ],
+    "tests": [
+      {
+        "input": "2 3 4",
+        "expected": "[3, 4]\n"
+      },
+      {
+        "input": "0",
+        "expected": "[]\n"
+      },
+      {
+        "input": "1 -2",
+        "expected": "[-2]\n"
+      }
+    ],
+    "prerequisites": [
+      "array-maximum"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Copy.java"
+    ]
+  },
+  {
+    "id": "clamp-contract",
+    "order": 63,
+    "title": "定义方法对非法区间的契约",
+    "shortTitle": "定义方法对非法区间的契约",
+    "summary": "只改 Range.clamp：正常夹取，反向区间抛 IllegalArgumentException，入口将其转换为 INVALID。",
+    "concept": "参数、返回值与作用域",
+    "topicId": "methods",
+    "kind": "boundary",
+    "difficulty": 3,
+    "xp": 60,
+    "minutes": 14,
+    "paragraphs": [
+      "函数契约要定义非法输入，不能用一个看似合理的结果掩盖错误。",
+      "min>max 时必须拒绝，min==max 则是合法的单点区间。",
+      "校验放在计算前，输出由只读入口统一处理。"
+    ],
+    "task": "只改 Range.clamp：正常夹取，反向区间抛 IllegalArgumentException，入口将其转换为 INVALID。",
+    "hints": [
+      "对照只读入口找到需要保持的业务不变量。",
+      "函数契约要定义非法输入，不能用一个看似合理的结果掩盖错误。",
+      "校验放在计算前，输出由只读入口统一处理。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {public static void main(String[] args)throws Exception{var in=new java.util.Scanner(System.in);int v=in.nextInt(),min=in.nextInt(),max=in.nextInt();try{System.out.println(Range.clamp(v,min,max));}catch(IllegalArgumentException e){System.out.println(\"INVALID\");}}}"
+      },
+      {
+        "name": "Range.java",
+        "content": "public class Range {public static int clamp(int value,int min,int max){return Math.max(min,Math.min(value,max));}}"
+      }
+    ],
+    "tests": [
+      {
+        "input": "5 10 0",
+        "expected": "INVALID\n"
+      },
+      {
+        "input": "3 2 2",
+        "expected": "2\n"
+      },
+      {
+        "input": "-1 0 10",
+        "expected": "0\n"
+      }
+    ],
+    "prerequisites": [
+      "clamp-value"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Range.java"
+    ]
+  },
+  {
+    "id": "map-merge-reports",
+    "order": 64,
+    "title": "使用 merge 合并增量统计",
+    "shortTitle": "使用 merge 合并增量统计",
+    "summary": "读取两份键/计数 Map，将相同键累加并按键顺序输出。",
+    "concept": "Map、词频与有序结果",
+    "topicId": "maps",
+    "kind": "boundary",
+    "difficulty": 3,
+    "xp": 60,
+    "minutes": 14,
+    "paragraphs": [
+      "putAll 会覆盖已有键；合并增量统计通常需要相加。",
+      "复制第一份统计后再合并，避免改变传入 Map。",
+      "输出需要稳定顺序，因此结果使用 TreeMap。"
+    ],
+    "task": "读取两份键/计数 Map，将相同键累加并按键顺序输出。格式：n 后 n 对键值，再 m 后 m 对键值。",
+    "hints": [
+      "对照只读入口找到需要保持的业务不变量。",
+      "putAll 会覆盖已有键；合并增量统计通常需要相加。",
+      "输出需要稳定顺序，因此结果使用 TreeMap。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {public static void main(String[] args)throws Exception{var in=new java.util.Scanner(System.in);var a=new java.util.HashMap<String,Integer>();var b=new java.util.HashMap<String,Integer>();int n=in.nextInt();for(int i=0;i<n;i++)a.put(in.next(),in.nextInt());int m=in.nextInt();for(int i=0;i<m;i++)b.put(in.next(),in.nextInt());Merger.combine(a,b).forEach((k,v)->System.out.println(k+\":\"+v));}}"
+      },
+      {
+        "name": "Merger.java",
+        "content": "public class Merger {public static java.util.Map<String,Integer> combine(java.util.Map<String,Integer> a,java.util.Map<String,Integer> b){var result=new java.util.TreeMap<String,Integer>(a);result.putAll(b);return result;}}"
+      }
+    ],
+    "tests": [
+      {
+        "input": "1 java 2 1 java 3",
+        "expected": "java:5\n"
+      },
+      {
+        "input": "1 b 1 1 a 2",
+        "expected": "a:2\nb:1\n"
+      },
+      {
+        "input": "0 0",
+        "expected": ""
+      }
+    ],
+    "prerequisites": [
+      "word-report"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Merger.java"
+    ]
+  },
+  {
+    "id": "atomic-reservation",
+    "order": 65,
+    "title": "比较原子自增与复合更新",
+    "shortTitle": "比较原子自增与复合更新",
+    "summary": "初始库存为 0 或 1，两线程各尝试一次扣减。",
+    "concept": "Thread、join 与原子计数",
+    "topicId": "atomic-count",
+    "kind": "boundary",
+    "difficulty": 3,
+    "xp": 60,
+    "minutes": 14,
+    "paragraphs": [
+      "检查后再扣减不是原子操作，即使用的是 AtomicInteger。",
+      "屏障让两线程都先读到库存，再提交一次预期版本比较。",
+      "compareAndSet(expected,expected-1) 保证过期快照不能覆盖当前值；本题不做重试。"
+    ],
+    "task": "初始库存为 0 或 1，两线程各尝试一次扣减。只改 StockCounter.reserve，不能超卖，输出成功数与剩余库存。",
+    "hints": [
+      "对照只读入口找到需要保持的业务不变量。",
+      "检查后再扣减不是原子操作，即使用的是 AtomicInteger。",
+      "compareAndSet(expected,expected-1) 保证过期快照不能覆盖当前值；本题不做重试。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {public static void main(String[] args)throws Exception{var in=new java.util.Scanner(System.in);StockCounter c=new StockCounter(in.nextInt());var barrier=new java.util.concurrent.CyclicBarrier(2);var accepted=new java.util.concurrent.atomic.AtomicInteger();Runnable task=()->{int seen=c.remaining();try{barrier.await();}catch(Exception e){throw new RuntimeException(e);}if(c.reserve(seen))accepted.incrementAndGet();};Thread a=new Thread(task),b=new Thread(task);a.start();b.start();a.join();b.join();System.out.println(accepted.get()+\" \"+c.remaining());}}"
+      },
+      {
+        "name": "StockCounter.java",
+        "content": "public class StockCounter {private final java.util.concurrent.atomic.AtomicInteger stock;public StockCounter(int n){stock=new java.util.concurrent.atomic.AtomicInteger(n);}public int remaining(){return stock.get();}public boolean reserve(int expected){if(expected<=0)return false;stock.decrementAndGet();return true;}}"
+      }
+    ],
+    "tests": [
+      {
+        "input": "1",
+        "expected": "1 0\n"
+      },
+      {
+        "input": "0",
+        "expected": "0 0\n"
+      }
+    ],
+    "prerequisites": [
+      "atomic-counter"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "StockCounter.java"
+    ]
   }
 ]

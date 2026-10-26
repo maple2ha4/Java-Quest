@@ -12,6 +12,7 @@ export interface Topic {
   id: string
   title: string
   goal: string
+  practiceRationale: string
   exercises: ExercisePlan[]
 }
 export interface Chapter {
@@ -23,6 +24,7 @@ export interface Stage {
   id: string
   title: string
   goal: string
+  sampleLessonIds: string[]
   chapters: Chapter[]
 }
 export interface Lesson {
@@ -71,6 +73,7 @@ export interface JudgeResult {
   totalTests: number
 }
 export interface RunResponse {
+  preview?: boolean
   result: JudgeResult
   newlyCompleted: boolean
   awardedXp: number

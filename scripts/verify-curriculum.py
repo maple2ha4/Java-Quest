@@ -34,7 +34,7 @@ with tempfile.TemporaryFile() as log:
      by_name={f['name']:f['content'] for f in files}
      for f in lesson['starter']:
       if f['name'] not in lesson['editableFiles']:assert by_name[f['name']]==f['content'],'Reference changed a protected file'
-    request=urllib.request.Request(f'http://127.0.0.1:{args.port}/judge',data=json.dumps({'files':files,'tests':lesson['tests'],'entryClass':lesson['entryClass']}).encode(),headers={'Content-Type':'application/json','X-Judge-Token':token,'X-Judge-Mode':args.mode})
+    request=urllib.request.Request(f'http://127.0.0.1:{args.port}/judge',data=json.dumps({'files':files,'tests':lesson['tests'],'entryClass':lesson['entryClass'],'buildKind':lesson['buildKind']}).encode(),headers={'Content-Type':'application/json','X-Judge-Token':token,'X-Judge-Mode':args.mode})
     with client.open(request,timeout=240) as response:result=json.load(response)
     assert result['passed']==(label=='reference'),(lesson['id'],label,str(result)[:1200])
    print('PASS starter rejected / reference accepted:',lesson['id'],flush=True)
