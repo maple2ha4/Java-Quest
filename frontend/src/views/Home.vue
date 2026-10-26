@@ -18,57 +18,25 @@ import {
 import { useQuest } from '../store'
 const quest = useQuest()
 const next = computed(() => quest.nextLesson)
-const stages = [
-  {
-    n: '01',
-    name: 'Java 基础',
-    tag: '从这里开始',
-    text: '从第一行代码，到面向对象的思考。',
-    icon: Code2,
-    color: 'green',
-    open: true,
-  },
-  {
-    n: '02',
-    name: '集合与数据结构',
-    tag: '下一站',
-    text: '看见数据流动，理解算法的力量。',
-    icon: Layers,
-    color: 'blue',
-  },
-  {
-    n: '03',
-    name: 'Maven 工程化',
-    tag: '规划中',
-    text: '从单个文件，走向完整的工程。',
-    icon: Terminal,
-    color: 'peach',
-  },
-  {
-    n: '04',
-    name: 'Spring Boot',
-    tag: '规划中',
-    text: '让你的第一个 REST API 上线。',
-    icon: Leaf,
-    color: 'green',
-  },
-  {
-    n: '05',
-    name: '多线程与并发',
-    tag: '规划中',
-    text: '理解时间、协作与并发的秩序。',
-    icon: GitBranch,
-    color: 'purple',
-  },
-  {
-    n: '06',
-    name: '企业级实战',
-    tag: '规划中',
-    text: '用一个真实项目，连接所有知识。',
-    icon: Zap,
-    color: 'peach',
-  },
-]
+const icons = [Code2, Layers, Terminal, Leaf, GitBranch, Zap]
+const stages = computed(() =>
+  quest.curriculum.map((s, i) => {
+    const plans = s.chapters.flatMap((c) => c.topics.flatMap((t) => t.exercises))
+    const published = plans.filter((e) => e.lessonId).length
+    return {
+      id: s.id,
+      n: String(i + 1).padStart(2, '0'),
+      name: s.title,
+      tag: published ? '可学习' : '查看目录',
+      text: s.goal,
+      icon: icons[i],
+      color: ['green', 'blue', 'peach', 'green', 'purple', 'peach'][i],
+      open: published > 0,
+      published,
+      total: plans.length,
+    }
+  }),
+)
 </script>
 <template>
   <div class="page home-page">
@@ -102,7 +70,13 @@ const stages = [
             {{ quest.completed.length ? '继续你的旅程' : '旅程，从这里开始' }}
           </div>
           <p class="chapter-kicker">
-            JAVA 基础 <span>/</span> 第 {{ String(next?.order || 1).padStart(2, '0') }} 关
+            {{ quest.context(next?.id || '')?.chapter.title || '学习路线' }} <span>/</span> 第
+            {{
+              String(
+                quest.topicLessons(next?.id || '').findIndex((l) => l.id === next?.id) + 1,
+              ).padStart(2, '0')
+            }}
+            关
           </p>
           <h2>{{ next?.title }}</h2>
           <p>{{ next?.summary }}</p>
@@ -147,7 +121,8 @@ const stages = [
         </div>
         <div class="progress-stats">
           <span
-            ><strong>{{ quest.completed.length }}<small> / 10</small></strong
+            ><strong
+              >{{ quest.completed.length }}<small> / {{ quest.lessons.length }}</small></strong
             ><small>已通关</small></span
           ><span
             ><strong>{{ quest.user?.xp || 0 }}</strong
@@ -171,10 +146,10 @@ const stages = [
       </div>
       <div class="stage-grid">
         <component
-          :is="stage.open ? 'RouterLink' : 'div'"
+          :is="'RouterLink'"
           v-for="stage in stages"
           :key="stage.n"
-          :to="stage.open ? '/map' : undefined"
+          :to="{ path: '/map', query: { stage: stage.id } }"
           class="stage-card"
           :class="{ 'stage-available': stage.open }"
           ><div class="stage-card-top">
@@ -186,7 +161,9 @@ const stages = [
           <p>{{ stage.text }}</p>
           <div class="stage-bottom">
             <span :class="stage.open ? 'green-text' : ''">{{
-              stage.open ? '10 个互动关卡' : '即将开放'
+              stage.open
+                ? `${stage.published} 已开放 / ${stage.total} 个练习`
+                : `${stage.total} 个练习规划中`
             }}</span
             ><span v-if="stage.open" class="small-pill">{{ stage.tag }}</span
             ><span v-else class="quiet">{{ stage.tag }}</span>

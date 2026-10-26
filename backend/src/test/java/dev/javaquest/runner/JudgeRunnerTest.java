@@ -24,6 +24,17 @@ class JudgeRunnerTest {
         assertTrue(result.passed());assertEquals(2,result.tests().size());assertEquals("process",result.mode());
         assertEquals("WRONG_ANSWER",run("System.out.println(1);","2").status());
     }
+    @Test void packagedProjectCompilesAndRejectsUnsafePaths() throws Exception {
+        for(String path:List.of("../Main.java","/Main.java","src/../../Main.java","C:/Main.java","src\\Main.java","src/./Main.java","NUL.java","src/CON/App.java"))
+            assertFalse(JudgeRunner.validSourcePath(path),path);
+        var result=runner.judge(new JudgeRunner.Request(List.of(
+            new JudgeRunner.Source("src/main/java/demo/App.java","package demo; public class App { public static void main(String[] args) { System.out.println(new Helper().value()); } }"),
+            new JudgeRunner.Source("src/main/java/demo/Helper.java","package demo; public class Helper { int value() { return 42; } }")),
+            List.of(new JudgeRunner.TestCase("","42\n")),"demo.App"));
+        assertTrue(result.passed(),result.toString());
+        assertThrows(IllegalArgumentException.class,()->JudgeRunner.validate(new JudgeRunner.Request(
+            List.of(new JudgeRunner.Source("Main.java","")),List.of(new JudgeRunner.TestCase("","")),"demo.Missing")));
+    }
     @Test void compilerAndRuntimeFailuresAreReal() throws Exception {
         assertEquals("COMPILE_ERROR",run("BAD","anything").status());
         assertEquals("RUNTIME_ERROR",run("throw new IllegalArgumentException(\"test\");","").status());

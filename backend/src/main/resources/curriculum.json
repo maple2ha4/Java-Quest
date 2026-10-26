@@ -1,0 +1,2862 @@
+[
+  {
+    "id": "java",
+    "title": "Java 语言与程序设计",
+    "goal": "从执行模型、语法到面向对象和可维护的多文件程序。",
+    "chapters": [
+      {
+        "id": "runtime",
+        "title": "开发环境与执行模型",
+        "topics": [
+          {
+            "id": "entry-output",
+            "title": "入口与控制台输出",
+            "goal": "通过具体任务理解入口与控制台输出，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "entry-output-1",
+                "title": "Hello, Java Quest!",
+                "kind": "guided",
+                "lessonId": "hello-world"
+              },
+              {
+                "id": "entry-output-2",
+                "title": "修复多行输出",
+                "kind": "debug",
+                "lessonId": "hello-lines"
+              },
+              {
+                "id": "entry-output-3",
+                "title": "组合三行自我介绍",
+                "kind": "challenge",
+                "lessonId": "hello-profile"
+              }
+            ]
+          },
+          {
+            "id": "jdk-model",
+            "title": "JDK、JRE 与字节码",
+            "goal": "通过具体任务理解JDK、JRE 与字节码，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "jdk-model-1",
+                "title": "定位 javac 与 java 的职责",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "jdk-model-2",
+                "title": "修复类路径启动错误",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "jdk-model-3",
+                "title": "从源码解释一次执行链路",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "input",
+            "title": "标准输入与调试",
+            "goal": "通过具体任务理解标准输入与调试，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "input-1",
+                "title": "读取用户输入",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "input-2",
+                "title": "修复输入换行丢失",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "input-3",
+                "title": "实现带边界检查的输入解析",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "values",
+        "title": "变量、类型与表达式",
+        "topics": [
+          {
+            "id": "variables",
+            "title": "变量与赋值",
+            "goal": "通过具体任务理解变量与赋值，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "variables-1",
+                "title": "给数据一个名字",
+                "kind": "guided",
+                "lessonId": "variables"
+              },
+              {
+                "id": "variables-2",
+                "title": "修复被覆盖的余额",
+                "kind": "debug",
+                "lessonId": "balance-update"
+              },
+              {
+                "id": "variables-3",
+                "title": "根据输入计算总积分",
+                "kind": "challenge",
+                "lessonId": "input-points"
+              }
+            ]
+          },
+          {
+            "id": "types",
+            "title": "基本类型与转换",
+            "goal": "通过具体任务理解基本类型与转换，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "types-1",
+                "title": "整数也会有小数吗？",
+                "kind": "guided",
+                "lessonId": "types"
+              },
+              {
+                "id": "types-2",
+                "title": "修复整数溢出的里程",
+                "kind": "debug",
+                "lessonId": "long-overflow"
+              },
+              {
+                "id": "types-3",
+                "title": "选择正确类型计算平均值",
+                "kind": "challenge",
+                "lessonId": "mean-value"
+              }
+            ]
+          },
+          {
+            "id": "operators",
+            "title": "运算符与布尔表达式",
+            "goal": "通过具体任务理解运算符与布尔表达式，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "operators-1",
+                "title": "让数字动起来",
+                "kind": "guided",
+                "lessonId": "operators"
+              },
+              {
+                "id": "operators-2",
+                "title": "修复折扣表达式优先级",
+                "kind": "debug",
+                "lessonId": "discount-precedence"
+              },
+              {
+                "id": "operators-3",
+                "title": "判断区间与整除条件",
+                "kind": "challenge",
+                "lessonId": "range-multiple"
+              }
+            ]
+          },
+          {
+            "id": "money",
+            "title": "BigDecimal 与金额",
+            "goal": "通过具体任务理解BigDecimal 与金额，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "money-1",
+                "title": "按十进制计算单价",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "money-2",
+                "title": "修复舍入方式错误",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "money-3",
+                "title": "按规则结算多项金额",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "references",
+            "title": "引用、值传递与自动装箱",
+            "goal": "通过具体任务理解引用、值传递与自动装箱，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "references-1",
+                "title": "追踪两个引用指向的对象",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "references-2",
+                "title": "修复包装类型比较与空值拆箱",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "references-3",
+                "title": "解释方法调用后哪些状态发生变化",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "control",
+        "title": "控制流与边界",
+        "topics": [
+          {
+            "id": "conditions",
+            "title": "条件与分支",
+            "goal": "通过具体任务理解条件与分支，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "conditions-1",
+                "title": "做一次选择",
+                "kind": "guided",
+                "lessonId": "conditions"
+              },
+              {
+                "id": "conditions-2",
+                "title": "修复分数边界",
+                "kind": "debug",
+                "lessonId": "grade-boundary"
+              },
+              {
+                "id": "conditions-3",
+                "title": "实现多档成绩判定",
+                "kind": "challenge",
+                "lessonId": "grade-bands"
+              }
+            ]
+          },
+          {
+            "id": "loops",
+            "title": "循环与终止条件",
+            "goal": "通过具体任务理解循环与终止条件，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "loops-1",
+                "title": "重复，也可以很优雅",
+                "kind": "guided",
+                "lessonId": "loops"
+              },
+              {
+                "id": "loops-2",
+                "title": "修复漏掉末项的循环",
+                "kind": "debug",
+                "lessonId": "reverse-sum"
+              },
+              {
+                "id": "loops-3",
+                "title": "对输入区间求和",
+                "kind": "challenge",
+                "lessonId": "sum-to-n"
+              }
+            ]
+          },
+          {
+            "id": "switch",
+            "title": "switch 与枚举分支",
+            "goal": "通过具体任务理解switch 与枚举分支，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "switch-1",
+                "title": "实现命令分发",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "switch-2",
+                "title": "修复遗漏的默认分支",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "switch-3",
+                "title": "用 switch 表达式转换状态",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "data-methods",
+        "title": "数组、方法与文本",
+        "topics": [
+          {
+            "id": "arrays",
+            "title": "数组与索引",
+            "goal": "通过具体任务理解数组与索引，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "arrays-1",
+                "title": "把数据排成一列",
+                "kind": "guided",
+                "lessonId": "arrays"
+              },
+              {
+                "id": "arrays-2",
+                "title": "修复越界遍历",
+                "kind": "debug",
+                "lessonId": "array-boundary"
+              },
+              {
+                "id": "arrays-3",
+                "title": "查找含负数数组的最大值",
+                "kind": "challenge",
+                "lessonId": "array-maximum"
+              }
+            ]
+          },
+          {
+            "id": "methods",
+            "title": "参数、返回值与作用域",
+            "goal": "通过具体任务理解参数、返回值与作用域，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "methods-1",
+                "title": "把能力封装成方法",
+                "kind": "guided",
+                "lessonId": "methods"
+              },
+              {
+                "id": "methods-2",
+                "title": "修复传错参数的方法",
+                "kind": "debug",
+                "lessonId": "method-arguments"
+              },
+              {
+                "id": "methods-3",
+                "title": "实现可复用的区间夹取函数",
+                "kind": "challenge",
+                "lessonId": "clamp-value"
+              }
+            ]
+          },
+          {
+            "id": "strings",
+            "title": "字符串与文本处理",
+            "goal": "通过具体任务理解字符串与文本处理，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "strings-1",
+                "title": "与文字打个招呼",
+                "kind": "guided",
+                "lessonId": "strings"
+              },
+              {
+                "id": "strings-2",
+                "title": "修复字符串引用比较",
+                "kind": "debug",
+                "lessonId": "string-equality"
+              },
+              {
+                "id": "strings-3",
+                "title": "实现规范化标签匹配",
+                "kind": "challenge",
+                "lessonId": "normalized-tags"
+              }
+            ]
+          },
+          {
+            "id": "recursion",
+            "title": "递归与调用栈",
+            "goal": "通过具体任务理解递归与调用栈，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "recursion-1",
+                "title": "跟踪递归返回值",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "recursion-2",
+                "title": "修复缺失的终止条件",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "recursion-3",
+                "title": "实现目录树节点计数",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "objects",
+        "title": "面向对象与语言抽象",
+        "topics": [
+          {
+            "id": "objects",
+            "title": "类、构造器与封装",
+            "goal": "通过具体任务理解类、构造器与封装，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "objects-1",
+                "title": "通过构造器建立账户",
+                "kind": "guided",
+                "lessonId": "account-constructor"
+              },
+              {
+                "id": "objects-2",
+                "title": "修复把状态写成局部变量",
+                "kind": "debug",
+                "lessonId": "account-state"
+              },
+              {
+                "id": "objects-3",
+                "title": "实现拒绝透支的账户对象",
+                "kind": "challenge",
+                "lessonId": "account-withdraw"
+              }
+            ]
+          },
+          {
+            "id": "inheritance",
+            "title": "继承、接口与多态",
+            "goal": "通过具体任务理解继承、接口与多态，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "inheritance-1",
+                "title": "调用不同实现的支付接口",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "inheritance-2",
+                "title": "修复继承层次中的错误覆盖",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "inheritance-3",
+                "title": "为订单增加折扣策略",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "contracts",
+            "title": "equals、hashCode 与不可变性",
+            "goal": "通过具体任务理解equals、hashCode 与不可变性，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "contracts-1",
+                "title": "实现值对象相等比较",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "contracts-2",
+                "title": "修复可变 Map 键",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "contracts-3",
+                "title": "设计不可变订单快照",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "exceptions",
+            "title": "异常与资源生命周期",
+            "goal": "通过具体任务理解异常与资源生命周期，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "exceptions-1",
+                "title": "让错误可以被理解",
+                "kind": "guided",
+                "lessonId": "exceptions"
+              },
+              {
+                "id": "exceptions-2",
+                "title": "修复错误的异常分支",
+                "kind": "debug",
+                "lessonId": "catch-correct-type"
+              },
+              {
+                "id": "exceptions-3",
+                "title": "实现可恢复的数字解析",
+                "kind": "challenge",
+                "lessonId": "parse-or-invalid"
+              }
+            ]
+          },
+          {
+            "id": "language-boundaries",
+            "title": "枚举、static、final 与访问控制",
+            "goal": "通过具体任务理解枚举、static、final 与访问控制，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "language-boundaries-1",
+                "title": "用枚举表达有限状态",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "language-boundaries-2",
+                "title": "修复共享静态状态与可变常量",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "language-boundaries-3",
+                "title": "收紧模块对外暴露的可变接口",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "modern-java",
+        "title": "现代 Java 与标准库",
+        "topics": [
+          {
+            "id": "basic-generics",
+            "title": "泛型与类型边界",
+            "goal": "通过具体任务理解泛型与类型边界，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "basic-generics-1",
+                "title": "编写泛型容器",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "basic-generics-2",
+                "title": "移除不安全的强制转换",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "basic-generics-3",
+                "title": "设计带上下界的复制方法",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "functional",
+            "title": "Lambda、Stream 与 Optional",
+            "goal": "通过具体任务理解Lambda、Stream 与 Optional，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "functional-1",
+                "title": "将集合转换为统计值",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "functional-2",
+                "title": "修复空值与流复用",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "functional-3",
+                "title": "实现分组、排序与聚合报表",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "records",
+            "title": "record、sealed 与模式匹配",
+            "goal": "通过具体任务理解record、sealed 与模式匹配，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "records-1",
+                "title": "用 record 定义消息",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "records-2",
+                "title": "修复不可穷尽的类型分支",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "records-3",
+                "title": "设计受限的事件类型集合",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "io",
+            "title": "I/O、NIO 与文件编码",
+            "goal": "通过具体任务理解I/O、NIO 与文件编码，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "io-1",
+                "title": "按 UTF-8 读写文件",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "io-2",
+                "title": "修复资源未关闭问题",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "io-3",
+                "title": "流式处理大文本而不整文件加载",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "reflection",
+            "title": "反射、注解与模块",
+            "goal": "通过具体任务理解反射、注解与模块，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "reflection-1",
+                "title": "读取运行时注解",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "reflection-2",
+                "title": "修复访问权限判断",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "reflection-3",
+                "title": "实现受控的组件注册器",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "time-text",
+            "title": "日期时间、时区与正则表达式",
+            "goal": "通过具体任务理解日期时间、时区与正则表达式，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "time-text-1",
+                "title": "按 ZoneId 转换业务时间",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "time-text-2",
+                "title": "修复月末与夏令时边界",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "time-text-3",
+                "title": "实现严格的日期解析与文本校验",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "serialization",
+            "title": "序列化、JSON 与数据兼容",
+            "goal": "通过具体任务理解序列化、JSON 与数据兼容，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "serialization-1",
+                "title": "把对象转换为稳定的数据契约",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "serialization-2",
+                "title": "修复未知字段和精度丢失",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "serialization-3",
+                "title": "设计向后兼容的数据演进",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "console-project",
+        "title": "章节项目：订单结算工作台",
+        "topics": [
+          {
+            "id": "order-project",
+            "title": "阅读和修改分层项目",
+            "goal": "通过具体任务理解阅读和修改分层项目，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "order-project-1",
+                "title": "修复商品行小计",
+                "kind": "guided",
+                "lessonId": "order-subtotal"
+              },
+              {
+                "id": "order-project-2",
+                "title": "实现订单折扣服务",
+                "kind": "debug",
+                "lessonId": "order-discount"
+              },
+              {
+                "id": "order-project-3",
+                "title": "完成订单报表与边界验证",
+                "kind": "project",
+                "lessonId": "order-release"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "collections",
+    "title": "集合、数据结构与算法",
+    "goal": "从容器 API 走向复杂度、模型选择和可验证算法。",
+    "chapters": [
+      {
+        "id": "containers",
+        "title": "集合契约与选型",
+        "topics": [
+          {
+            "id": "list",
+            "title": "ArrayList 与 LinkedList",
+            "goal": "通过具体任务理解ArrayList 与 LinkedList，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "list-1",
+                "title": "模拟扩容与索引访问",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "list-2",
+                "title": "修复迭代过程删除元素",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "list-3",
+                "title": "依据访问模式选择列表实现",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "maps",
+            "title": "Map、词频与有序结果",
+            "goal": "通过具体任务理解Map、词频与有序结果，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "maps-1",
+                "title": "累加已有键的词频",
+                "kind": "guided",
+                "lessonId": "map-increment"
+              },
+              {
+                "id": "maps-2",
+                "title": "修复覆盖旧计数的缺陷",
+                "kind": "debug",
+                "lessonId": "map-count-debug"
+              },
+              {
+                "id": "maps-3",
+                "title": "实现大小写无关的词频报表",
+                "kind": "challenge",
+                "lessonId": "word-report"
+              }
+            ]
+          },
+          {
+            "id": "map-order",
+            "title": "LinkedHashMap 与 TreeMap",
+            "goal": "通过具体任务理解LinkedHashMap 与 TreeMap，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "map-order-1",
+                "title": "观察插入序与键排序",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "map-order-2",
+                "title": "修复比较器不一致",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "map-order-3",
+                "title": "实现范围查询与稳定榜单",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "sets",
+            "title": "HashSet 与有序去重",
+            "goal": "通过具体任务理解HashSet 与有序去重，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "sets-1",
+                "title": "使用集合消除重复",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "sets-2",
+                "title": "修复对象缺失 hashCode",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "sets-3",
+                "title": "按输入顺序输出去重结果",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "linear-structures",
+        "title": "线性数据结构",
+        "topics": [
+          {
+            "id": "stack-queue",
+            "title": "栈、队列与双端队列",
+            "goal": "通过具体任务理解栈、队列与双端队列，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "stack-queue-1",
+                "title": "模拟入栈和出队",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "stack-queue-2",
+                "title": "修复队列空满判断",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "stack-queue-3",
+                "title": "验证括号匹配与滑动窗口",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "linked",
+            "title": "链表与指针关系",
+            "goal": "通过具体任务理解链表与指针关系，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "linked-1",
+                "title": "插入单链表节点",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "linked-2",
+                "title": "修复删除头尾节点",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "linked-3",
+                "title": "反转链表并覆盖空链表",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "hashing",
+            "title": "哈希、冲突与负载因子",
+            "goal": "通过具体任务理解哈希、冲突与负载因子，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "hashing-1",
+                "title": "推演元素落桶过程",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "hashing-2",
+                "title": "修复容量与下标计算",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "hashing-3",
+                "title": "实现带扩容的小型哈希表",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "trees-graphs",
+        "title": "树、图与遍历",
+        "topics": [
+          {
+            "id": "trees",
+            "title": "二叉树、BST 与平衡思想",
+            "goal": "通过具体任务理解二叉树、BST 与平衡思想，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "trees-1",
+                "title": "逐步执行前中后序遍历",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "trees-2",
+                "title": "修复树高计算",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "trees-3",
+                "title": "验证搜索树并分析退化",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "heap",
+            "title": "堆与优先队列",
+            "goal": "通过具体任务理解堆与优先队列，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "heap-1",
+                "title": "跟踪堆化交换",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "heap-2",
+                "title": "修复优先级方向",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "heap-3",
+                "title": "维护数据流 Top K",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "graphs",
+            "title": "图、BFS、DFS 与拓扑",
+            "goal": "通过具体任务理解图、BFS、DFS 与拓扑，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "graphs-1",
+                "title": "将依赖关系转换为邻接表",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "graphs-2",
+                "title": "修复重复访问与环检测",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "graphs-3",
+                "title": "为任务依赖生成执行顺序",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "algorithms",
+        "title": "算法范式与复杂度",
+        "topics": [
+          {
+            "id": "complexity",
+            "title": "时间空间复杂度",
+            "goal": "通过具体任务理解时间空间复杂度，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "complexity-1",
+                "title": "对比循环与嵌套循环",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "complexity-2",
+                "title": "发现隐藏的平方级访问",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "complexity-3",
+                "title": "按输入规模选择算法",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "search-sort",
+            "title": "查找、排序与稳定性",
+            "goal": "通过具体任务理解查找、排序与稳定性，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "search-sort-1",
+                "title": "手动跟踪二分搜索",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "search-sort-2",
+                "title": "修复二分边界与比较器",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "search-sort-3",
+                "title": "实现稳定的排序结果合并",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "patterns",
+            "title": "双指针、窗口与前缀和",
+            "goal": "通过具体任务理解双指针、窗口与前缀和，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "patterns-1",
+                "title": "维护连续区间的状态",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "patterns-2",
+                "title": "修复窗口收缩条件",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "patterns-3",
+                "title": "计算指定范围内的最优子数组",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "dp",
+            "title": "动态规划、贪心与回溯",
+            "goal": "通过具体任务理解动态规划、贪心与回溯，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "dp-1",
+                "title": "写出状态和转移",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "dp-2",
+                "title": "修复错误的局部最优选择",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "dp-3",
+                "title": "对比三种解法的正确性与成本",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "maven",
+    "title": "Maven 与工程化",
+    "goal": "管理依赖、构建、测试和持续集成，让项目可复现。",
+    "chapters": [
+      {
+        "id": "build-model",
+        "title": "工程结构与构建模型",
+        "topics": [
+          {
+            "id": "pom",
+            "title": "目录约定、坐标与 pom",
+            "goal": "通过具体任务理解目录约定、坐标与 pom，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "pom-1",
+                "title": "识别源码与测试目录",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "pom-2",
+                "title": "修复坐标和打包类型",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "pom-3",
+                "title": "从空项目构建可运行 jar",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "lifecycle",
+            "title": "生命周期、插件与 profile",
+            "goal": "通过具体任务理解生命周期、插件与 profile，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "lifecycle-1",
+                "title": "区分 phase 与 goal",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "lifecycle-2",
+                "title": "修复插件绑定阶段",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "lifecycle-3",
+                "title": "建立开发和生产构建配置",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "dependencies",
+        "title": "依赖管理与多模块",
+        "topics": [
+          {
+            "id": "dependencies",
+            "title": "作用域、传递依赖与 BOM",
+            "goal": "通过具体任务理解作用域、传递依赖与 BOM，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "dependencies-1",
+                "title": "读取依赖树",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "dependencies-2",
+                "title": "定位版本冲突与遗漏作用域",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "dependencies-3",
+                "title": "用 BOM 固定统一依赖版本",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "modules",
+            "title": "多模块、聚合与继承",
+            "goal": "通过具体任务理解多模块、聚合与继承，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "modules-1",
+                "title": "拆分领域模块和启动模块",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "modules-2",
+                "title": "修复循环模块依赖",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "modules-3",
+                "title": "构建具有清晰 API 边界的多模块工程",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "reproducible",
+            "title": "仓库、校验与可复现构建",
+            "goal": "通过具体任务理解仓库、校验与可复现构建，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "reproducible-1",
+                "title": "配置批准的制品仓库",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "reproducible-2",
+                "title": "修复环境相关构建",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "reproducible-3",
+                "title": "固定工具链和产物元数据",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "quality",
+        "title": "测试、质量与流水线",
+        "topics": [
+          {
+            "id": "junit",
+            "title": "JUnit、参数化与测试替身",
+            "goal": "通过具体任务理解JUnit、参数化与测试替身，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "junit-1",
+                "title": "为纯函数写边界用例",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "junit-2",
+                "title": "修复只测成功路径的测试",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "junit-3",
+                "title": "隔离外部依赖并验证失败行为",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "quality",
+            "title": "静态检查与重构",
+            "goal": "通过具体任务理解静态检查与重构，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "quality-1",
+                "title": "识别重复与复杂方法",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "quality-2",
+                "title": "在测试保护下抽取接口",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "quality-3",
+                "title": "建立格式、检查和质量门禁",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "ci",
+            "title": "CI、制品与供应链",
+            "goal": "通过具体任务理解CI、制品与供应链，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "ci-1",
+                "title": "执行构建测试流水线",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "ci-2",
+                "title": "修复缓存造成的陈旧产物",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "ci-3",
+                "title": "发布可追溯制品并扫描依赖",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "git-review",
+            "title": "Git、代码评审与团队协作",
+            "goal": "通过具体任务理解Git、代码评审与团队协作，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "git-review-1",
+                "title": "提交一组职责单一的变更",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "git-review-2",
+                "title": "修复冲突而不丢失他人代码",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "git-review-3",
+                "title": "用测试证据完成一次可审核的重构",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "spring",
+    "title": "Spring Boot 与服务端工程",
+    "goal": "从容器与 HTTP 到持久化、安全、测试及生产可观测性。",
+    "chapters": [
+      {
+        "id": "spring-core",
+        "title": "容器与组件协作",
+        "topics": [
+          {
+            "id": "ioc",
+            "title": "IoC、DI、Bean 与生命周期",
+            "goal": "通过具体任务理解IoC、DI、Bean 与生命周期，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "ioc-1",
+                "title": "用构造器装配服务",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "ioc-2",
+                "title": "修复重复 Bean 与循环依赖",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "ioc-3",
+                "title": "按职责拆分可替换的组件",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "config",
+            "title": "配置、profile 与条件装配",
+            "goal": "通过具体任务理解配置、profile 与条件装配，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "config-1",
+                "title": "绑定并校验配置项",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "config-2",
+                "title": "修复配置优先级误判",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "config-3",
+                "title": "为不同环境建立最小差异配置",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "aop",
+            "title": "代理、AOP 与上下文",
+            "goal": "通过具体任务理解代理、AOP 与上下文，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "aop-1",
+                "title": "观察代理调用链",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "aop-2",
+                "title": "修复自调用绕过代理",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "aop-3",
+                "title": "用切面实现明确边界的审计",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "http-api",
+        "title": "HTTP 与接口契约",
+        "topics": [
+          {
+            "id": "rest",
+            "title": "REST、Controller 与 DTO",
+            "goal": "通过具体任务理解REST、Controller 与 DTO，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "rest-1",
+                "title": "实现资源读取和创建",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "rest-2",
+                "title": "修复状态码与参数绑定",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "rest-3",
+                "title": "按契约开发分页筛选接口",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "validation",
+            "title": "校验、异常与 Problem Details",
+            "goal": "通过具体任务理解校验、异常与 Problem Details，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "validation-1",
+                "title": "校验请求和业务边界",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "validation-2",
+                "title": "修复泄露堆栈的错误响应",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "validation-3",
+                "title": "统一错误契约并覆盖失败路径",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "api-design",
+            "title": "分页、版本、幂等与 OpenAPI",
+            "goal": "通过具体任务理解分页、版本、幂等与 OpenAPI，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "api-design-1",
+                "title": "生成可读接口文档",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "api-design-2",
+                "title": "修复重复请求创建多份资源",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "api-design-3",
+                "title": "为兼容升级设计版本和幂等键",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "networking",
+            "title": "HTTP、TCP、TLS 与 DNS 基础",
+            "goal": "通过具体任务理解HTTP、TCP、TLS 与 DNS 基础，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "networking-1",
+                "title": "跟踪请求到响应的网络路径",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "networking-2",
+                "title": "定位连接、握手和读取超时",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "networking-3",
+                "title": "用协议与链路证据诊断接口失败",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "persistence",
+        "title": "数据访问与事务",
+        "topics": [
+          {
+            "id": "jdbc",
+            "title": "JDBC、连接池与 Repository",
+            "goal": "通过具体任务理解JDBC、连接池与 Repository，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "jdbc-1",
+                "title": "用参数绑定读写记录",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "jdbc-2",
+                "title": "修复 SQL 注入与资源泄漏",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "jdbc-3",
+                "title": "封装可测试的仓储接口",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "orm",
+            "title": "MyBatis、JPA 与映射取舍",
+            "goal": "通过具体任务理解MyBatis、JPA 与映射取舍，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "orm-1",
+                "title": "映射一对多关系",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "orm-2",
+                "title": "定位 N+1 与懒加载问题",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "orm-3",
+                "title": "依据查询需求选择访问方案",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "transactions",
+            "title": "事务边界、传播与回滚",
+            "goal": "通过具体任务理解事务边界、传播与回滚，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "transactions-1",
+                "title": "观察成功与失败的提交",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "transactions-2",
+                "title": "修复异常被吞导致的提交",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "transactions-3",
+                "title": "在服务层定义一致性边界",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "migrations",
+            "title": "数据库迁移与集成测试",
+            "goal": "通过具体任务理解数据库迁移与集成测试，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "migrations-1",
+                "title": "编写可重放迁移",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "migrations-2",
+                "title": "修复不可兼容字段变更",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "migrations-3",
+                "title": "在真实数据库验证版本升级",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "security",
+        "title": "身份认证与应用安全",
+        "topics": [
+          {
+            "id": "auth",
+            "title": "会话、Token 与密码存储",
+            "goal": "通过具体任务理解会话、Token 与密码存储，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "auth-1",
+                "title": "实现登录与注销",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "auth-2",
+                "title": "修复会话失效和弱密码存储",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "auth-3",
+                "title": "设计可撤销的认证流程",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "authorization",
+            "title": "角色、资源所有权与审计",
+            "goal": "通过具体任务理解角色、资源所有权与审计，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "authorization-1",
+                "title": "限制资源所属用户",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "authorization-2",
+                "title": "修复越权和管理员接口暴露",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "authorization-3",
+                "title": "建立服务端权限与审计测试",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "web-security",
+            "title": "CSRF、CORS、注入与上传",
+            "goal": "通过具体任务理解CSRF、CORS、注入与上传，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "web-security-1",
+                "title": "分析浏览器信任边界",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "web-security-2",
+                "title": "修复错误的跨域授权",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "web-security-3",
+                "title": "建立上传、输入与速率限制",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "security-frameworks",
+            "title": "Spring Security、OAuth2 与 JWT",
+            "goal": "通过具体任务理解Spring Security、OAuth2 与 JWT，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "security-frameworks-1",
+                "title": "验证会话和令牌的信任边界",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "security-frameworks-2",
+                "title": "修复过期校验和权限映射",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "security-frameworks-3",
+                "title": "设计可撤销授权与密钥轮换",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "threat-model",
+            "title": "密钥管理、依赖漏洞与威胁建模",
+            "goal": "通过具体任务理解密钥管理、依赖漏洞与威胁建模，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "threat-model-1",
+                "title": "识别入口、资产和信任边界",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "threat-model-2",
+                "title": "移除仓库密钥与敏感日志",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "threat-model-3",
+                "title": "建立可执行的安全回归清单",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "testing-observability",
+        "title": "验证与运行诊断",
+        "topics": [
+          {
+            "id": "spring-tests",
+            "title": "切片、集成与 HTTP 合约",
+            "goal": "通过具体任务理解切片、集成与 HTTP 合约，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "spring-tests-1",
+                "title": "隔离 Controller 与数据库测试",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "spring-tests-2",
+                "title": "修复被 mock 掩盖的缺陷",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "spring-tests-3",
+                "title": "验证真实请求到持久化的闭环",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "observability",
+            "title": "日志、指标、追踪与健康",
+            "goal": "通过具体任务理解日志、指标、追踪与健康，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "observability-1",
+                "title": "为一次请求关联日志",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "observability-2",
+                "title": "修复高基数标签与敏感日志",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "observability-3",
+                "title": "定位延迟来自连接池还是下游",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "resilience",
+            "title": "超时、重试、熔断与限流",
+            "goal": "通过具体任务理解超时、重试、熔断与限流，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "resilience-1",
+                "title": "给依赖调用设置预算",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "resilience-2",
+                "title": "修复重试放大和非幂等重试",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "resilience-3",
+                "title": "设计降级并验证故障恢复",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "concurrency",
+    "title": "并发、JVM 与性能诊断",
+    "goal": "用可重放实验理解线程，再用测量定位真实瓶颈。",
+    "chapters": [
+      {
+        "id": "thread-model",
+        "title": "线程模型与协作",
+        "topics": [
+          {
+            "id": "atomic-count",
+            "title": "Thread、join 与原子计数",
+            "goal": "通过具体任务理解Thread、join 与原子计数，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "atomic-count-1",
+                "title": "等待线程完成后汇总",
+                "kind": "guided",
+                "lessonId": "thread-join"
+              },
+              {
+                "id": "atomic-count-2",
+                "title": "修复确定性丢失更新",
+                "kind": "debug",
+                "lessonId": "atomic-lost-update"
+              },
+              {
+                "id": "atomic-count-3",
+                "title": "实现可重复验证的并发计数",
+                "kind": "challenge",
+                "lessonId": "atomic-counter"
+              }
+            ]
+          },
+          {
+            "id": "jmm",
+            "title": "JMM、happens-before 与 volatile",
+            "goal": "通过具体任务理解JMM、happens-before 与 volatile，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "jmm-1",
+                "title": "建立可见性的发布关系",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "jmm-2",
+                "title": "修复误把 volatile 当原子性",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "jmm-3",
+                "title": "解释并验证安全发布方案",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "locks",
+            "title": "synchronized、Lock 与条件",
+            "goal": "通过具体任务理解synchronized、Lock 与条件，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "locks-1",
+                "title": "保护共享状态的临界区",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "locks-2",
+                "title": "修复未释放锁与死锁顺序",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "locks-3",
+                "title": "实现有界生产者消费者队列",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "thread-local",
+            "title": "ThreadLocal 与上下文传播",
+            "goal": "通过具体任务理解ThreadLocal 与上下文传播，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "thread-local-1",
+                "title": "跟踪线程中的请求上下文",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "thread-local-2",
+                "title": "修复线程池复用造成的状态泄漏",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "thread-local-3",
+                "title": "正确清理与传播异步上下文",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "cas-aqs",
+            "title": "CAS、ABA、AQS 与锁实现",
+            "goal": "通过具体任务理解CAS、ABA、AQS 与锁实现，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "cas-aqs-1",
+                "title": "推演一次 CAS 重试过程",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "cas-aqs-2",
+                "title": "修复忽略 ABA 的状态更新",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "cas-aqs-3",
+                "title": "解释同步器的等待、唤醒与公平性取舍",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "liveness",
+            "title": "死锁、活锁、饥饿与取消",
+            "goal": "通过具体任务理解死锁、活锁、饥饿与取消，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "liveness-1",
+                "title": "从线程转储识别等待环",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "liveness-2",
+                "title": "修复锁顺序和吞掉中断",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "liveness-3",
+                "title": "为任务设计可终止的取消协议",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "async",
+        "title": "异步任务与并发工具",
+        "topics": [
+          {
+            "id": "pools",
+            "title": "线程池、容量与拒绝策略",
+            "goal": "通过具体任务理解线程池、容量与拒绝策略，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "pools-1",
+                "title": "提交任务并关闭执行器",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "pools-2",
+                "title": "修复无界队列积压",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "pools-3",
+                "title": "根据业务预算设计线程池",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "futures",
+            "title": "Future、CompletableFuture 与取消",
+            "goal": "通过具体任务理解Future、CompletableFuture 与取消，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "futures-1",
+                "title": "组合两个独立计算",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "futures-2",
+                "title": "修复异常丢失和线程池混用",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "futures-3",
+                "title": "实现超时、取消和部分失败处理",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "coordination",
+            "title": "并发集合、锁存器与屏障",
+            "goal": "通过具体任务理解并发集合、锁存器与屏障，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "coordination-1",
+                "title": "用同步点替代 sleep",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "coordination-2",
+                "title": "修复错误共享的非线程安全集合",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "coordination-3",
+                "title": "构建确定性的多线程测试",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "virtual-threads",
+            "title": "虚拟线程与资源边界",
+            "goal": "通过具体任务理解虚拟线程与资源边界，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "virtual-threads-1",
+                "title": "比较阻塞任务执行方式",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "virtual-threads-2",
+                "title": "修复持锁阻塞和连接池耗尽",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "virtual-threads-3",
+                "title": "对比吞吐、延迟与外部资源瓶颈",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "jvm",
+        "title": "运行时与内存",
+        "topics": [
+          {
+            "id": "classloading",
+            "title": "类加载、双亲委派与初始化",
+            "goal": "通过具体任务理解类加载、双亲委派与初始化，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "classloading-1",
+                "title": "追踪类的初始化时机",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "classloading-2",
+                "title": "修复类路径冲突",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "classloading-3",
+                "title": "分析隔离加载与插件边界",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "memory-gc",
+            "title": "堆、栈、GC 与泄漏",
+            "goal": "通过具体任务理解堆、栈、GC 与泄漏，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "memory-gc-1",
+                "title": "读取内存和 GC 事件",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "memory-gc-2",
+                "title": "定位被集合持有的对象",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "memory-gc-3",
+                "title": "用证据区分分配压力与内存泄漏",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "references-gc",
+            "title": "强软弱虚引用与引用队列",
+            "goal": "通过具体任务理解强软弱虚引用与引用队列，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "references-gc-1",
+                "title": "观察引用关系与可达性",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "references-gc-2",
+                "title": "修复缓存对对象生命周期的误判",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "references-gc-3",
+                "title": "设计不依赖不确定 GC 时机的资源释放",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "gc-tuning",
+            "title": "G1、ZGC 与 GC 调优",
+            "goal": "通过具体任务理解G1、ZGC 与 GC 调优，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "gc-tuning-1",
+                "title": "读取暂停、吞吐和分配速率",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "gc-tuning-2",
+                "title": "修复盲目增堆掩盖的瓶颈",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "gc-tuning-3",
+                "title": "在明确延迟预算下比较收集器",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "performance",
+        "title": "性能工具与实验设计",
+        "topics": [
+          {
+            "id": "profiling",
+            "title": "线程转储、JFR 与性能剖析",
+            "goal": "通过具体任务理解线程转储、JFR 与性能剖析，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "profiling-1",
+                "title": "收集并解释线程状态",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "profiling-2",
+                "title": "区分 CPU 忙与锁等待",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "profiling-3",
+                "title": "用 JFR 定位一次服务延迟",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "benchmark",
+            "title": "JMH、负载模型与性能预算",
+            "goal": "通过具体任务理解JMH、负载模型与性能预算，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "benchmark-1",
+                "title": "识别预热和测量偏差",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "benchmark-2",
+                "title": "修复无效的微基准",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "benchmark-3",
+                "title": "以吞吐和尾延迟验证优化收益",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "engineering",
+    "title": "高级工程实践与项目交付",
+    "goal": "从单体正确性走向可靠性、可扩展性和系统取舍。",
+    "chapters": [
+      {
+        "id": "mysql-deep",
+        "title": "MySQL 深入",
+        "topics": [
+          {
+            "id": "sql",
+            "title": "SQL、索引与执行计划",
+            "goal": "通过具体任务理解SQL、索引与执行计划，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "sql-1",
+                "title": "根据查询建立复合索引",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "sql-2",
+                "title": "修复隐式转换导致的失效",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "sql-3",
+                "title": "比较不同执行计划与写入成本",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "isolation",
+            "title": "MVCC、隔离级别与锁",
+            "goal": "通过具体任务理解MVCC、隔离级别与锁，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "isolation-1",
+                "title": "复现一致性读和锁定读",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "isolation-2",
+                "title": "修复丢失更新与死锁重试",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "isolation-3",
+                "title": "按业务不变量设计并发事务",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "schema",
+            "title": "表设计、迁移与数据治理",
+            "goal": "通过具体任务理解表设计、迁移与数据治理，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "schema-1",
+                "title": "定义唯一键与约束",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "schema-2",
+                "title": "修复重复数据与软删除冲突",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "schema-3",
+                "title": "执行兼容迁移和数据回填",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "distributed",
+        "title": "缓存、消息与一致性",
+        "topics": [
+          {
+            "id": "cache",
+            "title": "Redis、缓存一致性与热点",
+            "goal": "通过具体任务理解Redis、缓存一致性与热点，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "cache-1",
+                "title": "实现缓存旁路读取",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "cache-2",
+                "title": "修复击穿、穿透与过期风暴",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "cache-3",
+                "title": "设计有测量依据的缓存策略",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "messaging",
+            "title": "消息队列、顺序与幂等",
+            "goal": "通过具体任务理解消息队列、顺序与幂等，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "messaging-1",
+                "title": "投递并消费业务事件",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "messaging-2",
+                "title": "修复重复消费与确认时机",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "messaging-3",
+                "title": "用事务消息或 outbox 保证可恢复交付",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "consistency",
+            "title": "分布式事务与一致性取舍",
+            "goal": "通过具体任务理解分布式事务与一致性取舍，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "consistency-1",
+                "title": "拆出事务边界和补偿动作",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "consistency-2",
+                "title": "修复跨服务部分成功",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "consistency-3",
+                "title": "比较 Saga、outbox 与同步事务方案",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "leases",
+            "title": "分布式锁、租约与 fencing token",
+            "goal": "通过具体任务理解分布式锁、租约与 fencing token，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "leases-1",
+                "title": "建模持有者和租约有效期",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "leases-2",
+                "title": "修复过期持有者继续写入",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "leases-3",
+                "title": "用版本栅栏保护业务资源",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "distributed-theory",
+            "title": "复制、分区与一致性模型",
+            "goal": "通过具体任务理解复制、分区与一致性模型，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "distributed-theory-1",
+                "title": "区分强一致与最终一致读写",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "distributed-theory-2",
+                "title": "分析网络分区下的错误假设",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "distributed-theory-3",
+                "title": "用 CAP 与延迟约束解释方案取舍",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "identifiers",
+            "title": "分布式 ID、去重与请求追踪",
+            "goal": "通过具体任务理解分布式 ID、去重与请求追踪，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "identifiers-1",
+                "title": "构造唯一业务请求标识",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "identifiers-2",
+                "title": "修复重试和时钟回拨冲突",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "identifiers-3",
+                "title": "设计可追溯且可去重的业务协议",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "business-systems",
+        "title": "业务系统专题",
+        "topics": [
+          {
+            "id": "quartz",
+            "title": "Quartz、定时调度与幂等",
+            "goal": "通过具体任务理解Quartz、定时调度与幂等，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "quartz-1",
+                "title": "注册周期任务",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "quartz-2",
+                "title": "修复并发重入和漏执行",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "quartz-3",
+                "title": "实现可追踪且可重试的调度任务",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "websocket",
+            "title": "WebSocket、心跳与背压",
+            "goal": "通过具体任务理解WebSocket、心跳与背压，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "websocket-1",
+                "title": "建立订阅与推送",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "websocket-2",
+                "title": "修复断线重连与慢消费者",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "websocket-3",
+                "title": "设计鉴权、限流和消息恢复",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "statistics",
+            "title": "统计接口、聚合与时区",
+            "goal": "通过具体任务理解统计接口、聚合与时区，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "statistics-1",
+                "title": "按时间范围聚合业务记录",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "statistics-2",
+                "title": "修复时区边界和重复统计",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "statistics-3",
+                "title": "设计可验证的实时与离线报表",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "network-io",
+            "title": "NIO、Netty 与事件循环",
+            "goal": "通过具体任务理解NIO、Netty 与事件循环，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "network-io-1",
+                "title": "跟踪事件循环的读写事件",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "network-io-2",
+                "title": "修复在 I/O 线程执行阻塞任务",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "network-io-3",
+                "title": "处理粘包拆包、背压与优雅关闭",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "delivery",
+        "title": "发布、运维与系统设计",
+        "topics": [
+          {
+            "id": "architecture",
+            "title": "领域边界、模块化与架构决策",
+            "goal": "通过具体任务理解领域边界、模块化与架构决策，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "architecture-1",
+                "title": "按变化原因划分模块",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "architecture-2",
+                "title": "修复跨层依赖与过度抽象",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "architecture-3",
+                "title": "记录有约束依据的架构决策",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "operations",
+            "title": "容器、CI/CD、监控与恢复",
+            "goal": "通过具体任务理解容器、CI/CD、监控与恢复，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "operations-1",
+                "title": "配置就绪检查与资源预算",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "operations-2",
+                "title": "修复发布失败与回滚不兼容",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "operations-3",
+                "title": "演练备份恢复并定义 SLO",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "system-design",
+            "title": "容量、可靠性与系统取舍",
+            "goal": "通过具体任务理解容量、可靠性与系统取舍，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "system-design-1",
+                "title": "估算流量与存储规模",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "system-design-2",
+                "title": "找出瓶颈与单点",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "system-design-3",
+                "title": "用负载和故障实验验证设计",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "traffic",
+            "title": "网关、服务发现与负载均衡",
+            "goal": "通过具体任务理解网关、服务发现与负载均衡，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "traffic-1",
+                "title": "为请求选择可用的服务实例",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "traffic-2",
+                "title": "修复健康检查与连接复用问题",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "traffic-3",
+                "title": "结合超时、重试和发布设计流量策略",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "capstones",
+        "title": "综合项目验收",
+        "topics": [
+          {
+            "id": "library-project",
+            "title": "图书与借阅 API",
+            "goal": "通过具体任务理解图书与借阅 API，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "library-project-1",
+                "title": "阅读分层服务并添加查询",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "library-project-2",
+                "title": "修复并发借阅与事务缺陷",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "library-project-3",
+                "title": "交付带迁移和合约测试的服务",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "queue-project",
+            "title": "并发任务调度平台",
+            "goal": "通过具体任务理解并发任务调度平台，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "queue-project-1",
+                "title": "接入任务队列和工作线程",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "queue-project-2",
+                "title": "修复重复执行与取消竞态",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "queue-project-3",
+                "title": "完成调度、实时推送和可观测性验收",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          },
+          {
+            "id": "order-system",
+            "title": "订单系统与高级工程评审",
+            "goal": "通过具体任务理解订单系统与高级工程评审，再用边界情况与工程约束验证。",
+            "exercises": [
+              {
+                "id": "order-system-1",
+                "title": "设计库存与订单的业务不变量",
+                "kind": "guided",
+                "lessonId": null
+              },
+              {
+                "id": "order-system-2",
+                "title": "修复跨服务一致性缺陷",
+                "kind": "debug",
+                "lessonId": null
+              },
+              {
+                "id": "order-system-3",
+                "title": "交付性能、故障恢复和架构取舍报告",
+                "kind": "challenge",
+                "lessonId": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

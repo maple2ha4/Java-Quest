@@ -44,26 +44,36 @@ public class Learning {
     }
     public void validateFiles(List<Curriculum.SourceFile> files) {
         if(files==null || files.isEmpty() || files.size()>8) throw new ApiError(400,"请提供 1–8 个 Java 文件");
-        Set<String> names=new HashSet<>(); int length=0;
+        Set<String> names=new HashSet<>(),folded=new HashSet<>(); int length=0;
         for(var f:files) {
-            if(f==null || f.name()==null || !f.name().matches("[A-Za-z][A-Za-z0-9_]{0,60}\\.java") || f.content()==null || !names.add(f.name()))
-                throw new ApiError(400,"文件名必须为不重复的 Java 类名，例如 Main.java");
+            if(f==null || f.name()==null || !dev.javaquest.runner.JudgeRunner.validSourcePath(f.name()) || f.content()==null || !names.add(f.name()) || !folded.add(f.name().toLowerCase(Locale.ROOT)))
+                throw new ApiError(400,"文件必须为不重复的安全 Java 路径，例如 Main.java 或 src/main/java/demo/App.java");
             length+=f.content().length();
         }
-        if(!names.contains("Main.java") || length>32768) throw new ApiError(400,"必须包含 Main.java，总代码不超过 32KiB 字符");
+        if(length>32768) throw new ApiError(400,"总代码不超过 32KiB 字符");
+    }
+    private void validateLessonFiles(Curriculum.Lesson lesson,List<Curriculum.SourceFile> files) {
+        validateFiles(files);
+        var names=files.stream().map(Curriculum.SourceFile::name).toList();
+        if(!dev.javaquest.runner.JudgeRunner.hasEntry(names,lesson.entryClass()))throw new ApiError(400,"缺少课程要求的入口文件");
+        for(var required:lesson.starter()) {
+            var submitted=files.stream().filter(f->f.name().equals(required.name())).findFirst()
+                .orElseThrow(()->new ApiError(400,"不能删除项目必需文件："+required.name()));
+            if(!lesson.editableFiles().contains(required.name()) && !required.content().equals(submitted.content()))
+                throw new ApiError(400,"此关需要保留只读文件："+required.name());
+        }
     }
     public JsonNode run(long user,String lessonId,List<Curriculum.SourceFile> files) {
         // Local study mode never compiles or executes learner code on the host.
         if(!judgeEnabled) throw new ApiError(503,"当前未启用隔离判题服务；可以保存草稿和笔记，但不能运行代码或通关");
-        var lesson=curriculum.get(lessonId); validateFiles(files);
-        if(lesson.order()>1) {
-            var previous=curriculum.all().get(lesson.order()-2);
-            if(db.queryForObject("SELECT COUNT(*) FROM progress WHERE user_id=? AND lesson_id=?",Integer.class,user,previous.id())==0)
-                throw new ApiError(403,"请先完成上一关："+previous.title());
+        var lesson=curriculum.get(lessonId); validateLessonFiles(lesson,files);
+        for(String required:lesson.prerequisites()) {
+            if(db.queryForObject("SELECT COUNT(*) FROM progress WHERE user_id=? AND lesson_id=?",Integer.class,user,required)==0)
+                throw new ApiError(403,"请先完成前置练习："+curriculum.get(required).title());
         }
         if(!capacity.tryAcquire()) throw new ApiError(429,"判题服务繁忙，请稍后重试");
         try {
-            byte[] payload=mapper.writeValueAsBytes(Map.of("files",files,"tests",lesson.tests()));
+            byte[] payload=mapper.writeValueAsBytes(Map.of("files",files,"tests",lesson.tests(),"entryClass",lesson.entryClass()));
             JsonNode result=judge.post().uri("/judge").contentType(org.springframework.http.MediaType.APPLICATION_JSON)
                 .contentLength(payload.length).body(payload).retrieve().body(JsonNode.class);
             if(judgeMode.equals("process") && (result==null || !"process".equals(result.path("mode").asText())))
@@ -104,7 +114,7 @@ public class Learning {
         return rows.isEmpty()?mapper.valueToTree(curriculum.get(lesson).starter()):parse(rows.getFirst());
     }
     @Transactional public void draft(long user,String lesson,List<Curriculum.SourceFile> files) {
-        curriculum.get(lesson); validateFiles(files);
+        validateLessonFiles(curriculum.get(lesson),files);
         db.queryForObject("SELECT id FROM app_user WHERE id=? FOR UPDATE",Long.class,user);
         db.update("DELETE FROM draft WHERE user_id=? AND lesson_id=?",user,lesson);
         db.update("INSERT INTO draft(user_id,lesson_id,files_json) VALUES(?,?,?)",user,lesson,json(files));

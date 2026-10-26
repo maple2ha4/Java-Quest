@@ -2,6 +2,29 @@ export interface SourceFile {
   name: string
   content: string
 }
+export interface ExercisePlan {
+  id: string
+  title: string
+  kind: string
+  lessonId: string | null
+}
+export interface Topic {
+  id: string
+  title: string
+  goal: string
+  exercises: ExercisePlan[]
+}
+export interface Chapter {
+  id: string
+  title: string
+  topics: Topic[]
+}
+export interface Stage {
+  id: string
+  title: string
+  goal: string
+  chapters: Chapter[]
+}
 export interface Lesson {
   id: string
   order: number
@@ -14,6 +37,13 @@ export interface Lesson {
   paragraphs: string[]
   task: string
   hints: string[]
+  topicId: string
+  kind: string
+  difficulty: number
+  prerequisites: string[]
+  entryClass: string
+  buildKind: string
+  editableFiles: string[]
   starter: SourceFile[]
 }
 export interface Profile {

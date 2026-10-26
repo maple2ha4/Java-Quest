@@ -116,7 +116,7 @@ Linux/macOS 可用 `bash scripts/start-learning.sh process`（或 docker/off）�
 - 进程模式：每次测试独立临时目录，编译 15 秒、运行 3 秒，输出合计上限 64KiB，Java heap 96MiB、metaspace 64MiB。超时/输出超限终止已知进程和后代；这是善意程序的预算控制，不能保证捕获恶意脱离的子进程。
 - 进程模式没有操作系统级 CPU、总内存、文件、网络或 PID 隔离。`-Xmx` 不是整个进程的硬内存上限；ActiveProcessorCount 不是 CPU 配额。不能运行陌生代码，不能开放给互联网用户；Java SecurityManager 也不能被当作可靠替代。
 - Docker 模式：每测试新容器，无宿主目录/凭据/socket 挂载；非 root、network none、cap-drop ALL、no-new-privileges、1 CPU、256MiB、64 PIDs、64MiB tmpfs。容器创建/复制/清理另有超时，API 等待预算 240 秒；正常编译 15 秒、执行 3 秒。Docker 共享内核，不等于生产强多租户隔离。
-- 两种模式都支持多文件、真实 stdout/stderr、编译错误、运行错误、时间/输出超限与输出比较。判题器和课程测试仍以当前 10 个输出练习为范围，不能保证源码用了指定语法。
+- 两种模式都支持多文件、真实 stdout/stderr、编译错误、运行错误、时间/输出超限与输出比较。判题器和课程测试仍以当前已开放的 42 个练习为范围，不能保证源码用了指定语法。
 - Maven/Spring Boot 接口实验、多线程可视化等课程扩展没有因此自动实现。
 - 可选的 Python 黑盒脚本 `python scripts/smoke.py` 会依据 capabilities 选择检查：process 只检查环境过滤，不声称网络/文件隔离；docker 才执行隔离断言；off 会直接拒绝测试。Python 不是本地学习或 Java 判题的运行依赖。
 - `npm run test:process --prefix frontend` 使用真实服务验证本地判题的完整学习闭环；`test:local` 用于 off。运行前先以相应模式启动服务，并准备 Playwright Chromium。

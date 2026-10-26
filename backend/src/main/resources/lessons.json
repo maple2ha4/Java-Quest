@@ -30,6 +30,15 @@
         "input": "",
         "expected": "Hello, Java Quest!\n"
       }
+    ],
+    "topicId": "entry-output",
+    "kind": "guided",
+    "difficulty": 1,
+    "prerequisites": [],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Main.java"
     ]
   },
   {
@@ -63,6 +72,17 @@
         "input": "",
         "expected": "15\n"
       }
+    ],
+    "topicId": "variables",
+    "kind": "guided",
+    "difficulty": 1,
+    "prerequisites": [
+      "hello-world"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Main.java"
     ]
   },
   {
@@ -96,6 +116,17 @@
         "input": "",
         "expected": "2.5\n"
       }
+    ],
+    "topicId": "types",
+    "kind": "guided",
+    "difficulty": 1,
+    "prerequisites": [
+      "variables"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Main.java"
     ]
   },
   {
@@ -129,6 +160,17 @@
         "input": "",
         "expected": "2\n"
       }
+    ],
+    "topicId": "operators",
+    "kind": "guided",
+    "difficulty": 1,
+    "prerequisites": [
+      "types"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Main.java"
     ]
   },
   {
@@ -162,6 +204,17 @@
         "input": "",
         "expected": "PASS\n"
       }
+    ],
+    "topicId": "conditions",
+    "kind": "guided",
+    "difficulty": 1,
+    "prerequisites": [
+      "operators"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Main.java"
     ]
   },
   {
@@ -195,6 +248,17 @@
         "input": "",
         "expected": "15\n"
       }
+    ],
+    "topicId": "loops",
+    "kind": "guided",
+    "difficulty": 1,
+    "prerequisites": [
+      "conditions"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Main.java"
     ]
   },
   {
@@ -228,6 +292,17 @@
         "input": "",
         "expected": "16\n"
       }
+    ],
+    "topicId": "arrays",
+    "kind": "guided",
+    "difficulty": 1,
+    "prerequisites": [
+      "loops"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Main.java"
     ]
   },
   {
@@ -261,6 +336,17 @@
         "input": "",
         "expected": "14\n"
       }
+    ],
+    "topicId": "methods",
+    "kind": "guided",
+    "difficulty": 1,
+    "prerequisites": [
+      "arrays"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Main.java"
     ]
   },
   {
@@ -294,6 +380,17 @@
         "input": "",
         "expected": "JAVA\n"
       }
+    ],
+    "topicId": "strings",
+    "kind": "guided",
+    "difficulty": 1,
+    "prerequisites": [
+      "methods"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Main.java"
     ]
   },
   {
@@ -327,6 +424,1617 @@
         "input": "",
         "expected": "INVALID\n"
       }
+    ],
+    "topicId": "exceptions",
+    "kind": "guided",
+    "difficulty": 1,
+    "prerequisites": [
+      "strings"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Main.java"
+    ]
+  },
+  {
+    "id": "hello-lines",
+    "order": 11,
+    "title": "修复多行输出",
+    "shortTitle": "修复多行输出",
+    "summary": "修改输出语句，让控制台恰好按行输出 Java、Quest。",
+    "concept": "入口与控制台输出",
+    "topicId": "entry-output",
+    "kind": "debug",
+    "difficulty": 2,
+    "xp": 50,
+    "minutes": 11,
+    "paragraphs": [
+      "println 每调用一次就产生一行；print 不会自动换行。",
+      "先逐行对照输出，再确认是否出现多余的文字。"
+    ],
+    "task": "修改输出语句，让控制台恰好按行输出 Java、Quest。",
+    "hints": [
+      "先运行起始代码，结合实际错误与目标定位需要修改的位置。",
+      "println 每调用一次就产生一行；print 不会自动换行。",
+      "先逐行对照输出，再确认是否出现多余的文字。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        System.out.print(\"Java\"); System.out.println(\"Quest\");\n    }\n}\n"
+      }
+    ],
+    "tests": [
+      {
+        "input": "",
+        "expected": "Java\nQuest\n"
+      }
+    ],
+    "prerequisites": [
+      "hello-world"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Main.java"
+    ]
+  },
+  {
+    "id": "hello-profile",
+    "order": 12,
+    "title": "组合三行自我介绍",
+    "shortTitle": "组合三行自我介绍",
+    "summary": "独立输出三行自我介绍：Name: Learner、Language: Java、Goal: Build。",
+    "concept": "入口与控制台输出",
+    "topicId": "entry-output",
+    "kind": "challenge",
+    "difficulty": 3,
+    "xp": 65,
+    "minutes": 14,
+    "paragraphs": [
+      "println 每调用一次就产生一行；print 不会自动换行。",
+      "先逐行对照输出，再确认是否出现多余的文字。"
+    ],
+    "task": "独立输出三行自我介绍：Name: Learner、Language: Java、Goal: Build。",
+    "hints": [
+      "先运行起始代码，结合实际错误与目标定位需要修改的位置。",
+      "println 每调用一次就产生一行；print 不会自动换行。",
+      "先逐行对照输出，再确认是否出现多余的文字。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        // 在这里完成三行输出\n\n    }\n}\n"
+      }
+    ],
+    "tests": [
+      {
+        "input": "",
+        "expected": "Name: Learner\nLanguage: Java\nGoal: Build\n"
+      }
+    ],
+    "prerequisites": [
+      "hello-lines"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Main.java"
+    ]
+  },
+  {
+    "id": "balance-update",
+    "order": 13,
+    "title": "修复被覆盖的余额",
+    "shortTitle": "修复被覆盖的余额",
+    "summary": "余额初始为 20，存入 5 后应输出 25，修复覆盖余额的问题。",
+    "concept": "变量与赋值",
+    "topicId": "variables",
+    "kind": "debug",
+    "difficulty": 2,
+    "xp": 50,
+    "minutes": 11,
+    "paragraphs": [
+      "同名变量的重新赋值会覆盖旧值；增加应使用 += 或 old + delta。",
+      "进阶题已提供 Scanner 输入骨架，nextInt 取得一个整数。测试会更换输入，不能只输出示例答案。"
+    ],
+    "task": "余额初始为 20，存入 5 后应输出 25，修复覆盖余额的问题。",
+    "hints": [
+      "先运行起始代码，结合实际错误与目标定位需要修改的位置。",
+      "同名变量的重新赋值会覆盖旧值；增加应使用 += 或 old + delta。",
+      "进阶题已提供 Scanner 输入骨架，nextInt 取得一个整数。测试会更换输入，不能只输出示例答案。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        int balance=20;balance=5;System.out.println(balance);\n    }\n}\n"
+      }
+    ],
+    "tests": [
+      {
+        "input": "",
+        "expected": "25\n"
+      }
+    ],
+    "prerequisites": [
+      "variables"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Main.java"
+    ]
+  },
+  {
+    "id": "input-points",
+    "order": 14,
+    "title": "根据输入计算总积分",
+    "shortTitle": "根据输入计算总积分",
+    "summary": "输入现有积分与变动积分，输出更新后的积分。",
+    "concept": "变量与赋值",
+    "topicId": "variables",
+    "kind": "challenge",
+    "difficulty": 3,
+    "xp": 65,
+    "minutes": 14,
+    "paragraphs": [
+      "同名变量的重新赋值会覆盖旧值；增加应使用 += 或 old + delta。",
+      "进阶题已提供 Scanner 输入骨架，nextInt 取得一个整数。测试会更换输入，不能只输出示例答案。"
+    ],
+    "task": "输入现有积分与变动积分，输出更新后的积分。示例 10 5 输出 15，也要支持负变动。",
+    "hints": [
+      "先运行起始代码，结合实际错误与目标定位需要修改的位置。",
+      "同名变量的重新赋值会覆盖旧值；增加应使用 += 或 old + delta。",
+      "进阶题已提供 Scanner 输入骨架，nextInt 取得一个整数。测试会更换输入，不能只输出示例答案。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        var in = new java.util.Scanner(System.in); int points=in.nextInt(), delta=in.nextInt();System.out.println(points);\n    }\n}\n"
+      }
+    ],
+    "tests": [
+      {
+        "input": "10 5\n",
+        "expected": "15\n"
+      },
+      {
+        "input": "20 -7\n",
+        "expected": "13\n"
+      },
+      {
+        "input": "0 0\n",
+        "expected": "0\n"
+      }
+    ],
+    "prerequisites": [
+      "balance-update"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Main.java"
+    ]
+  },
+  {
+    "id": "long-overflow",
+    "order": 15,
+    "title": "修复整数溢出的里程",
+    "shortTitle": "修复整数溢出的里程",
+    "summary": "修复 50000 × 50000 溢出，输出 2500000000。",
+    "concept": "基本类型与转换",
+    "topicId": "types",
+    "kind": "debug",
+    "difficulty": 2,
+    "xp": 50,
+    "minutes": 11,
+    "paragraphs": [
+      "整数乘法按操作数类型计算；赋给 long 之前发生的 int 溢出无法自动恢复。",
+      "在乘法操作数上使用 L。计算平均值时使用 2.0 进行浮点除法。"
+    ],
+    "task": "修复 50000 × 50000 溢出，输出 2500000000。",
+    "hints": [
+      "先运行起始代码，结合实际错误与目标定位需要修改的位置。",
+      "整数乘法按操作数类型计算；赋给 long 之前发生的 int 溢出无法自动恢复。",
+      "在乘法操作数上使用 L。计算平均值时使用 2.0 进行浮点除法。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        long distance=50000*50000;System.out.println(distance);\n    }\n}\n"
+      }
+    ],
+    "tests": [
+      {
+        "input": "",
+        "expected": "2500000000\n"
+      }
+    ],
+    "prerequisites": [
+      "types"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Main.java"
+    ]
+  },
+  {
+    "id": "mean-value",
+    "order": 16,
+    "title": "选择正确类型计算平均值",
+    "shortTitle": "选择正确类型计算平均值",
+    "summary": "读取两个整数，输出 double 平均值。",
+    "concept": "基本类型与转换",
+    "topicId": "types",
+    "kind": "challenge",
+    "difficulty": 3,
+    "xp": 65,
+    "minutes": 14,
+    "paragraphs": [
+      "整数乘法按操作数类型计算；赋给 long 之前发生的 int 溢出无法自动恢复。",
+      "在乘法操作数上使用 L。计算平均值时使用 2.0 进行浮点除法。"
+    ],
+    "task": "读取两个整数，输出 double 平均值。2 和 5 输出 3.5；相同整数也应保留 .0。",
+    "hints": [
+      "先运行起始代码，结合实际错误与目标定位需要修改的位置。",
+      "整数乘法按操作数类型计算；赋给 long 之前发生的 int 溢出无法自动恢复。",
+      "在乘法操作数上使用 L。计算平均值时使用 2.0 进行浮点除法。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        var in = new java.util.Scanner(System.in); long a=in.nextLong(), b=in.nextLong();System.out.println((a+b)/2);\n    }\n}\n"
+      }
+    ],
+    "tests": [
+      {
+        "input": "2 5\n",
+        "expected": "3.5\n"
+      },
+      {
+        "input": "-2 2\n",
+        "expected": "0.0\n"
+      },
+      {
+        "input": "1000000 1000000\n",
+        "expected": "1000000.0\n"
+      }
+    ],
+    "prerequisites": [
+      "long-overflow"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Main.java"
+    ]
+  },
+  {
+    "id": "discount-precedence",
+    "order": 17,
+    "title": "修复折扣表达式优先级",
+    "shortTitle": "修复折扣表达式优先级",
+    "summary": "商品原价 100，先每件减 20，再买 2 件。",
+    "concept": "运算符与布尔表达式",
+    "topicId": "operators",
+    "kind": "debug",
+    "difficulty": 2,
+    "xp": 50,
+    "minutes": 11,
+    "paragraphs": [
+      "乘除优先于加减；业务中的“先降价再买两件”需要明确括号。",
+      "&& 要求两个条件都成立；范围包含边界时使用 >= 和 <=。"
+    ],
+    "task": "商品原价 100，先每件减 20，再买 2 件。修复表达式并输出 160。",
+    "hints": [
+      "先运行起始代码，结合实际错误与目标定位需要修改的位置。",
+      "乘除优先于加减；业务中的“先降价再买两件”需要明确括号。",
+      "&& 要求两个条件都成立；范围包含边界时使用 >= 和 <=。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        System.out.println(100-20*2);\n    }\n}\n"
+      }
+    ],
+    "tests": [
+      {
+        "input": "",
+        "expected": "160\n"
+      }
+    ],
+    "prerequisites": [
+      "operators"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Main.java"
+    ]
+  },
+  {
+    "id": "range-multiple",
+    "order": 18,
+    "title": "判断区间与整除条件",
+    "shortTitle": "判断区间与整除条件",
+    "summary": "读取 n，当它是 10 到 99（包含边界）内的 3 的倍数时输出 true，否则 false。",
+    "concept": "运算符与布尔表达式",
+    "topicId": "operators",
+    "kind": "challenge",
+    "difficulty": 3,
+    "xp": 65,
+    "minutes": 14,
+    "paragraphs": [
+      "乘除优先于加减；业务中的“先降价再买两件”需要明确括号。",
+      "&& 要求两个条件都成立；范围包含边界时使用 >= 和 <=。"
+    ],
+    "task": "读取 n，当它是 10 到 99（包含边界）内的 3 的倍数时输出 true，否则 false。",
+    "hints": [
+      "先运行起始代码，结合实际错误与目标定位需要修改的位置。",
+      "乘除优先于加减；业务中的“先降价再买两件”需要明确括号。",
+      "&& 要求两个条件都成立；范围包含边界时使用 >= 和 <=。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        var in = new java.util.Scanner(System.in); int n=in.nextInt();System.out.println(false);\n    }\n}\n"
+      }
+    ],
+    "tests": [
+      {
+        "input": "12",
+        "expected": "true\n"
+      },
+      {
+        "input": "99",
+        "expected": "true\n"
+      },
+      {
+        "input": "9",
+        "expected": "false\n"
+      },
+      {
+        "input": "100",
+        "expected": "false\n"
+      }
+    ],
+    "prerequisites": [
+      "discount-precedence"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Main.java"
+    ]
+  },
+  {
+    "id": "grade-boundary",
+    "order": 19,
+    "title": "修复分数边界",
+    "shortTitle": "修复分数边界",
+    "summary": "60 分应及格，修复边界条件，让输入 60 对应的固定程序输出 PASS。",
+    "concept": "条件与分支",
+    "topicId": "conditions",
+    "kind": "debug",
+    "difficulty": 2,
+    "xp": 50,
+    "minutes": 11,
+    "paragraphs": [
+      "先确定边界属于哪一支，再排列分支，避免前面的宽条件吞掉后面的窄条件。",
+      "成绩必须先做合法性判断，再从最高档往下判断。"
+    ],
+    "task": "60 分应及格，修复边界条件，让输入 60 对应的固定程序输出 PASS。",
+    "hints": [
+      "先运行起始代码，结合实际错误与目标定位需要修改的位置。",
+      "先确定边界属于哪一支，再排列分支，避免前面的宽条件吞掉后面的窄条件。",
+      "成绩必须先做合法性判断，再从最高档往下判断。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        int score=60;System.out.println(score>60?\"PASS\":\"RETRY\");\n    }\n}\n"
+      }
+    ],
+    "tests": [
+      {
+        "input": "",
+        "expected": "PASS\n"
+      }
+    ],
+    "prerequisites": [
+      "conditions"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Main.java"
+    ]
+  },
+  {
+    "id": "grade-bands",
+    "order": 20,
+    "title": "实现多档成绩判定",
+    "shortTitle": "实现多档成绩判定",
+    "summary": "读取成绩：0..100 内 >=90 为 A、>=80 为 B、>=60 为 C，其余 D；范围外 INVALID。",
+    "concept": "条件与分支",
+    "topicId": "conditions",
+    "kind": "challenge",
+    "difficulty": 3,
+    "xp": 65,
+    "minutes": 14,
+    "paragraphs": [
+      "先确定边界属于哪一支，再排列分支，避免前面的宽条件吞掉后面的窄条件。",
+      "成绩必须先做合法性判断，再从最高档往下判断。"
+    ],
+    "task": "读取成绩：0..100 内 >=90 为 A、>=80 为 B、>=60 为 C，其余 D；范围外 INVALID。",
+    "hints": [
+      "先运行起始代码，结合实际错误与目标定位需要修改的位置。",
+      "先确定边界属于哪一支，再排列分支，避免前面的宽条件吞掉后面的窄条件。",
+      "成绩必须先做合法性判断，再从最高档往下判断。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        var in = new java.util.Scanner(System.in); int score=in.nextInt();System.out.println(\"D\");\n    }\n}\n"
+      }
+    ],
+    "tests": [
+      {
+        "input": "90",
+        "expected": "A\n"
+      },
+      {
+        "input": "80",
+        "expected": "B\n"
+      },
+      {
+        "input": "60",
+        "expected": "C\n"
+      },
+      {
+        "input": "59",
+        "expected": "D\n"
+      },
+      {
+        "input": "101",
+        "expected": "INVALID\n"
+      }
+    ],
+    "prerequisites": [
+      "grade-boundary"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Main.java"
+    ]
+  },
+  {
+    "id": "reverse-sum",
+    "order": 21,
+    "title": "修复漏掉末项的循环",
+    "shortTitle": "修复漏掉末项的循环",
+    "summary": "修复从 5 倒数到 1 的累加程序，输出 15。",
+    "concept": "循环与终止条件",
+    "topicId": "loops",
+    "kind": "debug",
+    "difficulty": 2,
+    "xp": 50,
+    "minutes": 11,
+    "paragraphs": [
+      "正向和反向循环都必须明确包含哪些边界。累加器放在循环之外。",
+      "独立题约定 n 在 0..10000；n=0 时循环不应执行，结果为 0。"
+    ],
+    "task": "修复从 5 倒数到 1 的累加程序，输出 15。",
+    "hints": [
+      "先运行起始代码，结合实际错误与目标定位需要修改的位置。",
+      "正向和反向循环都必须明确包含哪些边界。累加器放在循环之外。",
+      "独立题约定 n 在 0..10000；n=0 时循环不应执行，结果为 0。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        int sum=0;for(int i=5;i>1;i--)sum+=i;System.out.println(sum);\n    }\n}\n"
+      }
+    ],
+    "tests": [
+      {
+        "input": "",
+        "expected": "15\n"
+      }
+    ],
+    "prerequisites": [
+      "loops"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Main.java"
+    ]
+  },
+  {
+    "id": "sum-to-n",
+    "order": 22,
+    "title": "对输入区间求和",
+    "shortTitle": "对输入区间求和",
+    "summary": "读取 0..10000 内的 n，累加 1 到 n 并输出总和，注意 n=0。",
+    "concept": "循环与终止条件",
+    "topicId": "loops",
+    "kind": "challenge",
+    "difficulty": 3,
+    "xp": 65,
+    "minutes": 14,
+    "paragraphs": [
+      "正向和反向循环都必须明确包含哪些边界。累加器放在循环之外。",
+      "独立题约定 n 在 0..10000；n=0 时循环不应执行，结果为 0。"
+    ],
+    "task": "读取 0..10000 内的 n，累加 1 到 n 并输出总和，注意 n=0。",
+    "hints": [
+      "先运行起始代码，结合实际错误与目标定位需要修改的位置。",
+      "正向和反向循环都必须明确包含哪些边界。累加器放在循环之外。",
+      "独立题约定 n 在 0..10000；n=0 时循环不应执行，结果为 0。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        var in = new java.util.Scanner(System.in); int n=in.nextInt();int sum=0;System.out.println(sum);\n    }\n}\n"
+      }
+    ],
+    "tests": [
+      {
+        "input": "0",
+        "expected": "0\n"
+      },
+      {
+        "input": "1",
+        "expected": "1\n"
+      },
+      {
+        "input": "10",
+        "expected": "55\n"
+      },
+      {
+        "input": "100",
+        "expected": "5050\n"
+      }
+    ],
+    "prerequisites": [
+      "reverse-sum"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Main.java"
+    ]
+  },
+  {
+    "id": "array-boundary",
+    "order": 23,
+    "title": "修复越界遍历",
+    "shortTitle": "修复越界遍历",
+    "summary": "修复数组遍历越界，数组 {2,4,6} 求和后输出 12。",
+    "concept": "数组与索引",
+    "topicId": "arrays",
+    "kind": "debug",
+    "difficulty": 2,
+    "xp": 50,
+    "minutes": 11,
+    "paragraphs": [
+      "数组最后一个有效索引为 length-1；异常中的索引可以帮助定位越界。",
+      "找最大值不能默认从 0 开始：数组可能全是负数。输入格式为 n 后接 n 个整数，n>=1。"
+    ],
+    "task": "修复数组遍历越界，数组 {2,4,6} 求和后输出 12。",
+    "hints": [
+      "先运行起始代码，结合实际错误与目标定位需要修改的位置。",
+      "数组最后一个有效索引为 length-1；异常中的索引可以帮助定位越界。",
+      "找最大值不能默认从 0 开始：数组可能全是负数。输入格式为 n 后接 n 个整数，n>=1。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        int[] a={2,4,6};int sum=0;for(int i=0;i<=a.length;i++)sum+=a[i];System.out.println(sum);\n    }\n}\n"
+      }
+    ],
+    "tests": [
+      {
+        "input": "",
+        "expected": "12\n"
+      }
+    ],
+    "prerequisites": [
+      "arrays"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Main.java"
+    ]
+  },
+  {
+    "id": "array-maximum",
+    "order": 24,
+    "title": "查找含负数数组的最大值",
+    "shortTitle": "查找含负数数组的最大值",
+    "summary": "读取至少一个元素的数组并输出最大值；必须处理全负数与单元素数组。",
+    "concept": "数组与索引",
+    "topicId": "arrays",
+    "kind": "challenge",
+    "difficulty": 3,
+    "xp": 65,
+    "minutes": 14,
+    "paragraphs": [
+      "数组最后一个有效索引为 length-1；异常中的索引可以帮助定位越界。",
+      "找最大值不能默认从 0 开始：数组可能全是负数。输入格式为 n 后接 n 个整数，n>=1。"
+    ],
+    "task": "读取至少一个元素的数组并输出最大值；必须处理全负数与单元素数组。",
+    "hints": [
+      "先运行起始代码，结合实际错误与目标定位需要修改的位置。",
+      "数组最后一个有效索引为 length-1；异常中的索引可以帮助定位越界。",
+      "找最大值不能默认从 0 开始：数组可能全是负数。输入格式为 n 后接 n 个整数，n>=1。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        var in = new java.util.Scanner(System.in); int n=in.nextInt();int max=0;for(int i=0;i<n;i++){int v=in.nextInt();max=Math.max(max,v);}System.out.println(max);\n    }\n}\n"
+      }
+    ],
+    "tests": [
+      {
+        "input": "3 -9 -3 -7",
+        "expected": "-3\n"
+      },
+      {
+        "input": "1 -12",
+        "expected": "-12\n"
+      },
+      {
+        "input": "3 9 2 5",
+        "expected": "9\n"
+      }
+    ],
+    "prerequisites": [
+      "array-boundary"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Main.java"
+    ]
+  },
+  {
+    "id": "method-arguments",
+    "order": 25,
+    "title": "修复传错参数的方法",
+    "shortTitle": "修复传错参数的方法",
+    "summary": "减法方法本身正确。",
+    "concept": "参数、返回值与作用域",
+    "topicId": "methods",
+    "kind": "debug",
+    "difficulty": 2,
+    "xp": 50,
+    "minutes": 11,
+    "paragraphs": [
+      "实参按位置传给形参，两个参数类型相同不代表可以交换。",
+      "将可复用逻辑放进返回值方法。clamp 把值限制在给定的闭区间，输入保证 min<=max。"
+    ],
+    "task": "减法方法本身正确。修复调用位置，让程序计算 9-3 并输出 6。",
+    "hints": [
+      "先运行起始代码，结合实际错误与目标定位需要修改的位置。",
+      "实参按位置传给形参，两个参数类型相同不代表可以交换。",
+      "将可复用逻辑放进返回值方法。clamp 把值限制在给定的闭区间，输入保证 min<=max。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {\n    static int subtract(int a,int b){return a-b;}\n    public static void main(String[] args) throws Exception {\n        System.out.println(subtract(3,9));\n    }\n}\n"
+      }
+    ],
+    "tests": [
+      {
+        "input": "",
+        "expected": "6\n"
+      }
+    ],
+    "prerequisites": [
+      "methods"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Main.java"
+    ]
+  },
+  {
+    "id": "clamp-value",
+    "order": 26,
+    "title": "实现可复用的区间夹取函数",
+    "shortTitle": "实现可复用的区间夹取函数",
+    "summary": "补全 clamp 方法。",
+    "concept": "参数、返回值与作用域",
+    "topicId": "methods",
+    "kind": "challenge",
+    "difficulty": 3,
+    "xp": 65,
+    "minutes": 14,
+    "paragraphs": [
+      "实参按位置传给形参，两个参数类型相同不代表可以交换。",
+      "将可复用逻辑放进返回值方法。clamp 把值限制在给定的闭区间，输入保证 min<=max。"
+    ],
+    "task": "补全 clamp 方法。输入 value、min、max，输出位于闭区间内的原值或最近边界。",
+    "hints": [
+      "先运行起始代码，结合实际错误与目标定位需要修改的位置。",
+      "实参按位置传给形参，两个参数类型相同不代表可以交换。",
+      "将可复用逻辑放进返回值方法。clamp 把值限制在给定的闭区间，输入保证 min<=max。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {\n    static int clamp(int value,int min,int max){return 0;}\n    public static void main(String[] args) throws Exception {\n        var in = new java.util.Scanner(System.in); System.out.println(clamp(in.nextInt(),in.nextInt(),in.nextInt()));\n    }\n}\n"
+      }
+    ],
+    "tests": [
+      {
+        "input": "5 0 10",
+        "expected": "5\n"
+      },
+      {
+        "input": "-1 0 10",
+        "expected": "0\n"
+      },
+      {
+        "input": "15 0 10",
+        "expected": "10\n"
+      }
+    ],
+    "prerequisites": [
+      "method-arguments"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Main.java"
+    ]
+  },
+  {
+    "id": "string-equality",
+    "order": 27,
+    "title": "修复字符串引用比较",
+    "shortTitle": "修复字符串引用比较",
+    "summary": "两个独立字符串内容相同，应输出 true，修复引用比较。",
+    "concept": "字符串与文本处理",
+    "topicId": "strings",
+    "kind": "debug",
+    "difficulty": 2,
+    "xp": 50,
+    "minutes": 11,
+    "paragraphs": [
+      "== 比较对象引用，equals 比较字符串内容。new String 可明确构造不同对象。",
+      "trim 仅去除首尾空白，内部空格必须保留；大小写转换使用 Locale.ROOT 避免机器语言影响。"
+    ],
+    "task": "两个独立字符串内容相同，应输出 true，修复引用比较。",
+    "hints": [
+      "先运行起始代码，结合实际错误与目标定位需要修改的位置。",
+      "== 比较对象引用，equals 比较字符串内容。new String 可明确构造不同对象。",
+      "trim 仅去除首尾空白，内部空格必须保留；大小写转换使用 Locale.ROOT 避免机器语言影响。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        String a=new String(\"Java\"), b=new String(\"Java\");System.out.println(a==b);\n    }\n}\n"
+      }
+    ],
+    "tests": [
+      {
+        "input": "",
+        "expected": "true\n"
+      }
+    ],
+    "prerequisites": [
+      "strings"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Main.java"
+    ]
+  },
+  {
+    "id": "normalized-tags",
+    "order": 28,
+    "title": "实现规范化标签匹配",
+    "shortTitle": "实现规范化标签匹配",
+    "summary": "读取两行标签，忽略首尾空白和大小写后比较，输出 true/false，内部空格仍有意义。",
+    "concept": "字符串与文本处理",
+    "topicId": "strings",
+    "kind": "challenge",
+    "difficulty": 3,
+    "xp": 65,
+    "minutes": 14,
+    "paragraphs": [
+      "== 比较对象引用，equals 比较字符串内容。new String 可明确构造不同对象。",
+      "trim 仅去除首尾空白，内部空格必须保留；大小写转换使用 Locale.ROOT 避免机器语言影响。"
+    ],
+    "task": "读取两行标签，忽略首尾空白和大小写后比较，输出 true/false，内部空格仍有意义。",
+    "hints": [
+      "先运行起始代码，结合实际错误与目标定位需要修改的位置。",
+      "== 比较对象引用，equals 比较字符串内容。new String 可明确构造不同对象。",
+      "trim 仅去除首尾空白，内部空格必须保留；大小写转换使用 Locale.ROOT 避免机器语言影响。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        var in = new java.util.Scanner(System.in); String a=in.nextLine(), b=in.nextLine();System.out.println(a.equals(b));\n    }\n}\n"
+      }
+    ],
+    "tests": [
+      {
+        "input": "Java \n java\n",
+        "expected": "true\n"
+      },
+      {
+        "input": "Map\nSet\n",
+        "expected": "false\n"
+      },
+      {
+        "input": " A B \na b\n",
+        "expected": "true\n"
+      }
+    ],
+    "prerequisites": [
+      "string-equality"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Main.java"
+    ]
+  },
+  {
+    "id": "catch-correct-type",
+    "order": 29,
+    "title": "修复错误的异常分支",
+    "shortTitle": "修复错误的异常分支",
+    "summary": "修复 catch 类型，让解析 abc 的失败被处理并输出 INVALID。",
+    "concept": "异常与资源生命周期",
+    "topicId": "exceptions",
+    "kind": "debug",
+    "difficulty": 2,
+    "xp": 50,
+    "minutes": 11,
+    "paragraphs": [
+      "异常类型决定哪个 catch 能处理失败。NumberFormatException 属于数字格式错误。",
+      "Integer.parseInt 会拒绝非数字和超出 int 范围的值；用 try/catch 在失败时输出 INVALID。"
+    ],
+    "task": "修复 catch 类型，让解析 abc 的失败被处理并输出 INVALID。",
+    "hints": [
+      "先运行起始代码，结合实际错误与目标定位需要修改的位置。",
+      "异常类型决定哪个 catch 能处理失败。NumberFormatException 属于数字格式错误。",
+      "Integer.parseInt 会拒绝非数字和超出 int 范围的值；用 try/catch 在失败时输出 INVALID。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        try{Integer.parseInt(\"abc\");}catch(ArithmeticException e){System.out.println(\"INVALID\");}\n    }\n}\n"
+      }
+    ],
+    "tests": [
+      {
+        "input": "",
+        "expected": "INVALID\n"
+      }
+    ],
+    "prerequisites": [
+      "exceptions"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Main.java"
+    ]
+  },
+  {
+    "id": "parse-or-invalid",
+    "order": 30,
+    "title": "实现可恢复的数字解析",
+    "shortTitle": "实现可恢复的数字解析",
+    "summary": "读取一行，先去首尾空白；可解析为 int 时输出数字，否则 INVALID。",
+    "concept": "异常与资源生命周期",
+    "topicId": "exceptions",
+    "kind": "challenge",
+    "difficulty": 3,
+    "xp": 65,
+    "minutes": 14,
+    "paragraphs": [
+      "异常类型决定哪个 catch 能处理失败。NumberFormatException 属于数字格式错误。",
+      "Integer.parseInt 会拒绝非数字和超出 int 范围的值；用 try/catch 在失败时输出 INVALID。"
+    ],
+    "task": "读取一行，先去首尾空白；可解析为 int 时输出数字，否则 INVALID。",
+    "hints": [
+      "先运行起始代码，结合实际错误与目标定位需要修改的位置。",
+      "异常类型决定哪个 catch 能处理失败。NumberFormatException 属于数字格式错误。",
+      "Integer.parseInt 会拒绝非数字和超出 int 范围的值；用 try/catch 在失败时输出 INVALID。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        var in = new java.util.Scanner(System.in); String text=in.nextLine();System.out.println(Integer.parseInt(text));\n    }\n}\n"
+      }
+    ],
+    "tests": [
+      {
+        "input": "42\n",
+        "expected": "42\n"
+      },
+      {
+        "input": "abc\n",
+        "expected": "INVALID\n"
+      },
+      {
+        "input": " -7 \n",
+        "expected": "-7\n"
+      },
+      {
+        "input": "2147483648\n",
+        "expected": "INVALID\n"
+      }
+    ],
+    "prerequisites": [
+      "catch-correct-type"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Main.java"
+    ]
+  },
+  {
+    "id": "account-constructor",
+    "order": 31,
+    "title": "通过构造器建立账户",
+    "shortTitle": "通过构造器建立账户",
+    "summary": "补全构造器的字段赋值。",
+    "concept": "类、构造器与封装",
+    "topicId": "objects",
+    "kind": "guided",
+    "difficulty": 1,
+    "xp": 35,
+    "minutes": 8,
+    "paragraphs": [
+      "Main.java 是只读调用方。本步只修改 Account.java，下一步会在这个对象上增加新行为。",
+      "构造器把传入值保存到对象字段；参数与字段同名时使用 this.balance。",
+      "方法内另建局部变量不会更新对象字段。用 balance() 观察调用后的持久状态。"
+    ],
+    "task": "补全构造器的字段赋值。",
+    "hints": [
+      "先运行起始代码，结合实际错误与目标定位需要修改的位置。",
+      "Main.java 是只读调用方；Account.java 负责对象状态，修改它才能满足调用契约。",
+      "取款先校验金额：不合法时状态保持原样；合法时更新余额并返回 true。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        System.out.println(new Account(10).balance());\n    }\n}\n"
+      },
+      {
+        "name": "Account.java",
+        "content": "public class Account { private int balance; public Account(int balance){balance=balance;} public int balance(){return balance;} }"
+      }
+    ],
+    "tests": [
+      {
+        "input": "",
+        "expected": "10\n"
+      }
+    ],
+    "prerequisites": [
+      "methods",
+      "exceptions"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Account.java"
+    ]
+  },
+  {
+    "id": "account-state",
+    "order": 32,
+    "title": "修复把状态写成局部变量",
+    "shortTitle": "修复把状态写成局部变量",
+    "summary": "修复 deposit 的状态更新。",
+    "concept": "类、构造器与封装",
+    "topicId": "objects",
+    "kind": "debug",
+    "difficulty": 2,
+    "xp": 50,
+    "minutes": 11,
+    "paragraphs": [
+      "Main.java 是只读调用方。本步只修改 Account.java，下一步会在这个对象上增加新行为。",
+      "构造器把传入值保存到对象字段；参数与字段同名时使用 this.balance。",
+      "方法内另建局部变量不会更新对象字段。用 balance() 观察调用后的持久状态。"
+    ],
+    "task": "修复 deposit 的状态更新。",
+    "hints": [
+      "先运行起始代码，结合实际错误与目标定位需要修改的位置。",
+      "Main.java 是只读调用方；Account.java 负责对象状态，修改它才能满足调用契约。",
+      "取款先校验金额：不合法时状态保持原样；合法时更新余额并返回 true。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        Account a=new Account(10);a.deposit(5);System.out.println(a.balance());\n    }\n}\n"
+      },
+      {
+        "name": "Account.java",
+        "content": "public class Account { private int balance; public Account(int balance){this.balance=balance;} public int balance(){return balance;}  public void deposit(int amount){int balance=amount;} }"
+      }
+    ],
+    "tests": [
+      {
+        "input": "",
+        "expected": "15\n"
+      }
+    ],
+    "prerequisites": [
+      "account-constructor"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Account.java"
+    ]
+  },
+  {
+    "id": "account-withdraw",
+    "order": 33,
+    "title": "实现拒绝透支的账户对象",
+    "shortTitle": "实现拒绝透支的账户对象",
+    "summary": "实现 withdraw，拒绝负数和透支，失败保持余额。",
+    "concept": "类、构造器与封装",
+    "topicId": "objects",
+    "kind": "challenge",
+    "difficulty": 3,
+    "xp": 65,
+    "minutes": 14,
+    "paragraphs": [
+      "Main.java 是只读调用方；Account.java 负责对象状态，修改它才能满足调用契约。",
+      "构造器参数与字段同名时使用 this。对象方法应修改字段而不是另建局部变量。",
+      "取款先校验金额：不合法时状态保持原样；合法时更新余额并返回 true。"
+    ],
+    "task": "实现 withdraw，拒绝负数和透支，失败保持余额。",
+    "hints": [
+      "先运行起始代码，结合实际错误与目标定位需要修改的位置。",
+      "Main.java 是只读调用方；Account.java 负责对象状态，修改它才能满足调用契约。",
+      "取款先校验金额：不合法时状态保持原样；合法时更新余额并返回 true。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        var in = new java.util.Scanner(System.in); Account a=new Account(in.nextInt());boolean ok=a.withdraw(in.nextInt());System.out.println(ok+\" \"+a.balance());\n    }\n}\n"
+      },
+      {
+        "name": "Account.java",
+        "content": "public class Account { private int balance; public Account(int balance){this.balance=balance;} public int balance(){return balance;} public void deposit(int amount){balance+=amount;} public boolean withdraw(int amount){return true;} }"
+      }
+    ],
+    "tests": [
+      {
+        "input": "10 3",
+        "expected": "true 7\n"
+      },
+      {
+        "input": "10 11",
+        "expected": "false 10\n"
+      },
+      {
+        "input": "10 -2",
+        "expected": "false 10\n"
+      },
+      {
+        "input": "0 0",
+        "expected": "true 0\n"
+      }
+    ],
+    "prerequisites": [
+      "account-state"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Account.java"
+    ]
+  },
+  {
+    "id": "map-increment",
+    "order": 34,
+    "title": "累加已有键的词频",
+    "shortTitle": "累加已有键的词频",
+    "summary": "修复对已有单词的累加，输出 java 的词频 2。",
+    "concept": "Map、词频与有序结果",
+    "topicId": "maps",
+    "kind": "guided",
+    "difficulty": 1,
+    "xp": 35,
+    "minutes": 8,
+    "paragraphs": [
+      "Map 的键唯一，同一个单词再次出现时应在旧计数上加一。",
+      "merge(key,1,Integer::sum) 在键不存在时放入 1，在已存在时把旧值和 1 相加。"
+    ],
+    "task": "修复对已有单词的累加，输出 java 的词频 2。",
+    "hints": [
+      "先运行起始代码，结合实际错误与目标定位需要修改的位置。",
+      "Map 的键唯一，同一个单词再次出现时应在旧计数上加一。",
+      "merge(key,1,Integer::sum) 在键不存在时放入 1，在已存在时把旧值和 1 相加。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        var counts=new java.util.HashMap<String,Integer>();for(String word:new String[]{\"java\",\"java\",\"map\"})counts.put(word,1);System.out.println(counts.get(\"java\"));\n    }\n}\n"
+      }
+    ],
+    "tests": [
+      {
+        "input": "",
+        "expected": "2\n"
+      }
+    ],
+    "prerequisites": [
+      "account-withdraw"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Main.java"
+    ]
+  },
+  {
+    "id": "map-count-debug",
+    "order": 35,
+    "title": "修复覆盖旧计数的缺陷",
+    "shortTitle": "修复覆盖旧计数的缺陷",
+    "summary": "输入 n 和 n 个单词，输出 java 的出现次数。",
+    "concept": "Map、词频与有序结果",
+    "topicId": "maps",
+    "kind": "debug",
+    "difficulty": 2,
+    "xp": 50,
+    "minutes": 11,
+    "paragraphs": [
+      "getOrDefault 在键缺失时提供起始值。每次更新必须保留此前计数。",
+      "用 0 个单词和重复单词检查边界，不能依赖固定示例。"
+    ],
+    "task": "输入 n 和 n 个单词，输出 java 的出现次数。修复每次都覆盖为 1 的缺陷。",
+    "hints": [
+      "先运行起始代码，结合实际错误与目标定位需要修改的位置。",
+      "getOrDefault 在键缺失时提供起始值。每次更新必须保留此前计数。",
+      "用 0 个单词和重复单词检查边界，不能依赖固定示例。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        var in = new java.util.Scanner(System.in); int n=in.nextInt();var counts=new java.util.HashMap<String,Integer>();for(int i=0;i<n;i++){String word=in.next();counts.put(word,1);}System.out.println(counts.getOrDefault(\"java\",0));\n    }\n}\n"
+      }
+    ],
+    "tests": [
+      {
+        "input": "3 java map java",
+        "expected": "2\n"
+      },
+      {
+        "input": "0",
+        "expected": "0\n"
+      },
+      {
+        "input": "2 map set",
+        "expected": "0\n"
+      }
+    ],
+    "prerequisites": [
+      "map-increment"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Main.java"
+    ]
+  },
+  {
+    "id": "word-report",
+    "order": 36,
+    "title": "实现大小写无关的词频报表",
+    "shortTitle": "实现大小写无关的词频报表",
+    "summary": "输入 n 和 n 个英文单词，忽略大小写统计，按键升序输出 word:count。",
+    "concept": "Map、词频与有序结果",
+    "topicId": "maps",
+    "kind": "challenge",
+    "difficulty": 3,
+    "xp": 65,
+    "minutes": 14,
+    "paragraphs": [
+      "TreeMap 按键的自然顺序遍历，适合稳定的文本报表。",
+      "先统一大小写，再聚合计数；n=0 时不输出任何单词行。"
+    ],
+    "task": "输入 n 和 n 个英文单词，忽略大小写统计，按键升序输出 word:count。",
+    "hints": [
+      "先运行起始代码，结合实际错误与目标定位需要修改的位置。",
+      "TreeMap 按键的自然顺序遍历，适合稳定的文本报表。",
+      "先统一大小写，再聚合计数；n=0 时不输出任何单词行。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        var in = new java.util.Scanner(System.in); int n=in.nextInt(); // 实现规范化、计数与有序输出\n\n    }\n}\n"
+      }
+    ],
+    "tests": [
+      {
+        "input": "3 Java java Map",
+        "expected": "java:2\nmap:1\n"
+      },
+      {
+        "input": "0",
+        "expected": ""
+      },
+      {
+        "input": "4 B a B a",
+        "expected": "a:2\nb:2\n"
+      }
+    ],
+    "prerequisites": [
+      "map-count-debug"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Main.java"
+    ]
+  },
+  {
+    "id": "thread-join",
+    "order": 37,
+    "title": "等待线程完成后汇总",
+    "shortTitle": "等待线程完成后汇总",
+    "summary": "起始程序错误地输出固定初值，修改为等待工作线程完成后输出真实计数 3。",
+    "concept": "Thread、join 与原子计数",
+    "topicId": "atomic-count",
+    "kind": "guided",
+    "difficulty": 1,
+    "xp": 35,
+    "minutes": 8,
+    "paragraphs": [
+      "start 让线程执行；join 让调用方等待该线程结束。没有同步关系时，读取可能发生在任务完成之前。",
+      "此题在任务完成后读取 AtomicInteger。我们不使用 sleep 猜测线程调度。",
+      "()->{...} 是 Runnable 任务的简写。此关先阅读已有任务，关注开始执行、等待完成和读取结果的顺序。"
+    ],
+    "task": "起始程序错误地输出固定初值，修改为等待工作线程完成后输出真实计数 3。",
+    "hints": [
+      "先运行起始代码，结合实际错误与目标定位需要修改的位置。",
+      "start 让线程执行；join 让调用方等待该线程结束。没有同步关系时，读取可能发生在任务完成之前。",
+      "此题在任务完成后读取 AtomicInteger。我们不使用 sleep 猜测线程调度。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        var count=new java.util.concurrent.atomic.AtomicInteger();Thread worker=new Thread(()->{for(int i=0;i<3;i++)count.incrementAndGet();});worker.start();worker.join();System.out.println(0);\n    }\n}\n"
+      }
+    ],
+    "tests": [
+      {
+        "input": "",
+        "expected": "3\n"
+      }
+    ],
+    "prerequisites": [
+      "account-withdraw"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Main.java"
+    ]
+  },
+  {
+    "id": "atomic-lost-update",
+    "order": 38,
+    "title": "修复确定性丢失更新",
+    "shortTitle": "修复确定性丢失更新",
+    "summary": "修复屏障之后的非原子自增，两个线程各加一应输出 2。",
+    "concept": "Thread、join 与原子计数",
+    "topicId": "atomic-count",
+    "kind": "debug",
+    "difficulty": 2,
+    "xp": 50,
+    "minutes": 11,
+    "paragraphs": [
+      "get 和 set 各自是线程安全的，但两者拼起来不构成一个原子自增。",
+      "屏障保证两个线程都先读到相同初值，再写入，从而稳定复现丢失更新。",
+      "把复合自增替换为 incrementAndGet，保留屏障和 join。"
+    ],
+    "task": "修复屏障之后的非原子自增，两个线程各加一应输出 2。",
+    "hints": [
+      "先运行起始代码，结合实际错误与目标定位需要修改的位置。",
+      "get 和 set 各自是线程安全的，但两者拼起来不构成一个原子自增。",
+      "把复合自增替换为 incrementAndGet，保留屏障和 join。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        var barrier=new java.util.concurrent.CyclicBarrier(2);var count=new java.util.concurrent.atomic.AtomicInteger();Runnable job=()->{int before=count.get();try{barrier.await();}catch(Exception e){throw new RuntimeException(e);}count.set(before+1);};Thread a=new Thread(job), b=new Thread(job);a.start();b.start();a.join();b.join();System.out.println(count.get());\n    }\n}\n"
+      }
+    ],
+    "tests": [
+      {
+        "input": "",
+        "expected": "2\n"
+      }
+    ],
+    "prerequisites": [
+      "thread-join"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Main.java"
+    ]
+  },
+  {
+    "id": "atomic-counter",
+    "order": 39,
+    "title": "实现可重复验证的并发计数",
+    "shortTitle": "实现可重复验证的并发计数",
+    "summary": "读取 n（0..1000），让两个工作线程各增加 n 次，等待完成并输出总计数。",
+    "concept": "Thread、join 与原子计数",
+    "topicId": "atomic-count",
+    "kind": "challenge",
+    "difficulty": 3,
+    "xp": 65,
+    "minutes": 14,
+    "paragraphs": [
+      "两个线程共享同一个计数器，每个线程执行 n 次增加。",
+      "AtomicInteger 保证单次增加原子性；join 保证输出前所有任务完成。"
+    ],
+    "task": "读取 n（0..1000），让两个工作线程各增加 n 次，等待完成并输出总计数。",
+    "hints": [
+      "先运行起始代码，结合实际错误与目标定位需要修改的位置。",
+      "两个线程共享同一个计数器，每个线程执行 n 次增加。",
+      "AtomicInteger 保证单次增加原子性；join 保证输出前所有任务完成。"
+    ],
+    "starter": [
+      {
+        "name": "Main.java",
+        "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        var in = new java.util.Scanner(System.in); int n=in.nextInt();var count=new java.util.concurrent.atomic.AtomicInteger();Runnable job=()->{for(int i=0;i<n;i++)/* 完成原子增加 */};Thread a=new Thread(job), b=new Thread(job);a.start();b.start();a.join();b.join();System.out.println(count.get());\n    }\n}\n"
+      }
+    ],
+    "tests": [
+      {
+        "input": "1",
+        "expected": "2\n"
+      },
+      {
+        "input": "10",
+        "expected": "20\n"
+      },
+      {
+        "input": "1000",
+        "expected": "2000\n"
+      }
+    ],
+    "prerequisites": [
+      "atomic-lost-update"
+    ],
+    "entryClass": "Main",
+    "buildKind": "javac",
+    "editableFiles": [
+      "Main.java"
+    ]
+  },
+  {
+    "id": "order-subtotal",
+    "order": 40,
+    "title": "修复商品行小计",
+    "shortTitle": "修复商品行小计",
+    "summary": "只修改 OrderLine.subtotal，将单价乘以数量；本步不计算折扣。",
+    "concept": "阅读和修改分层项目",
+    "topicId": "order-project",
+    "kind": "project",
+    "difficulty": 1,
+    "xp": 35,
+    "minutes": 8,
+    "paragraphs": [
+      "先阅读只读的 Application：它负责解析输入和调用领域对象、价格服务、报表类。项目按 package 和 src/main/java 目录组织，判题会一起编译所有文件。",
+      "输入为 n，随后 n 组单价/数量，最后一个折扣百分比。金额为整数分；本项目使用 int，输入保证合法总额不超过 1000000。",
+      "分层职责：OrderLine 维护单行不变量；PricingService 汇总与折扣；OrderReport 只处理呈现。每步 starter 已包含前一步的正确实现。",
+      "OrderLine 使用 record，自动提供 unitPrice()/quantity() 访问器；最后一步可在紧凑构造器 public OrderLine { ... } 中校验参数。"
+    ],
+    "task": "只修改 OrderLine.subtotal，将单价乘以数量；本步不计算折扣。",
+    "hints": [
+      "先运行起始代码，结合实际错误与目标定位需要修改的位置。",
+      "先阅读只读的 Application：它负责解析输入和调用领域对象、价格服务、报表类。项目按 package 和 src/main/java 目录组织，判题会一起编译所有文件。",
+      "分层职责：OrderLine 维护单行不变量；PricingService 汇总与折扣；OrderReport 只处理呈现。每步 starter 已包含前一步的正确实现。"
+    ],
+    "starter": [
+      {
+        "name": "src/main/java/quest/orders/Application.java",
+        "content": "package quest.orders;\nimport java.util.*;\npublic class Application {\n public static void main(String[] args) {\n  var in=new Scanner(System.in);int n=in.nextInt();var lines=new ArrayList<OrderLine>();\n  try { for(int i=0;i<n;i++)lines.add(new OrderLine(in.nextInt(),in.nextInt()));\n   int discount=in.nextInt();System.out.println(OrderReport.render(PricingService.total(lines,discount)));\n  } catch(IllegalArgumentException e) { System.out.println(\"ERROR\"); }\n }\n}\n"
+      },
+      {
+        "name": "src/main/java/quest/orders/OrderLine.java",
+        "content": "package quest.orders; public record OrderLine(int unitPrice,int quantity) { public int subtotal(){return unitPrice+quantity;} }"
+      },
+      {
+        "name": "src/main/java/quest/orders/PricingService.java",
+        "content": "package quest.orders; import java.util.List; public class PricingService { public static int total(List<OrderLine> lines,int discount){int sum=0;for(OrderLine line:lines)sum+=line.subtotal();return sum;} }"
+      },
+      {
+        "name": "src/main/java/quest/orders/OrderReport.java",
+        "content": "package quest.orders; public class OrderReport { public static String render(int amount){return \"TOTAL=\"+amount;} }"
+      }
+    ],
+    "tests": [
+      {
+        "input": "1 10 3 0",
+        "expected": "TOTAL=30\n"
+      },
+      {
+        "input": "2 100 2 50 3 0",
+        "expected": "TOTAL=350\n"
+      },
+      {
+        "input": "0 0",
+        "expected": "TOTAL=0\n"
+      }
+    ],
+    "prerequisites": [
+      "account-withdraw",
+      "arrays",
+      "methods"
+    ],
+    "entryClass": "quest.orders.Application",
+    "buildKind": "javac",
+    "editableFiles": [
+      "src/main/java/quest/orders/OrderLine.java"
+    ]
+  },
+  {
+    "id": "order-discount",
+    "order": 41,
+    "title": "实现订单折扣服务",
+    "shortTitle": "实现订单折扣服务",
+    "summary": "只修改 PricingService，按合计金额乘 (100-discount)/100 向下取整；本步输入折扣合法。",
+    "concept": "阅读和修改分层项目",
+    "topicId": "order-project",
+    "kind": "project",
+    "difficulty": 2,
+    "xp": 50,
+    "minutes": 11,
+    "paragraphs": [
+      "先阅读只读的 Application：它负责解析输入和调用领域对象、价格服务、报表类。项目按 package 和 src/main/java 目录组织，判题会一起编译所有文件。",
+      "输入为 n，随后 n 组单价/数量，最后一个折扣百分比。金额为整数分；本项目使用 int，输入保证合法总额不超过 1000000。",
+      "分层职责：OrderLine 维护单行不变量；PricingService 汇总与折扣；OrderReport 只处理呈现。每步 starter 已包含前一步的正确实现。",
+      "OrderLine 使用 record，自动提供 unitPrice()/quantity() 访问器；最后一步可在紧凑构造器 public OrderLine { ... } 中校验参数。"
+    ],
+    "task": "只修改 PricingService，按合计金额乘 (100-discount)/100 向下取整；本步输入折扣合法。",
+    "hints": [
+      "先运行起始代码，结合实际错误与目标定位需要修改的位置。",
+      "先阅读只读的 Application：它负责解析输入和调用领域对象、价格服务、报表类。项目按 package 和 src/main/java 目录组织，判题会一起编译所有文件。",
+      "分层职责：OrderLine 维护单行不变量；PricingService 汇总与折扣；OrderReport 只处理呈现。每步 starter 已包含前一步的正确实现。"
+    ],
+    "starter": [
+      {
+        "name": "src/main/java/quest/orders/Application.java",
+        "content": "package quest.orders;\nimport java.util.*;\npublic class Application {\n public static void main(String[] args) {\n  var in=new Scanner(System.in);int n=in.nextInt();var lines=new ArrayList<OrderLine>();\n  try { for(int i=0;i<n;i++)lines.add(new OrderLine(in.nextInt(),in.nextInt()));\n   int discount=in.nextInt();System.out.println(OrderReport.render(PricingService.total(lines,discount)));\n  } catch(IllegalArgumentException e) { System.out.println(\"ERROR\"); }\n }\n}\n"
+      },
+      {
+        "name": "src/main/java/quest/orders/OrderLine.java",
+        "content": "package quest.orders; public record OrderLine(int unitPrice,int quantity) { public int subtotal(){return unitPrice*quantity;} }"
+      },
+      {
+        "name": "src/main/java/quest/orders/PricingService.java",
+        "content": "package quest.orders; import java.util.List; public class PricingService { public static int total(List<OrderLine> lines,int discount){int sum=0;for(OrderLine line:lines)sum+=line.subtotal();return sum;} }"
+      },
+      {
+        "name": "src/main/java/quest/orders/OrderReport.java",
+        "content": "package quest.orders; public class OrderReport { public static String render(int amount){return \"TOTAL=\"+amount;} }"
+      }
+    ],
+    "tests": [
+      {
+        "input": "2 100 2 50 3 10",
+        "expected": "TOTAL=315\n"
+      },
+      {
+        "input": "1 100 1 100",
+        "expected": "TOTAL=0\n"
+      },
+      {
+        "input": "0 50",
+        "expected": "TOTAL=0\n"
+      }
+    ],
+    "prerequisites": [
+      "order-subtotal"
+    ],
+    "entryClass": "quest.orders.Application",
+    "buildKind": "javac",
+    "editableFiles": [
+      "src/main/java/quest/orders/PricingService.java"
+    ]
+  },
+  {
+    "id": "order-release",
+    "order": 42,
+    "title": "完成订单报表与边界验证",
+    "shortTitle": "完成订单报表与边界验证",
+    "summary": "保留只读入口，校验负价格/负数量/非法折扣并输出 ERROR；正常报表改为 PAYABLE=金额。",
+    "concept": "阅读和修改分层项目",
+    "topicId": "order-project",
+    "kind": "project",
+    "difficulty": 3,
+    "xp": 65,
+    "minutes": 14,
+    "paragraphs": [
+      "先阅读只读的 Application：它负责解析输入和调用领域对象、价格服务、报表类。项目按 package 和 src/main/java 目录组织，判题会一起编译所有文件。",
+      "输入为 n，随后 n 组单价/数量，最后一个折扣百分比。金额为整数分；本项目使用 int，输入保证合法总额不超过 1000000。",
+      "分层职责：OrderLine 维护单行不变量；PricingService 汇总与折扣；OrderReport 只处理呈现。每步 starter 已包含前一步的正确实现。",
+      "OrderLine 使用 record，自动提供 unitPrice()/quantity() 访问器；最后一步可在紧凑构造器 public OrderLine { ... } 中校验参数。"
+    ],
+    "task": "保留只读入口，校验负价格/负数量/非法折扣并输出 ERROR；正常报表改为 PAYABLE=金额。",
+    "hints": [
+      "先运行起始代码，结合实际错误与目标定位需要修改的位置。",
+      "先阅读只读的 Application：它负责解析输入和调用领域对象、价格服务、报表类。项目按 package 和 src/main/java 目录组织，判题会一起编译所有文件。",
+      "分层职责：OrderLine 维护单行不变量；PricingService 汇总与折扣；OrderReport 只处理呈现。每步 starter 已包含前一步的正确实现。"
+    ],
+    "starter": [
+      {
+        "name": "src/main/java/quest/orders/Application.java",
+        "content": "package quest.orders;\nimport java.util.*;\npublic class Application {\n public static void main(String[] args) {\n  var in=new Scanner(System.in);int n=in.nextInt();var lines=new ArrayList<OrderLine>();\n  try { for(int i=0;i<n;i++)lines.add(new OrderLine(in.nextInt(),in.nextInt()));\n   int discount=in.nextInt();System.out.println(OrderReport.render(PricingService.total(lines,discount)));\n  } catch(IllegalArgumentException e) { System.out.println(\"ERROR\"); }\n }\n}\n"
+      },
+      {
+        "name": "src/main/java/quest/orders/OrderLine.java",
+        "content": "package quest.orders; public record OrderLine(int unitPrice,int quantity) { public int subtotal(){return unitPrice*quantity;} }"
+      },
+      {
+        "name": "src/main/java/quest/orders/PricingService.java",
+        "content": "package quest.orders; import java.util.List; public class PricingService { public static int total(List<OrderLine> lines,int discount){int sum=0;for(OrderLine line:lines)sum+=line.subtotal();return sum*(100-discount)/100;} }"
+      },
+      {
+        "name": "src/main/java/quest/orders/OrderReport.java",
+        "content": "package quest.orders; public class OrderReport { public static String render(int amount){return \"TOTAL=\"+amount;} }"
+      }
+    ],
+    "tests": [
+      {
+        "input": "2 100 2 50 3 10",
+        "expected": "PAYABLE=315\n"
+      },
+      {
+        "input": "0 0",
+        "expected": "PAYABLE=0\n"
+      },
+      {
+        "input": "1 -1 2 0",
+        "expected": "ERROR\n"
+      },
+      {
+        "input": "1 1 -2 0",
+        "expected": "ERROR\n"
+      },
+      {
+        "input": "1 100 1 101",
+        "expected": "ERROR\n"
+      }
+    ],
+    "prerequisites": [
+      "order-discount"
+    ],
+    "entryClass": "quest.orders.Application",
+    "buildKind": "javac",
+    "editableFiles": [
+      "src/main/java/quest/orders/OrderLine.java",
+      "src/main/java/quest/orders/PricingService.java",
+      "src/main/java/quest/orders/OrderReport.java"
     ]
   }
 ]

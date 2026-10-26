@@ -86,9 +86,7 @@ const nav = [
           ><span class="mini-java">J</span
           ><span
             ><strong>Java 基础</strong
-            ><small
-              >{{ quest.completed.length }} / {{ quest.lessons.length || 10 }} 关已完成</small
-            ></span
+            ><small>{{ quest.completed.length }} / {{ quest.lessons.length }} 关已完成</small></span
           ><ChevronRight :size="15"
         /></RouterLink>
         <div class="progress-bar"><i :style="{ width: quest.percentage + '%' }" /></div>

@@ -30,8 +30,19 @@ const badges = computed(() => [
   },
   {
     name: '基础探索者',
-    text: '完成全部 10 关',
-    unlocked: quest.completed.length >= 10,
+    text: '完成原有 10 个入门知识点',
+    unlocked: [
+      'hello-world',
+      'variables',
+      'types',
+      'operators',
+      'conditions',
+      'loops',
+      'arrays',
+      'methods',
+      'strings',
+      'exceptions',
+    ].every((id) => quest.completed.includes(id)),
     icon: Trophy,
   },
 ])
@@ -57,7 +68,10 @@ const badges = computed(() => [
       </section>
       <div class="stats-grid">
         <div class="stat-card">
-          <small>已通关关卡</small><strong>{{ quest.completed.length }}<span> / 10</span></strong>
+          <small>已通关关卡</small
+          ><strong
+            >{{ quest.completed.length }}<span> / {{ quest.lessons.length }}</span></strong
+          >
         </div>
         <div class="stat-card">
           <small>累计经验</small><strong>{{ quest.user.xp }}<span> XP</span></strong>

@@ -12,7 +12,20 @@ import java.util.concurrent.atomic.*;
 public final class JudgeRunner implements AutoCloseable {
     public record Source(String name, String content) {}
     public record TestCase(String input, String expected) {}
-    public record Request(List<Source> files, List<TestCase> tests) {}
+    public record Request(List<Source> files, List<TestCase> tests, String entryClass) {
+        public Request { if(entryClass==null || entryClass.isBlank())entryClass="Main"; }
+        public Request(List<Source> files,List<TestCase> tests) { this(files,tests,"Main"); }
+    }
+    public static boolean validSourcePath(String name) {
+        if(name==null || name.length()>96 || !name.matches("(?:[A-Za-z_][A-Za-z0-9_]{0,30}/){0,8}[A-Za-z_][A-Za-z0-9_]{0,60}\\.java"))return false;
+        for(String part:name.split("/")) if(part.matches("(?i)(CON|PRN|AUX|NUL|COM[1-9]|LPT[1-9])(?:\\.java)?"))return false;
+        return true;
+    }
+    public static boolean hasEntry(List<String> names,String entry) {
+        if(entry==null || entry.length()>180 || !entry.matches("[A-Za-z_][A-Za-z0-9_]*(?:\\.[A-Za-z_][A-Za-z0-9_]*)*"))return false;
+        String path=entry.replace('.', '/')+".java";
+        return names.contains(path) || names.contains("src/main/java/"+path);
+    }
     public record CaseResult(String status, boolean passed, String input, String expected,
                              String stdout, String stderr, long durationMs) {}
     public record Result(String status, boolean passed, List<CaseResult> tests, int totalTests, String mode) {}
@@ -44,14 +57,14 @@ public final class JudgeRunner implements AutoCloseable {
         if(request==null || request.files()==null || request.tests()==null || request.files().isEmpty()
             || request.files().size()>8 || request.tests().isEmpty() || request.tests().size()>5)
             throw new IllegalArgumentException("Expected 1-8 Java files and 1-5 trusted tests");
-        Set<String> names=new HashSet<>(); int size=0;
+        Set<String> names=new HashSet<>(), folded=new HashSet<>(); int size=0;
         for(var file:request.files()) {
             if(file==null || file.name()==null || file.content()==null
-                || !file.name().matches("[A-Za-z][A-Za-z0-9_]{0,60}\\.java") || !names.add(file.name()))
+                || !validSourcePath(file.name()) || !names.add(file.name()) || !folded.add(file.name().toLowerCase(Locale.ROOT)))
                 throw new IllegalArgumentException("Invalid or duplicate Java filename");
             size+=file.content().length();
         }
-        if(!names.contains("Main.java") || size>32768) throw new IllegalArgumentException("Main.java required; source limit 32KiB characters");
+        if(!hasEntry(new ArrayList<>(names),request.entryClass()) || size>32768) throw new IllegalArgumentException("Entry source required; source limit 32KiB characters");
         for(var test:request.tests()) if(test==null || test.input()==null || test.expected()==null
             || test.input().length()>16384 || test.expected().length()>16384)
             throw new IllegalArgumentException("Invalid trusted test");
@@ -60,7 +73,7 @@ public final class JudgeRunner implements AutoCloseable {
         validate(request);
         List<CaseResult> results=new ArrayList<>();
         for(var test:request.tests()) {
-            var result=runCase(request.files(),test);
+            var result=runCase(request.files(),test,request.entryClass());
             results.add(result);
             if(Set.of("COMPILE_ERROR","TIME_LIMIT","OUTPUT_LIMIT").contains(result.status())) break;
         }
@@ -68,13 +81,18 @@ public final class JudgeRunner implements AutoCloseable {
         String status=passed?"PASSED":results.stream().filter(t->!t.passed()).findFirst().orElseThrow().status();
         return new Result(status,passed,results,request.tests().size(),mode);
     }
-    private CaseResult runCase(List<Source> files, TestCase test) throws Exception {
+    private CaseResult runCase(List<Source> files, TestCase test,String entryClass) throws Exception {
         long start=System.nanoTime();
         Path directory=Files.createTempDirectory("java-quest-run-");
         String container="jq-java-"+UUID.randomUUID();
         boolean docker=mode.equals("docker");
         try {
-            for(var file:files) Files.writeString(directory.resolve(file.name()),file.content(),StandardCharsets.UTF_8);
+            for(var file:files) {
+                Path path=directory.resolve(file.name()).normalize();
+                if(!path.startsWith(directory))throw new IllegalArgumentException("Source path escaped temporary workspace");
+                Files.createDirectories(path.getParent());
+                Files.writeString(path,file.content(),StandardCharsets.UTF_8);
+            }
             List<String> compile=new ArrayList<>();
             List<String> run=new ArrayList<>();
             if(docker) {
@@ -95,14 +113,14 @@ public final class JudgeRunner implements AutoCloseable {
                 compile.add(javaTool("javac").toString());
                 run.add(javaTool("java").toString());
             }
-            compile.addAll(List.of("-J-Xmx96m","-J-XX:ActiveProcessorCount=1","-proc:none","-encoding","UTF-8"));
+            compile.addAll(List.of("-J-Xmx96m","-J-XX:ActiveProcessorCount=1","-proc:none","-encoding","UTF-8","-d","."));
             for(var file:files) compile.add(file.name());
             var compilation=execute(compile,directory,"",Duration.ofSeconds(15));
             if(compilation.limit()!=null || compilation.exitCode()!=0) {
                 String status=compilation.limit()!=null?compilation.limit():"COMPILE_ERROR";
                 return result(status,compilation,test,start);
             }
-            run.addAll(List.of("-Xmx96m","-XX:MaxMetaspaceSize=64m","-XX:ActiveProcessorCount=1","-Dfile.encoding=UTF-8","-cp",".","Main"));
+            run.addAll(List.of("-Xmx96m","-XX:MaxMetaspaceSize=64m","-XX:ActiveProcessorCount=1","-Dfile.encoding=UTF-8","-cp",".",entryClass));
             var execution=execute(run,directory,test.input(),Duration.ofSeconds(3));
             String status=execution.limit()!=null?execution.limit():execution.exitCode()!=0?"RUNTIME_ERROR":
                 normalize(execution.stdout()).equals(normalize(test.expected()))?"PASSED":"WRONG_ANSWER";
@@ -136,7 +154,7 @@ public final class JudgeRunner implements AutoCloseable {
             catch(Exception ignored) { } // --rm + 60s container lifetime is an additional cleanup bound.
         }
     }
-    /** Minimal POSIX tar for already-validated flat source filenames; no archive input is accepted. */
+    /** Minimal POSIX tar for already-validated source paths; no archive input is accepted. */
     private static byte[] archive(List<Source> files) throws IOException {
         var output=new ByteArrayOutputStream();
         for(var file:files) {

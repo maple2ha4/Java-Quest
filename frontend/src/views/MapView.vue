@@ -1,55 +1,161 @@
 <script setup lang="ts">
-import { Check, Lock, ArrowRight, Clock, Code2 } from 'lucide-vue-next'
+import { computed, ref, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { Check, Lock, ArrowRight, Clock, Code2, Search } from 'lucide-vue-next'
 import { useQuest } from '../store'
-const quest = useQuest()
-function unlocked(order: number) {
-  return order === 1 || quest.completed.includes(quest.lessons[order - 2]!.id)
+const quest = useQuest(),
+  route = useRoute(),
+  router = useRouter(),
+  query = ref(''),
+  onlyAvailable = ref(false)
+const selected = computed(
+  () => quest.curriculum.find((s) => s.id === route.query.stage) || quest.curriculum[0],
+)
+const kind: Record<string, string> = {
+  guided: '01 · 模仿与补全',
+  debug: '02 · 定位与修复',
+  challenge: '03 · 独立实现',
+  project: '03 · 项目验收',
 }
+const plans = computed(
+  () => selected.value?.chapters.flatMap((c) => c.topics.flatMap((t) => t.exercises)) || [],
+)
+const chapters = computed(
+  () =>
+    selected.value?.chapters
+      .map((c) => ({
+        ...c,
+        topics: c.topics.filter((t) => {
+          const matches =
+            !query.value ||
+            [c.title, t.title, ...t.exercises.map((e) => e.title)].some((text) =>
+              text.toLowerCase().includes(query.value.toLowerCase()),
+            )
+          return matches && (!onlyAvailable.value || t.exercises.some((e) => e.lessonId))
+        }),
+      }))
+      .filter((c) => c.topics.length) || [],
+)
+function select(id: string) {
+  router.replace({ path: '/map', query: { stage: id } })
+}
+watch(
+  () => selected.value?.id,
+  () => {
+    query.value = ''
+  },
+)
 </script>
 <template>
-  <div class="page map-page">
-    <span class="eyebrow">THE LEARNING MAP</span>
-    <h1>把好奇，写成能力。</h1>
-    <p class="page-intro">一个概念，一次练习，一步一个脚印。</p>
+  <div class="page curriculum-page">
+    <span class="eyebrow">FROM FIRST LINE TO ENGINEERING</span>
+    <h1>从一个知识点，到独立交付。</h1>
+    <p class="page-intro">
+      按阶段、章节、知识点展开。每个知识点依次模仿、修复、独立实现；规划中的练习不计入学习进度。
+    </p>
+    <nav class="stage-tabs" aria-label="课程阶段">
+      <button
+        v-for="(stage, i) in quest.curriculum"
+        :key="stage.id"
+        :class="{ active: stage.id === selected?.id }"
+        @click="select(stage.id)"
+      >
+        {{ String(i + 1).padStart(2, '0') }} {{ stage.title }}
+      </button>
+    </nav>
     <div class="map-banner">
-      <span class="stage-icon green"><Code2 :size="26" /></span>
+      <span class="stage-icon green"><Code2 :size="25" /></span>
       <div>
-        <h2>第一章 · Java 基础</h2>
-        <p>10 个互动关卡 · 从输出到异常处理</p>
+        <h2>{{ selected?.title }}</h2>
+        <p>{{ selected?.goal }}</p>
       </div>
-      <span class="pill">{{ quest.completed.length }} / 10 已完成</span>
+      <span class="pill"
+        >{{ plans.filter((e) => e.lessonId).length }} 已开放 / {{ plans.length }} 练习标题</span
+      >
     </div>
-    <div class="map-list">
-      <RouterLink
-        v-for="lesson in quest.lessons"
-        :key="lesson.id"
-        :to="'/learn/' + lesson.id"
-        class="map-row"
-        :class="{ done: quest.completed.includes(lesson.id), locked: !unlocked(lesson.order) }"
-        ><span class="map-node"
-          ><Check v-if="quest.completed.includes(lesson.id)" :size="21" /><Lock
-            v-else-if="!unlocked(lesson.order)"
-            :size="18"
-          /><span v-else>{{ String(lesson.order).padStart(2, '0') }}</span></span
-        >
+    <div class="catalog-tools">
+      <label
+        ><Search :size="16" /><input
+          v-model="query"
+          aria-label="搜索当前阶段"
+          placeholder="搜索章节、知识点或练习…" /></label
+      ><label class="availability-filter"
+        ><input v-model="onlyAvailable" type="checkbox" />仅看已开放知识点</label
+      >
+    </div>
+    <p v-if="!chapters.length" class="empty-card">
+      当前筛选下没有知识点。可以关闭筛选或更换关键词。
+    </p>
+    <section v-for="(chapter, ci) in chapters" :key="chapter.id" class="chapter-block">
+      <div class="chapter-heading">
+        <span>{{ String(ci + 1).padStart(2, '0') }}</span>
         <div>
-          <div class="eyebrow">{{ lesson.concept }}</div>
-          <h3>{{ lesson.title }}</h3>
-          <p>{{ lesson.summary }}</p>
+          <h2>{{ chapter.title }}</h2>
+          <small>{{ chapter.topics.length }} 个知识点</small>
         </div>
-        <div class="map-row-meta">
-          <span><Clock :size="13" />{{ lesson.minutes }} 分钟</span><span>+{{ lesson.xp }} XP</span
-          ><small>{{
-            quest.completed.includes(lesson.id)
-              ? '已通关'
-              : unlocked(lesson.order)
-                ? '可以开始'
-                : '完成上一关后解锁提交'
-          }}</small>
+      </div>
+      <details
+        v-for="topic in chapter.topics"
+        :key="topic.id"
+        class="topic-block"
+        :open="!!query || topic.exercises.some((e) => e.lessonId)"
+      >
+        <summary>
+          <div>
+            <h3>{{ topic.title }}</h3>
+            <p>{{ topic.goal }}</p>
+          </div>
+          <span class="pill"
+            >{{ topic.exercises.filter((e) => e.lessonId).length }} /
+            {{ topic.exercises.length }} 已开放</span
+          >
+        </summary>
+        <div class="exercise-list">
+          <component
+            :is="exercise.lessonId ? 'RouterLink' : 'div'"
+            v-for="exercise in topic.exercises"
+            :key="exercise.id"
+            :to="exercise.lessonId ? '/learn/' + exercise.lessonId : undefined"
+            class="exercise-row"
+            :class="{
+              planned: !exercise.lessonId,
+              done: exercise.lessonId && quest.completed.includes(exercise.lessonId),
+            }"
+            ><span class="exercise-marker"
+              ><Check
+                v-if="exercise.lessonId && quest.completed.includes(exercise.lessonId)"
+                :size="18" /><Lock
+                v-else-if="
+                  !exercise.lessonId || !quest.isUnlocked(quest.lessonById(exercise.lessonId)!)
+                "
+                :size="16" /><Code2 v-else :size="18"
+            /></span>
+            <div>
+              <small>{{ kind[exercise.kind] || exercise.kind }}</small>
+              <h3>{{ exercise.title }}</h3>
+              <p v-if="exercise.lessonId">
+                {{ quest.lessonById(exercise.lessonId)?.starter.length }} 个源码文件 ·
+                {{ quest.lessonById(exercise.lessonId)?.minutes }} 分钟 · +{{
+                  quest.lessonById(exercise.lessonId)?.xp
+                }}
+                XP
+              </p>
+            </div>
+            <span v-if="!exercise.lessonId" class="quiet">内容规划中</span
+            ><span v-else-if="quest.completed.includes(exercise.lessonId)" class="green-text"
+              >已通关</span
+            ><span v-else class="quiet">{{
+              quest.isUnlocked(quest.lessonById(exercise.lessonId)!)
+                ? '开始练习'
+                : '可预习 · 前置未完成'
+            }}</span
+            ><ArrowRight v-if="exercise.lessonId" :size="17"
+          /></component>
         </div>
-        <ArrowRight :size="19"
-      /></RouterLink>
+      </details>
+    </section>
+    <div class="info-banner">
+      目录展示完整学习范围；“已开放”才有讲解、起始源码和真实测试。高级课程将按章节逐步交付。
     </div>
-    <div class="info-banner">下一站：集合与数据结构。后续课程正在设计中，当前尚未开放。</div>
   </div>
 </template>

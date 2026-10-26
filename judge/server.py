@@ -111,6 +111,8 @@ def normalize(value):
 
 
 def validate(data):
+    if data.get('entryClass', 'Main') != 'Main':
+        raise ValueError('Packaged projects require the Java judge jar; legacy Python judge supports Main only')
     files = data.get('files', [])
     if not 1 <= len(files) <= 8 or sum(len(f.get('content', '')) for f in files) > 32768:
         raise ValueError('Invalid source size')

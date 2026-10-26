@@ -107,3 +107,11 @@ GET `/api/capabilities` 下发配置状态 judgeEnabled，前端依据此字段�
 Maven 额外生成 classifier=judge 的独立可执行 jar，入口 JudgeMain，无 Spring/数据库启动；API 入口保持 QuestApplication。JudgeRunner 统一校验源文件、测试协议和结果，选择 process/docker；无自动降级。process 构建器为当前 JDK 的绝对路径，分别启动 javac/java，用有界 stdout/stderr 和 deadline 监督，环境变量白名单过滤只是减少误泄露，不是权限隔离。docker 则启动一次性受限容器，将自建的受控平面文件 tar 通过 docker exec 的 stdin 写入 tmpfs，保留 read-only rootfs，不挂载宿主路径。Java 协调器与原 Python Docker 协调器兼容同一判题协议。
 
 模式在受信任启动配置中选择：off/process/docker/remote。进程模式需要 --allow-local-process，协调器核对 X-Judge-Mode 后才执行；API 验证 process 响应必须声明 process，防止错误配置被显示为容器隔离。启动脚本为本次拥有的 API/判题进程生成短期随机 token，退出时只停止自己启动的进程。三个本机模式默认使用同一 H2 文件，而不是把数据库选择和判题运行器绑定。其他电脑的数据不会自动同步。
+
+## 层级课程与 Java 源码项目
+
+curriculum.json 保存 Stage/Chapter/Topic/Exercise，Exercise.lessonId=null 表示规划；lessons.json 只包含可运行教学。两者发布时验证一一映射、源文件/入口、完整讲解、可编辑文件与依赖 DAG。prerequisites 使用稳定课程 ID，展示 order 不再决定解锁，因此扩充目录不需要重置现有用户。
+
+项目文件仅接受安全相对 .java 路径，长度最多 96 字符，拒绝绝对路径、反斜线、点段、Windows 设备名与大小写重复。最多 8 文件/32KiB 字符、1–5 组可信测试，保持现有资源预算。源码写入新临时目录或 Docker tmpfs，编译时用 -d . 输出包目录，运行器使用服务器指定的 entryClass。旧请求入口默认 Main。
+
+课程 editableFiles 描述允许修改的初始文件；API 在保存草稿和判题前强制保留其他初始文件内容，也要求全部初始文件存在。前端根据相同数据将调用方设为只读。额外帮助类允许添加；参考实现在 test resources 中用于作者 QA，不作为 API 响应。数据驱动不意味着自动生成正确课程，作者必须提供讲解、任务、起始失败、参考成功和边界测试证据。

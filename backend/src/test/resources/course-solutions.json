@@ -1,0 +1,302 @@
+{
+  "hello-world": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        System.out.println(\"Hello, Java Quest!\");\n    }\n}\n"
+    }
+  ],
+  "variables": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        int points=10;points+=5;System.out.println(points);\n    }\n}\n"
+    }
+  ],
+  "types": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        double result=5.0/2;System.out.println(result);\n    }\n}\n"
+    }
+  ],
+  "operators": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        int remainder=17%5;System.out.println(remainder);\n    }\n}\n"
+    }
+  ],
+  "conditions": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        int score=60;if(score>=60)System.out.println(\"PASS\");else System.out.println(\"RETRY\");\n    }\n}\n"
+    }
+  ],
+  "loops": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        int sum=0;for(int i=1;i<=5;i++)sum+=i;System.out.println(sum);\n    }\n}\n"
+    }
+  ],
+  "arrays": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        int sum=0;for(int v:new int[]{3,5,8})sum+=v;System.out.println(sum);\n    }\n}\n"
+    }
+  ],
+  "methods": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    static int doubleOf(int n) { return n*2; }\n    public static void main(String[] args) throws Exception {\n        System.out.println(doubleOf(7));\n    }\n}\n"
+    }
+  ],
+  "strings": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        System.out.println(\"  java  \".trim().toUpperCase(java.util.Locale.ROOT));\n    }\n}\n"
+    }
+  ],
+  "exceptions": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        try {Integer.parseInt(\"abc\");}catch(NumberFormatException e){System.out.println(\"INVALID\");}\n    }\n}\n"
+    }
+  ],
+  "hello-lines": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        System.out.println(\"Java\");System.out.println(\"Quest\");\n    }\n}\n"
+    }
+  ],
+  "hello-profile": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        System.out.println(\"Name: Learner\");System.out.println(\"Language: Java\");System.out.println(\"Goal: Build\");\n    }\n}\n"
+    }
+  ],
+  "balance-update": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        int balance=20;balance+=5;System.out.println(balance);\n    }\n}\n"
+    }
+  ],
+  "input-points": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        var in = new java.util.Scanner(System.in); int points=in.nextInt(), delta=in.nextInt();System.out.println(points+delta);\n    }\n}\n"
+    }
+  ],
+  "long-overflow": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        long distance=50000L*50000L;System.out.println(distance);\n    }\n}\n"
+    }
+  ],
+  "mean-value": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        var in = new java.util.Scanner(System.in); long a=in.nextLong(), b=in.nextLong();System.out.println((a+b)/2.0);\n    }\n}\n"
+    }
+  ],
+  "discount-precedence": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        System.out.println((100-20)*2);\n    }\n}\n"
+    }
+  ],
+  "range-multiple": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        var in = new java.util.Scanner(System.in); int n=in.nextInt();System.out.println(n>=10&&n<=99&&n%3==0);\n    }\n}\n"
+    }
+  ],
+  "grade-boundary": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        int score=60;System.out.println(score>=60?\"PASS\":\"RETRY\");\n    }\n}\n"
+    }
+  ],
+  "grade-bands": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        var in = new java.util.Scanner(System.in); int s=in.nextInt();System.out.println(s<0||s>100?\"INVALID\":s>=90?\"A\":s>=80?\"B\":s>=60?\"C\":\"D\");\n    }\n}\n"
+    }
+  ],
+  "reverse-sum": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        int sum=0;for(int i=5;i>=1;i--)sum+=i;System.out.println(sum);\n    }\n}\n"
+    }
+  ],
+  "sum-to-n": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        var in = new java.util.Scanner(System.in); int n=in.nextInt();int sum=0;for(int i=1;i<=n;i++)sum+=i;System.out.println(sum);\n    }\n}\n"
+    }
+  ],
+  "array-boundary": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        int[] a={2,4,6};int sum=0;for(int i=0;i<a.length;i++)sum+=a[i];System.out.println(sum);\n    }\n}\n"
+    }
+  ],
+  "array-maximum": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        var in = new java.util.Scanner(System.in); int n=in.nextInt();int max=Integer.MIN_VALUE;for(int i=0;i<n;i++)max=Math.max(max,in.nextInt());System.out.println(max);\n    }\n}\n"
+    }
+  ],
+  "method-arguments": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    static int subtract(int a,int b){return a-b;}\n    public static void main(String[] args) throws Exception {\n        System.out.println(subtract(9,3));\n    }\n}\n"
+    }
+  ],
+  "clamp-value": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    static int clamp(int value,int min,int max){return Math.max(min,Math.min(value,max));}\n    public static void main(String[] args) throws Exception {\n        var in = new java.util.Scanner(System.in); System.out.println(clamp(in.nextInt(),in.nextInt(),in.nextInt()));\n    }\n}\n"
+    }
+  ],
+  "string-equality": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        String a=new String(\"Java\"), b=new String(\"Java\");System.out.println(a.equals(b));\n    }\n}\n"
+    }
+  ],
+  "normalized-tags": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        var in = new java.util.Scanner(System.in); String a=in.nextLine(), b=in.nextLine();System.out.println(a.trim().toLowerCase(java.util.Locale.ROOT).equals(b.trim().toLowerCase(java.util.Locale.ROOT)));\n    }\n}\n"
+    }
+  ],
+  "catch-correct-type": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        try{Integer.parseInt(\"abc\");}catch(NumberFormatException e){System.out.println(\"INVALID\");}\n    }\n}\n"
+    }
+  ],
+  "parse-or-invalid": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        var in = new java.util.Scanner(System.in); String text=in.nextLine();try{System.out.println(Integer.parseInt(text.trim()));}catch(NumberFormatException e){System.out.println(\"INVALID\");}\n    }\n}\n"
+    }
+  ],
+  "account-constructor": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        System.out.println(new Account(10).balance());\n    }\n}\n"
+    },
+    {
+      "name": "Account.java",
+      "content": "public class Account { private int balance; public Account(int balance){this.balance=balance;} public int balance(){return balance;} }"
+    }
+  ],
+  "account-state": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        Account a=new Account(10);a.deposit(5);System.out.println(a.balance());\n    }\n}\n"
+    },
+    {
+      "name": "Account.java",
+      "content": "public class Account { private int balance; public Account(int balance){this.balance=balance;} public int balance(){return balance;}  public void deposit(int amount){balance+=amount;} }"
+    }
+  ],
+  "account-withdraw": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        var in = new java.util.Scanner(System.in); Account a=new Account(in.nextInt());boolean ok=a.withdraw(in.nextInt());System.out.println(ok+\" \"+a.balance());\n    }\n}\n"
+    },
+    {
+      "name": "Account.java",
+      "content": "public class Account { private int balance; public Account(int balance){this.balance=balance;} public int balance(){return balance;} public void deposit(int amount){balance+=amount;} public boolean withdraw(int amount){if(amount<0||amount>balance)return false;balance-=amount;return true;} }"
+    }
+  ],
+  "map-increment": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        var counts=new java.util.HashMap<String,Integer>();for(String word:new String[]{\"java\",\"java\",\"map\"})counts.merge(word,1,Integer::sum);System.out.println(counts.get(\"java\"));\n    }\n}\n"
+    }
+  ],
+  "map-count-debug": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        var in = new java.util.Scanner(System.in); int n=in.nextInt();var counts=new java.util.HashMap<String,Integer>();for(int i=0;i<n;i++){String word=in.next();counts.put(word,counts.getOrDefault(word,0)+1);}System.out.println(counts.getOrDefault(\"java\",0));\n    }\n}\n"
+    }
+  ],
+  "word-report": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        var in = new java.util.Scanner(System.in); int n=in.nextInt();var counts=new java.util.TreeMap<String,Integer>();for(int i=0;i<n;i++)counts.merge(in.next().toLowerCase(java.util.Locale.ROOT),1,Integer::sum);counts.forEach((k,v)->System.out.println(k+\":\"+v));\n    }\n}\n"
+    }
+  ],
+  "thread-join": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        var count=new java.util.concurrent.atomic.AtomicInteger();Thread worker=new Thread(()->{for(int i=0;i<3;i++)count.incrementAndGet();});worker.start();worker.join();System.out.println(count.get());\n    }\n}\n"
+    }
+  ],
+  "atomic-lost-update": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        var barrier=new java.util.concurrent.CyclicBarrier(2);var count=new java.util.concurrent.atomic.AtomicInteger();Runnable job=()->{int before=count.get();try{barrier.await();}catch(Exception e){throw new RuntimeException(e);}count.incrementAndGet();};Thread a=new Thread(job), b=new Thread(job);a.start();b.start();a.join();b.join();System.out.println(count.get());\n    }\n}\n"
+    }
+  ],
+  "atomic-counter": [
+    {
+      "name": "Main.java",
+      "content": "public class Main {\n    \n    public static void main(String[] args) throws Exception {\n        var in = new java.util.Scanner(System.in); int n=in.nextInt();var count=new java.util.concurrent.atomic.AtomicInteger();Runnable job=()->{for(int i=0;i<n;i++)count.incrementAndGet();};Thread a=new Thread(job), b=new Thread(job);a.start();b.start();a.join();b.join();System.out.println(count.get());\n    }\n}\n"
+    }
+  ],
+  "order-subtotal": [
+    {
+      "name": "src/main/java/quest/orders/Application.java",
+      "content": "package quest.orders;\nimport java.util.*;\npublic class Application {\n public static void main(String[] args) {\n  var in=new Scanner(System.in);int n=in.nextInt();var lines=new ArrayList<OrderLine>();\n  try { for(int i=0;i<n;i++)lines.add(new OrderLine(in.nextInt(),in.nextInt()));\n   int discount=in.nextInt();System.out.println(OrderReport.render(PricingService.total(lines,discount)));\n  } catch(IllegalArgumentException e) { System.out.println(\"ERROR\"); }\n }\n}\n"
+    },
+    {
+      "name": "src/main/java/quest/orders/OrderLine.java",
+      "content": "package quest.orders; public record OrderLine(int unitPrice,int quantity) { public int subtotal(){return unitPrice*quantity;} }"
+    },
+    {
+      "name": "src/main/java/quest/orders/PricingService.java",
+      "content": "package quest.orders; import java.util.List; public class PricingService { public static int total(List<OrderLine> lines,int discount){int sum=0;for(OrderLine line:lines)sum+=line.subtotal();return sum;} }"
+    },
+    {
+      "name": "src/main/java/quest/orders/OrderReport.java",
+      "content": "package quest.orders; public class OrderReport { public static String render(int amount){return \"TOTAL=\"+amount;} }"
+    }
+  ],
+  "order-discount": [
+    {
+      "name": "src/main/java/quest/orders/Application.java",
+      "content": "package quest.orders;\nimport java.util.*;\npublic class Application {\n public static void main(String[] args) {\n  var in=new Scanner(System.in);int n=in.nextInt();var lines=new ArrayList<OrderLine>();\n  try { for(int i=0;i<n;i++)lines.add(new OrderLine(in.nextInt(),in.nextInt()));\n   int discount=in.nextInt();System.out.println(OrderReport.render(PricingService.total(lines,discount)));\n  } catch(IllegalArgumentException e) { System.out.println(\"ERROR\"); }\n }\n}\n"
+    },
+    {
+      "name": "src/main/java/quest/orders/OrderLine.java",
+      "content": "package quest.orders; public record OrderLine(int unitPrice,int quantity) { public int subtotal(){return unitPrice*quantity;} }"
+    },
+    {
+      "name": "src/main/java/quest/orders/PricingService.java",
+      "content": "package quest.orders; import java.util.List; public class PricingService { public static int total(List<OrderLine> lines,int discount){int sum=0;for(OrderLine line:lines)sum+=line.subtotal();return sum*(100-discount)/100;} }"
+    },
+    {
+      "name": "src/main/java/quest/orders/OrderReport.java",
+      "content": "package quest.orders; public class OrderReport { public static String render(int amount){return \"TOTAL=\"+amount;} }"
+    }
+  ],
+  "order-release": [
+    {
+      "name": "src/main/java/quest/orders/Application.java",
+      "content": "package quest.orders;\nimport java.util.*;\npublic class Application {\n public static void main(String[] args) {\n  var in=new Scanner(System.in);int n=in.nextInt();var lines=new ArrayList<OrderLine>();\n  try { for(int i=0;i<n;i++)lines.add(new OrderLine(in.nextInt(),in.nextInt()));\n   int discount=in.nextInt();System.out.println(OrderReport.render(PricingService.total(lines,discount)));\n  } catch(IllegalArgumentException e) { System.out.println(\"ERROR\"); }\n }\n}\n"
+    },
+    {
+      "name": "src/main/java/quest/orders/OrderLine.java",
+      "content": "package quest.orders; public record OrderLine(int unitPrice,int quantity) { public OrderLine { if(unitPrice<0||quantity<0)throw new IllegalArgumentException(); } public int subtotal(){return unitPrice*quantity;} }"
+    },
+    {
+      "name": "src/main/java/quest/orders/PricingService.java",
+      "content": "package quest.orders; import java.util.List; public class PricingService { public static int total(List<OrderLine> lines,int discount){if(discount<0||discount>100)throw new IllegalArgumentException();int sum=0;for(OrderLine line:lines)sum+=line.subtotal();return sum*(100-discount)/100;} }"
+    },
+    {
+      "name": "src/main/java/quest/orders/OrderReport.java",
+      "content": "package quest.orders; public class OrderReport { public static String render(int amount){return \"PAYABLE=\"+amount;} }"
+    }
+  ]
+}

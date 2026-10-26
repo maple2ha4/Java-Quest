@@ -22,6 +22,7 @@ public class Api {
     public record Note(@NotNull @Size(max=10000) String body) {}
     @GetMapping("/health") public Object health() { db.queryForObject("SELECT 1",Integer.class);return Map.of("status","ok"); }
     @GetMapping("/capabilities") public Object capabilities() { return Map.of("judgeEnabled",learning.judgingEnabled(),"judgeMode",learning.judgingMode()); }
+    @GetMapping("/curriculum") public Object curriculum() { return curriculum.stages(); }
     @GetMapping("/lessons") public Object lessons() { return curriculum.all().stream().map(Curriculum.Lesson::publicView).toList(); }
     @PostMapping("/auth/register") public Object register(@Valid @RequestBody Registration body,HttpServletRequest req,HttpServletResponse res) {
         accounts.limit("auth:"+req.getRemoteAddr(),10,60000);

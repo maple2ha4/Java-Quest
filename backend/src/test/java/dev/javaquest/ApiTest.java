@@ -57,7 +57,7 @@ class ApiTest {
         session=new Cookie("quest_session",cookie.split(";",2)[0].split("=",2)[1]);
     }
     @Test @Order(2) void curriculumHidesTestsAndEnforcesUnlocks() throws Exception {
-        mvc.perform(get("/api/lessons")).andExpect(status().isOk()).andExpect(jsonPath("$.length()").value(10)).andExpect(jsonPath("$[0].tests").doesNotExist());
+        mvc.perform(get("/api/lessons")).andExpect(status().isOk()).andExpect(jsonPath("$.length()").value(org.hamcrest.Matchers.greaterThanOrEqualTo(42))).andExpect(jsonPath("$[0].tests").doesNotExist());
         mvc.perform(post("/api/submissions").cookie(session).header("X-Quest-Client","1").contentType("application/json").content(submission("variables","Main.java")))
             .andExpect(status().isForbidden());
     }
@@ -111,6 +111,22 @@ class ApiTest {
                 mvc.perform(get("/api/me").cookie(current)).andExpect(jsonPath("$.xp").value(30)).andExpect(jsonPath("$.completed.length()").value(1));
             }
         } finally { judgeMode=0; }
+    }
+    @Test @Order(8) void projectDraftsPreserveReadOnlyDriverAndPrerequisites() throws Exception {
+        var registration=mvc.perform(post("/api/auth/register").header("X-Quest-Client","1").contentType("application/json")
+            .content("{\"email\":\"project@example.com\",\"name\":\"工程练习者\",\"password\":\"project-test-password\"}"))
+            .andExpect(status().isOk()).andReturn().getResponse();
+        Cookie current=new Cookie("quest_session",registration.getHeader("Set-Cookie").split(";",2)[0].split("=",2)[1]);
+        var draft=mvc.perform(get("/api/drafts/order-subtotal").cookie(current)).andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
+        var files=mapper.readTree(draft);
+        mvc.perform(put("/api/drafts/order-subtotal").cookie(current).header("X-Quest-Client","1").contentType("application/json").content(mapper.writeValueAsString(Map.of("files",files))))
+            .andExpect(status().isOk());
+        mvc.perform(post("/api/submissions").cookie(current).header("X-Quest-Client","1").contentType("application/json").content(mapper.writeValueAsString(Map.of("lessonId","order-subtotal","files",files))))
+            .andExpect(status().isForbidden());
+        ((com.fasterxml.jackson.databind.node.ObjectNode)files.get(0)).put("content","public class Forged {}");
+        mvc.perform(put("/api/drafts/order-subtotal").cookie(current).header("X-Quest-Client","1").contentType("application/json").content(mapper.writeValueAsString(Map.of("files",files))))
+            .andExpect(status().isBadRequest());
+        mvc.perform(get("/api/curriculum")).andExpect(status().isOk()).andExpect(jsonPath("$[0].chapters[0].topics[0].exercises[0].lessonId").value("hello-world"));
     }
     private String submission(String lesson,String name) throws Exception {
         return mapper.writeValueAsString(Map.of("lessonId",lesson,"files",List.of(Map.of("name",name,"content","public class Main {}"))));

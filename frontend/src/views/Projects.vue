@@ -1,50 +1,75 @@
 <script setup lang="ts">
-import { FolderCode, ArrowUpRight, Lock } from 'lucide-vue-next'
-const projects = [
+import { computed } from 'vue'
+import { FolderCode, ArrowUpRight, Check, Lock } from 'lucide-vue-next'
+import { useQuest } from '../store'
+const quest = useQuest()
+const steps = computed(() => quest.orderedLessons.filter((l) => l.topicId === 'order-project'))
+const planned = [
   {
-    title: '命令行任务清单',
-    level: 'Java 基础 + 集合',
-    text: '练习对象建模、列表操作和异常处理。',
-    checks: '验收：新增、完成、删除任务与非法输入处理。',
-  },
-  {
-    title: '你的第一个图书 API',
+    title: '图书与借阅 API',
     level: 'Maven + Spring Boot + MySQL',
-    text: '连接 Controller、Service 与数据库，构建可测试的接口。',
-    checks: '验收：CRUD、参数校验、事务与 API 合约测试。',
+    text: '真实多模块服务、API 合约、数据库迁移与并发借阅。',
   },
   {
-    title: '并发任务调度站',
-    level: '多线程 + 企业实战',
-    text: '把线程池、定时任务和实时消息连接成完整项目。',
-    checks: '验收：有界队列、幂等执行、超时与实时状态推送。',
+    title: '并发任务调度平台',
+    level: '并发 + Quartz + WebSocket',
+    text: '有界队列、幂等执行、取消、实时状态和故障恢复。',
+  },
+  {
+    title: '订单系统与工程评审',
+    level: '分布式一致性 + 性能 + 运维',
+    text: '以业务不变量、容量预算、故障演练与架构取舍验收。',
   },
 ]
 </script>
 <template>
   <div class="page">
-    <span class="eyebrow">BUILD SOMETHING REAL</span>
-    <h1>让知识，成为作品。</h1>
-    <p class="page-intro">把一个个知识点，连接成真正可用的项目。</p>
-    <div class="info-banner">
-      <Lock
-        :size="18"
-      />项目挑战属于后续阶段，当前尚未开放；以下为课程规划，没有模拟提交或虚假通关。
+    <span class="eyebrow">READ · CHANGE · VERIFY</span>
+    <h1>在已有工程中，完成真实改动。</h1>
+    <p class="page-intro">
+      先理解调用链，再修改指定类。只读入口由服务器保护，每次提交编译整个源码项目。
+    </p>
+    <section class="live-project">
+      <div>
+        <span class="pill">已开放 · Java 多文件项目</span>
+        <h2>订单结算工作台</h2>
+        <p>src/main/java → 领域对象 → 价格服务 → 报表输出。三步 starter 已包含前一步的正确实现。</p>
+        <p class="scope-note">
+          当前使用 javac 编译 package 源码，不执行 Maven 生命周期或 Spring Boot
+          服务；这两类项目运行器尚在规划中。
+        </p>
+      </div>
+      <ol>
+        <li v-for="step in steps" :key="step.id">
+          <RouterLink :to="'/learn/' + step.id"
+            ><Check v-if="quest.completed.includes(step.id)" :size="18" /><FolderCode
+              v-else
+              :size="18" /><span
+              ><strong>{{ step.title }}</strong
+              ><small
+                >{{ step.starter.length }} 个文件 · 修改
+                {{ step.editableFiles.map((n) => n.split('/').pop()).join('、') }}</small
+              ></span
+            ><ArrowUpRight :size="17"
+          /></RouterLink>
+        </li>
+      </ol>
+    </section>
+    <div class="section-heading">
+      <h2>下一批工程挑战</h2>
+      <RouterLink :to="{ path: '/map', query: { stage: 'engineering' } }" class="subtle-link"
+        >查看完整路线 <ArrowUpRight :size="16"
+      /></RouterLink>
     </div>
     <div class="project-grid">
-      <article v-for="(project, index) in projects" :key="project.title" class="project-card">
-        <div class="project-cover" :class="['green', 'blue', 'purple'][index]">
-          <FolderCode :size="50" stroke-width="1" /><span>PROJECT / 0{{ index + 1 }}</span>
-        </div>
+      <article v-for="project in planned" :key="project.title" class="project-card">
+        <div class="project-cover blue"><Lock :size="36" /><span>规划中 · 尚未开放运行</span></div>
         <div class="project-copy">
           <span class="eyebrow">{{ project.level }}</span>
           <h2>{{ project.title }}</h2>
           <p>{{ project.text }}</p>
-          <p class="scope-note">{{ project.checks }}</p>
-          <span class="pill">规划中</span>
         </div>
       </article>
     </div>
-    <RouterLink to="/map" class="subtle-link">先打好基础 <ArrowUpRight :size="16" /></RouterLink>
   </div>
 </template>

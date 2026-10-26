@@ -39,7 +39,7 @@ print('Testing real configured judge mode:',mode,flush=True)
 email='smoke-'+uuid.uuid4().hex[:10]+'@example.com'
 password=uuid.uuid4().hex
 request('/api/auth/register',{'email':email,'name':'自动化学习者','password':password})
-assert len(request('/api/lessons'))==10
+assert len(request('/api/lessons'))>=10
 run(source('System.out.println("Hello, learner!");'),'WRONG_ANSWER')
 assert request('/api/me')['completed']==[]
 run('public class Main { BROKEN }','COMPILE_ERROR')

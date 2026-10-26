@@ -14,6 +14,7 @@ const hello =
 test('real learning loop, drafts, notes and persistent progress', async ({ page }, testInfo) => {
   const errors: string[] = []
   page.on('pageerror', (e) => errors.push(e.message))
+  const publishedCount = (await (await page.request.get('/api/lessons')).json()).length
   await page.goto('/learn/hello-world')
   if (testInfo.project.name === 'process') {
     const capabilities = await (await page.request.get('/api/capabilities')).json()
@@ -56,11 +57,11 @@ test('real learning loop, drafts, notes and persistent progress', async ({ page 
   await expect(page.locator('.note-editor [role=status]')).toContainText('笔记已保存')
   await page.screenshot({ path: '../.artifacts/hello-completed.png', fullPage: true })
   await page.getByRole('link', { name: '下一关', exact: true }).click()
-  await expect(page.getByRole('heading', { name: '给数据一个名字', exact: true })).toBeVisible()
+  await expect(page.getByRole('heading', { name: '修复多行输出', exact: true })).toBeVisible()
   await page.reload()
-  await expect(page.locator('.sidebar-course')).toContainText('1 / 10')
+  await expect(page.locator('.sidebar-course')).toContainText(`1 / ${publishedCount}`)
   await page.goto('/profile')
-  await expect(page.locator('.stat-card').first()).toContainText('1 / 10')
+  await expect(page.locator('.stat-card').first()).toContainText(`1 / ${publishedCount}`)
   await page.goto('/review')
   await expect(page.locator('.review-card')).toHaveCount(2)
   await page.getByRole('button', { name: /学习笔记/ }).click()

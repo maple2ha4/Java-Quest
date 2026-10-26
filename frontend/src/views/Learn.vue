@@ -26,11 +26,13 @@ const route = useRoute(),
   router = useRouter(),
   quest = useQuest()
 const lesson = computed(() => quest.lessons.find((l) => l.id === route.params.id))
-const unlocked = computed(
+const context = computed(() => quest.context(String(route.params.id)))
+const topicLessons = computed(() => quest.topicLessons(String(route.params.id)))
+const unlocked = computed(() => !!lesson.value && quest.isUnlocked(lesson.value))
+const readOnly = computed(
   () =>
-    lesson.value &&
-    (lesson.value.order === 1 ||
-      quest.completed.includes(quest.lessons[lesson.value.order - 2]!.id)),
+    !!lesson.value?.starter.some((f) => f.name === active.value) &&
+    !lesson.value?.editableFiles.includes(active.value),
 )
 const files = ref<SourceFile[]>([]),
   active = ref('Main.java'),
@@ -50,7 +52,8 @@ const files = ref<SourceFile[]>([]),
   removeConfirm = ref(false)
 const guestDraft = ref<SourceFile[] | null>(null)
 const file = computed(() => files.value.find((f) => f.name === active.value))
-const next = computed(() => quest.lessons[lesson.value?.order || 0])
+const topicStep = computed(() => topicLessons.value.findIndex((l) => l.id === lesson.value?.id) + 1)
+const next = computed(() => quest.nextForLesson(String(route.params.id)))
 let timer: ReturnType<typeof setTimeout> | undefined,
   runCooldownTimer: ReturnType<typeof setTimeout> | undefined,
   generation = 0
@@ -103,7 +106,7 @@ async function load() {
   saveState.value = ''
   note.value = ''
   noteStatus.value = ''
-  active.value = 'Main.java'
+  active.value = lesson.value?.editableFiles[0] || 'Main.java'
   resetConfirm.value = false
   removeConfirm.value = false
   if (!lesson.value) {
@@ -198,7 +201,7 @@ async function saveDraft(
 function importGuestDraft() {
   if (!guestDraft.value || !lesson.value) return
   files.value = guestDraft.value.map((f) => ({ ...f }))
-  active.value = 'Main.java'
+  active.value = lesson.value.editableFiles[0] || files.value[0]?.name || 'Main.java'
   guestDraft.value = null
   try {
     localStorage.removeItem(`quest-draft:guest:${lesson.value.id}`)
@@ -250,21 +253,31 @@ async function run() {
 function reset() {
   if (!lesson.value) return
   files.value = lesson.value.starter.map((f) => ({ ...f }))
-  active.value = 'Main.java'
+  active.value = lesson.value.editableFiles[0] || 'Main.java'
   result.value = null
   resetConfirm.value = false
 }
 function addFile() {
   const name = newFile.value.trim()
   if (
-    !/^[A-Za-z][A-Za-z0-9_]{0,60}\.java$/.test(name) ||
-    files.value.some((f) => f.name === name) ||
+    name.length > 96 ||
+    !/^(?:[A-Za-z_][A-Za-z0-9_]{0,30}\/){0,8}[A-Za-z_][A-Za-z0-9_]{0,60}\.java$/.test(name) ||
+    files.value.some((f) => f.name.toLowerCase() === name.toLowerCase()) ||
     files.value.length >= 8
   ) {
-    error.value = '使用不重复的 Java 文件名，例如 Helper.java（最多 8 个文件）'
+    error.value =
+      '使用安全的 Java 路径，例如 Helper.java 或 src/main/java/demo/Helper.java（最多 8 个文件）'
     return
   }
-  files.value.push({ name, content: `public class ${name.slice(0, -5)} {\n\n}\n` })
+  const packageName = name
+    .replace(/^src\/main\/java\//, '')
+    .split('/')
+    .slice(0, -1)
+    .join('.')
+  files.value.push({
+    name,
+    content: `${packageName ? 'package ' + packageName + ';\n\n' : ''}public class ${name.split('/').pop()!.slice(0, -5)} {\n\n}\n`,
+  })
   active.value = name
   newFile.value = ''
   showNewFile.value = false
@@ -272,7 +285,7 @@ function addFile() {
 }
 function removeFile() {
   files.value = files.value.filter((f) => f.name !== active.value)
-  active.value = 'Main.java'
+  active.value = lesson.value?.editableFiles[0] || files.value[0]?.name || 'Main.java'
   removeConfirm.value = false
   result.value = null
 }
@@ -308,18 +321,19 @@ onBeforeUnmount(() => {
   </div>
   <div v-else class="learn-page">
     <div class="learn-heading">
-      <RouterLink to="/map" class="subtle-link"><ArrowLeft :size="16" /> Java 基础</RouterLink
+      <RouterLink to="/map" class="subtle-link"
+        ><ArrowLeft :size="16" /> {{ context?.chapter.title || '课程地图' }}</RouterLink
       ><span
-        >第 {{ lesson.order }} / {{ quest.lessons.length }} 关
+        >本知识点第 {{ topicStep }} / {{ topicLessons.length }} 步
         <span class="pill">+{{ lesson.xp }} XP</span></span
       >
     </div>
     <div class="learn-layout">
       <aside class="lesson-nav">
-        <span class="eyebrow">CHAPTER 01</span>
-        <h3>从这里，开始 Java</h3>
+        <span class="eyebrow">{{ context?.stage.title }}</span>
+        <h3>{{ context?.topic.title }}</h3>
         <RouterLink
-          v-for="l in quest.lessons"
+          v-for="l in topicLessons"
           :key="l.id"
           :to="'/learn/' + l.id"
           :class="{ current: l.id === lesson.id, completed: quest.completed.includes(l.id) }"
@@ -330,6 +344,9 @@ onBeforeUnmount(() => {
             }}</template></span
           >{{ l.shortTitle }}</RouterLink
         >
+        <RouterLink :to="{ path: '/map', query: { stage: context?.stage.id } }" class="subtle-link"
+          >本章与后续路线 <ArrowRight :size="14"
+        /></RouterLink>
         <div class="lesson-nav-note">
           <Lightbulb :size="18" />
           <p>卡住也没关系。<br />提示，随时为你准备。</p>
@@ -339,6 +356,28 @@ onBeforeUnmount(() => {
         <div class="eyebrow">{{ lesson.concept.toUpperCase() }} · {{ lesson.minutes }} MIN</div>
         <h1>{{ lesson.title }}</h1>
         <p class="lesson-summary">{{ lesson.summary }}</p>
+        <div class="lesson-tags">
+          <span class="pill">{{
+            {
+              guided: '模仿与补全',
+              debug: '定位与修复',
+              challenge: '独立实现',
+              project: '项目验收',
+            }[lesson.kind] || lesson.kind
+          }}</span
+          ><span class="pill"
+            >{{ lesson.starter.length }} 文件 · {{ lesson.buildKind }} ·
+            {{ lesson.entryClass }}</span
+          >
+        </div>
+        <p v-if="!unlocked" class="scope-note">
+          提交前需完成：{{
+            lesson.prerequisites
+              .filter((id) => !quest.completed.includes(id))
+              .map((id) => quest.lessonById(id)?.title)
+              .join('、')
+          }}
+        </p>
         <div class="lesson-objective">
           <span class="mini-label">本关目标</span>
           <p>{{ lesson.task }}</p>
@@ -431,7 +470,7 @@ onBeforeUnmount(() => {
             >
               <Plus :size="15" /></button
             ><button
-              v-if="active !== 'Main.java'"
+              v-if="!lesson.starter.some((f) => f.name === active)"
               class="text-button"
               :disabled="running"
               @click="removeConfirm = !removeConfirm"
@@ -451,10 +490,17 @@ onBeforeUnmount(() => {
               添加
             </button>
           </form>
-          <CodeEditor v-if="file" v-model="file.content" :filename="active" :readonly="running" />
+          <CodeEditor
+            v-if="file"
+            v-model="file.content"
+            :filename="active"
+            :readonly="running || readOnly"
+          />
           <div class="editor-status">
             <span>{{ saveState || (quest.user ? '服务器草稿已载入' : '草稿保存在本机') }} </span
-            ><span>Java 21 <span class="status-dot" /></span>
+            ><span
+              >{{ readOnly ? '只读调用方' : '可编辑' }} · Java 21 <span class="status-dot"
+            /></span>
           </div>
           <div class="run-toolbar">
             <span
@@ -490,7 +536,7 @@ onBeforeUnmount(() => {
               }}
             </button>
           </div>
-          <p v-if="!unlocked" class="warning">可以先阅读；完成上一关后开放运行与提交。</p>
+          <p v-if="!unlocked" class="warning">可以预习；完成列出的前置练习后开放提交。</p>
           <div v-if="error" class="error-box" role="alert">{{ error }}</div>
           <div class="output-panel" aria-live="polite">
             <div class="output-title">
