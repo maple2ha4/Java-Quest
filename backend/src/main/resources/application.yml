@@ -17,4 +17,5 @@ quest:
   judge-url: ${JUDGE_URL:http://127.0.0.1:8091}
   judge-token: ${JUDGE_TOKEN:}
   judge-enabled: ${JUDGE_ENABLED:true}
+  judge-mode: ${JUDGE_MODE:docker}
   cookie-secure: ${COOKIE_SECURE:false}

@@ -1,5 +1,7 @@
 # 架构、数据与接口
 
+原 Docker 架构见下文；后续新增了显式的受信任本地进程判题模式。它没有安全沙盒边界，详见 [判题模式切换](JUDGE-MODES.md)。只有 Docker 模式提供下述容器限制；本地模式仍将学习者代码放在独立子进程，而不是 API JVM 中。
+
 ## 服务边界
 浏览器 Vue 3/TS/Vite/Pinia/Router/Monaco → 同源 /api → Java 21/Spring Boot 3.5 REST → MySQL 8.4。
 API → 内网带共享密钥 HTTP → 独立 Python 标准库判题协调服务 → 每个测试创建一次无网络 Java 21 Docker 容器。
@@ -99,3 +101,9 @@ erDiagram
 `--spring.profiles.active=local` 启用内嵌 H2/MySQL 兼容模式文件数据库，自动执行同一份 Flyway 初始迁移。默认路径固定为 `${user.home}/.java-quest/javaquest`，可用 QUEST_DATA_DIR 覆盖；H2 不依赖独立数据库进程，数据与原 MySQL 分离，不自动迁移。API 本地监听 127.0.0.1。
 
 GET `/api/capabilities` 下发配置状态 judgeEnabled，前端依据此字段显示本地模式说明并禁用提交。local 默认 false，后端也在执行之前拒绝，绝不在主机执行代码或生成成功结果。H2 驱动是 runtime 依赖并嵌入可运行 jar；此模式不要求判题 token。若显式设置 JUDGE_ENABLED=true，仍强制校验 token 长度并调用独立判题服务，保留完整模式的资源隔离边界。judgeEnabled 仅表示配置开关，不保证远端服务健康。
+
+## 双模式 Java 判题服务
+
+Maven 额外生成 classifier=judge 的独立可执行 jar，入口 JudgeMain，无 Spring/数据库启动；API 入口保持 QuestApplication。JudgeRunner 统一校验源文件、测试协议和结果，选择 process/docker；无自动降级。process 构建器为当前 JDK 的绝对路径，分别启动 javac/java，用有界 stdout/stderr 和 deadline 监督，环境变量白名单过滤只是减少误泄露，不是权限隔离。docker 则启动一次性受限容器，将自建的受控平面文件 tar 通过 docker exec 的 stdin 写入 tmpfs，保留 read-only rootfs，不挂载宿主路径。Java 协调器与原 Python Docker 协调器兼容同一判题协议。
+
+模式在受信任启动配置中选择：off/process/docker/remote。进程模式需要 --allow-local-process，协调器核对 X-Judge-Mode 后才执行；API 验证 process 响应必须声明 process，防止错误配置被显示为容器隔离。启动脚本为本次拥有的 API/判题进程生成短期随机 token，退出时只停止自己启动的进程。三个本机模式默认使用同一 H2 文件，而不是把数据库选择和判题运行器绑定。其他电脑的数据不会自动同步。

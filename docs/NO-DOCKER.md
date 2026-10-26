@@ -1,4 +1,6 @@
-# 不安装 Docker：本地学习模式
+# 不安装 Docker：关闭判题的本地学习模式
+
+需要在无 Docker 电脑上真实运行和通关时，请看 [可切换判题指南](JUDGE-MODES.md) 的 process 模式。它只用于受信任代码，没有安全沙盒隔离。本文保留 off 模式的启动方法。
 
 此模式需要 **JDK 21、Maven 3.9+、Node.js 22.12+ 或 24**，不需要安装 Docker、MySQL、Python，也不需要创建 .env 或准备判题密钥。H2 数据库随后端依赖下载，无需单独安装。
 
@@ -78,6 +80,7 @@ H2 与原 MySQL 是两个独立数据库；切换模式不会自动迁移原有�
 
 ```powershell
 $env:JUDGE_ENABLED='true'
+$env:JUDGE_MODE='remote'
 # JUDGE_URL 设置成已有服务的基础地址，JUDGE_TOKEN 设置成它的真实密钥（至少 32 字符）。
 # 请在本机安全配置，不要把密钥发送到聊天。
 java -jar backend/target/java-quest-api-0.1.0.jar --spring.profiles.active=local

@@ -17,18 +17,23 @@ public class Learning {
     private final ObjectMapper mapper;
     private final RestClient judge;
     private final boolean judgeEnabled;
+    private final String judgeMode;
     private final Semaphore capacity=new Semaphore(2);
     public Learning(JdbcTemplate db,Curriculum curriculum,ObjectMapper mapper,
             @Value("${quest.judge-url}") String url,@Value("${quest.judge-token}") String token,
-            @Value("${quest.judge-enabled:true}") boolean judgeEnabled) {
+            @Value("${quest.judge-enabled:true}") boolean judgeEnabled,
+            @Value("${quest.judge-mode:docker}") String judgeMode) {
         this.db=db; this.curriculum=curriculum; this.mapper=mapper;
         this.judgeEnabled=judgeEnabled;
+        if(!Set.of("docker","process","remote").contains(judgeMode)) throw new IllegalArgumentException("Unknown JUDGE_MODE");
+        this.judgeMode=judgeMode;
         if(judgeEnabled && token.length()<32) throw new IllegalArgumentException("JUDGE_TOKEN must contain at least 32 characters");
         var factory=new SimpleClientHttpRequestFactory();
-        factory.setConnectTimeout(3000); factory.setReadTimeout(140000);
-        judge=judgeEnabled?RestClient.builder().baseUrl(url).requestFactory(factory).defaultHeader("X-Judge-Token",token).build():null;
+        factory.setConnectTimeout(3000); factory.setReadTimeout(240000);
+        judge=judgeEnabled?RestClient.builder().baseUrl(url).requestFactory(factory).defaultHeader("X-Judge-Token",token).defaultHeader("X-Judge-Mode",judgeMode).build():null;
     }
     public boolean judgingEnabled() { return judgeEnabled; }
+    public String judgingMode() { return judgeEnabled?judgeMode:"off"; }
     public Map<String,Object> me(long user) {
         var profile=new HashMap<>(db.queryForMap("SELECT id,email,display_name AS name,created_at AS createdAt FROM app_user WHERE id=?",user));
         var complete=db.queryForList("SELECT lesson_id FROM progress WHERE user_id=? ORDER BY completed_at",String.class,user);
@@ -61,6 +66,10 @@ public class Learning {
             byte[] payload=mapper.writeValueAsBytes(Map.of("files",files,"tests",lesson.tests()));
             JsonNode result=judge.post().uri("/judge").contentType(org.springframework.http.MediaType.APPLICATION_JSON)
                 .contentLength(payload.length).body(payload).retrieve().body(JsonNode.class);
+            if(judgeMode.equals("process") && (result==null || !"process".equals(result.path("mode").asText())))
+                throw new IllegalStateException("Local judge mode was not confirmed");
+            if(!judgeMode.equals("process") && result!=null && "process".equals(result.path("mode").asText()))
+                throw new IllegalStateException("Unexpected local process judge response");
             if(result==null || !result.path("passed").isBoolean() || !result.path("tests").isArray()
                 || result.path("totalTests").asInt()!=lesson.tests().size() || result.path("tests").isEmpty()
                 || result.path("tests").size()>lesson.tests().size()) throw new IllegalStateException("Invalid judge response");
@@ -71,7 +80,7 @@ public class Learning {
                     throw new IllegalStateException("Inconsistent judge response");
             }
             return result;
-        } catch(Exception e) { throw new ApiError(503,"隔离判题服务暂不可用，请检查 Docker、镜像和判题服务；本次没有通关"); }
+        } catch(Exception e) { throw new ApiError(503,"隔离判题服务暂不可用，请检查所选模式的判题服务；本次没有通关"); }
         finally { capacity.release(); }
     }
     @Transactional public Map<String,Object> saveResult(long user,String lessonId,List<Curriculum.SourceFile> files,JsonNode result) {

@@ -9,7 +9,8 @@
     "preview": "vite preview --host 0.0.0.0",
     "test:e2e": "playwright test",
     "format": "prettier --write src tests *.ts *.json index.html",
-    "test:local": "playwright test -c playwright.local.config.ts"
+    "test:local": "playwright test -c playwright.local.config.ts",
+    "test:process": "playwright test -c playwright.process.config.ts"
   },
   "dependencies": {
     "lucide-vue-next": "^0.468.0",

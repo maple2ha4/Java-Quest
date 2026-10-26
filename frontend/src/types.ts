@@ -34,6 +34,7 @@ export interface TestResult {
   durationMs: number
 }
 export interface JudgeResult {
+  mode?: 'process' | 'docker'
   status: string
   passed: boolean
   tests: TestResult[]
@@ -59,5 +60,6 @@ export interface Note {
 }
 
 export interface Capabilities {
+  judgeMode: 'off' | 'process' | 'docker' | 'remote'
   judgeEnabled: boolean
 }

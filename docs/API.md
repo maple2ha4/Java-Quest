@@ -55,3 +55,5 @@ API 默认端口 8080，前端在开发环境通过 Vite `/api` 同源代理。�
 ## 运行能力
 
 GET `/api/capabilities` 返回 `{"judgeEnabled":true}` 或 `{"judgeEnabled":false}`。该字段表示是否配置启用判题，不表示远端判题服务已通过健康验证。`local` profile 默认禁用判题，读取/保存课程学习数据正常，POST /submissions 对已登录用户返回 503，不执行代码、不记录失败提交、不授予进度。
+
+模式扩展：`/api/capabilities` 同时返回 judgeMode：off/process/docker/remote。API 依据 JUDGE_MODE 向可信协调器发送 X-Judge-Mode，Java 协调器在执行前核对；process 必须显式启动并提供相同模式。真实结果增加 mode 字段；API 拒绝与声明模式不符的 process 结果，成功仍按同一事务保存，不重复加 XP。Python Docker 协调器仍兼容（旧结果不含 mode），只接受它作为 Docker/remote 的服务，不能用作 process。运行能力字段不是健康保证。

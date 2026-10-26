@@ -2,22 +2,39 @@
 
 公司电脑运行与依赖网络说明见 [本地运行指南](docs/LOCAL-RUN.md)。运行本项目不需要访问 chatgpt.site。
 
-在实践中学会 Java。Vue 3 + TypeScript + Monaco 互动课堂，Spring Boot 3 / Java 21 API，MySQL 8，独立 Docker Java 判题服务。
+在实践中学会 Java。Vue 3 + TypeScript + Monaco 互动课堂，Spring Boot 3 / Java 21 API，MySQL 8，独立 Java 判题服务（本地进程 / Docker）。
 
-当前为**阶段 1 本地开发版本**：10 个基础输出练习，注册登录、进度与经验、草稿、多文件、笔记和失败提交记录。所有提交经真实容器编译/执行；判题不可用会报错，不会模拟通关。当前是输出判题，不能证明源码使用了指定语法，也不提供防作弊保证。完整方案见 [产品设计](docs/PRODUCT.md)、[架构与接口](docs/ARCHITECTURE.md)、[API 使用说明](docs/API.md) 和 [验证记录](docs/VALIDATION.md)。
+当前为**阶段 1 本地开发版本**：10 个基础输出练习，注册登录、进度与经验、草稿、多文件、笔记和失败提交记录。提交按所选模式经独立进程或容器真实编译/执行；判题不可用会报错，不会模拟通关。当前是输出判题，不能证明源码使用了指定语法，也不提供防作弊保证。完整方案见 [产品设计](docs/PRODUCT.md)、[架构与接口](docs/ARCHITECTURE.md)、[API 使用说明](docs/API.md) 和 [验证记录](docs/VALIDATION.md)。
 
 ## 目录
 
 ```text
 frontend/     Vue + Vite + Pinia + Vue Router + Monaco
 backend/      Spring Boot REST API、课程 JSON、Flyway 迁移、测试
-judge/        独立 Python 判题协调器；代码只在 Java 容器执行
+backend/.../runner/ 独立 Java 判题服务，支持 process/docker
+judge/        原 Python Docker 协调器（兼容保留）
 scripts/      环境加载与黑盒验证
 compose.yml   MySQL 8.4（命名卷持久化）
 docs/         产品、架构、实施计划与验证证据
 ```
 
-## 不安装 Docker：两个进程启动
+## 可切换的真实判题（无需 Python）
+
+公司电脑可明确选择本地独立 Java 进程判题；个人电脑可选择 Docker 容器判题。进程模式只用于自己信任的代码，没有文件/网络/CPU/PID 隔离。两模式都是真编译、真测试，学习者代码不在 Spring API JVM 内执行。
+
+```powershell
+npm ci --prefix frontend
+mvn -f backend/pom.xml verify
+# 终端 1，以下二选一：
+.\scripts\start-learning.ps1 -Mode process
+# 或已安装 Docker 时：.\scripts\start-learning.ps1 -Mode docker
+# 终端 2：
+npm run dev --prefix frontend
+```
+
+切换前在终端 1 Ctrl+C 停止，再以另一模式启动，前端刷新。两种模式在同一台电脑共用 H2 数据；不同电脑不会自动同步。默认 `-Mode off` 不执行代码。完整说明与无需运行 PowerShell 脚本的手动启动方式见 [判题模式切换指南](docs/JUDGE-MODES.md)。首次 Docker 模式需 `docker pull eclipse-temurin:21-jdk`；这些命令不使用 MySQL 容器或 Python。
+
+## 不安装 Docker：只读学习模式
 
 只需 JDK 21、Maven 3.9+、Node.js 22.12+ 或 24。H2 文件数据库随依赖安装，无需 MySQL、Python 或 .env。更新 `java-quest-mvp` 分支后：
 

@@ -143,6 +143,9 @@ const nav = [
           <div v-if="!quest.judgeEnabled" class="info-banner app-mode-notice" role="status">
             本地学习模式：隔离判题未启用。可以阅读课程、编辑代码、保存草稿和笔记，暂不能在线运行或通关。
           </div>
+          <div v-if="quest.judgeMode === 'process'" class="warning app-mode-notice" role="status">
+            本地进程判题：真实编译和运行，但没有文件、网络或进程隔离。只运行你自己编写、信任的代码，并遵守公司规定。
+          </div>
           <RouterView />
         </template>
       </main>

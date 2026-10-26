@@ -21,7 +21,7 @@ public class Api {
     public record Draft(@NotNull List<Curriculum.SourceFile> files) {}
     public record Note(@NotNull @Size(max=10000) String body) {}
     @GetMapping("/health") public Object health() { db.queryForObject("SELECT 1",Integer.class);return Map.of("status","ok"); }
-    @GetMapping("/capabilities") public Object capabilities() { return Map.of("judgeEnabled",learning.judgingEnabled()); }
+    @GetMapping("/capabilities") public Object capabilities() { return Map.of("judgeEnabled",learning.judgingEnabled(),"judgeMode",learning.judgingMode()); }
     @GetMapping("/lessons") public Object lessons() { return curriculum.all().stream().map(Curriculum.Lesson::publicView).toList(); }
     @PostMapping("/auth/register") public Object register(@Valid @RequestBody Registration body,HttpServletRequest req,HttpServletResponse res) {
         accounts.limit("auth:"+req.getRemoteAddr(),10,60000);

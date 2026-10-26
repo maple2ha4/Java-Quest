@@ -11,10 +11,15 @@ async function code(page: Page, content: string) {
 const hello =
   'public class Main { public static void main(String[] args) { System.out.println("Hello, Java Quest!"); } }'
 
-test('real learning loop, drafts, notes and persistent progress', async ({ page }) => {
+test('real learning loop, drafts, notes and persistent progress', async ({ page }, testInfo) => {
   const errors: string[] = []
   page.on('pageerror', (e) => errors.push(e.message))
   await page.goto('/learn/hello-world')
+  if (testInfo.project.name === 'process') {
+    const capabilities = await (await page.request.get('/api/capabilities')).json()
+    expect(capabilities.judgeMode).toBe('process')
+    await expect(page.locator('.app-mode-notice')).toContainText('没有文件、网络或进程隔离')
+  }
   const guestCode =
     'public class Main { public static void main(String[] args) { System.out.println("Hello, learner!"); } } // guest draft'
   await page.locator('.monaco-editor').waitFor()
@@ -27,7 +32,7 @@ test('real learning loop, drafts, notes and persistent progress', async ({ page 
     .fill('browser-' + randomUUID().slice(0, 8) + '@example.com')
   await page.getByLabel('密码', { exact: true }).fill(randomUUID())
   await page.getByRole('button', { name: '创建账户，开始探索' }).click()
-  await expect(page).toHaveURL(/learn\/hello-world$/)
+  await expect(page).toHaveURL((url) => url.pathname === '/learn/hello-world')
   await page.getByRole('button', { name: '导入未登录草稿', exact: true }).click()
   await expect(page.locator('.view-lines')).toContainText('guest draft')
   await page.locator('.monaco-editor').waitFor()

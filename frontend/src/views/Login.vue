@@ -82,7 +82,7 @@ async function submit() {
           {{ register ? '前往登录' : '创建账户' }}
         </button>
       </p>
-      <small>本地学习版本 · 进度与笔记保存到你的 MySQL 数据库</small>
+      <small>本地学习版本 · 进度与笔记保存到当前学习数据库</small>
     </form>
   </div>
 </template>

@@ -1,4 +1,4 @@
-"""Black-box real API/MySQL/Docker checks. Requires all three services running."""
+"""Black-box real API/judge checks. Uses capabilities to distinguish process, Docker and remote."""
 import http.cookiejar
 import json
 import os
@@ -14,7 +14,7 @@ def request(path, data=None, method=None, opener=client):
     req=urllib.request.Request(BASE+path, data=None if data is None else json.dumps(data).encode(),
         headers={'Content-Type':'application/json','X-Quest-Client':'1'},method=method)
     try:
-        with opener.open(req,timeout=150) as response:
+        with opener.open(req,timeout=250) as response:
             return json.load(response)
     except urllib.error.HTTPError as error:
         raise AssertionError(f'{path}: HTTP {error.code}: {error.read().decode()}') from error
@@ -30,6 +30,12 @@ def run(code, expected, lesson='hello-world', extra=None):
     print('PASS',expected,lesson)
     return response
 
+capabilities=request('/api/capabilities')
+if not capabilities['judgeEnabled']:
+    raise SystemExit('Judging is off; start process/docker or an approved remote judge first.')
+mode=capabilities.get('judgeMode','remote')
+print('Testing real configured judge mode:',mode,flush=True)
+
 email='smoke-'+uuid.uuid4().hex[:10]+'@example.com'
 password=uuid.uuid4().hex
 request('/api/auth/register',{'email':email,'name':'自动化学习者','password':password})
@@ -41,8 +47,15 @@ assert request('/api/me')['xp']==0
 run(source('while (true) {}'),'TIME_LIMIT')
 run(source('throw new IllegalStateException("test");'),'RUNTIME_ERROR')
 run(source('while (true) System.out.println("x".repeat(1000));'),'OUTPUT_LIMIT')
-# Host credentials and external network must not be reachable. Docker has loopback only.
-run(source('var n=java.net.NetworkInterface.getNetworkInterfaces(); while(n.hasMoreElements()) { var i=n.nextElement(); if(!i.isLoopback() && i.isUp()) throw new RuntimeException("external interface"); } if(!java.nio.file.Files.readString(java.nio.file.Path.of("/proc/self/status")).contains("Uid:\t65534")) throw new RuntimeException("root"); if(System.getenv("DB_PASSWORD")!=null) throw new RuntimeException("secret"); try { java.nio.file.Files.writeString(java.nio.file.Path.of("/host-write"),"bad"); throw new RuntimeException("writable root"); } catch(java.nio.file.FileSystemException expected) {} System.out.println("Hello, Java Quest!");'),'PASSED')
+# Only Docker promises host/network isolation; native process mode must not claim it.
+if mode=='docker':
+    run(source('var n=java.net.NetworkInterface.getNetworkInterfaces(); while(n.hasMoreElements()) { var i=n.nextElement(); if(!i.isLoopback() && i.isUp()) throw new RuntimeException("external interface"); } if(!java.nio.file.Files.readString(java.nio.file.Path.of("/proc/self/status")).contains("Uid:\t65534")) throw new RuntimeException("root"); if(System.getenv("DB_PASSWORD")!=null) throw new RuntimeException("secret"); try { java.nio.file.Files.writeString(java.nio.file.Path.of("/host-write"),"bad"); throw new RuntimeException("writable root"); } catch(java.nio.file.FileSystemException expected) {} System.out.println("Hello, Java Quest!");'),'PASSED')
+elif mode=='process':
+    run(source('for(String name:new String[]{"DB_PASSWORD","JUDGE_TOKEN","HTTP_PROXY","HTTPS_PROXY"}) { if(System.getenv(name)!=null) throw new RuntimeException("inherited secret"); } System.out.println("Hello, Java Quest!");'),'PASSED')
+    print('Process environment filtering checked; filesystem/network isolation is NOT provided.',flush=True)
+else:
+    run(source('System.out.println("Hello, Java Quest!");'),'PASSED')
+    print('Remote isolation properties were not inspected.',flush=True)
 profile=request('/api/me');assert profile['xp']==30 and profile['completed']==['hello-world']
 response=run(source('System.out.println(Helper.message());'),'PASSED',extra=[{'name':'Helper.java','content':'public class Helper { static String message() { return "Hello, Java Quest!"; } }'}])
 assert response['awardedXp']==0 and response['profile']['xp']==30
@@ -70,4 +83,4 @@ for lesson, body in solutions:
     run(code,'PASSED',lesson)
 assert len(request('/api/me')['completed'])==10
 assert request('/api/me')['xp']==430
-print('ALL REAL API / MYSQL / DOCKER SMOKE CHECKS PASSED')
+print('ALL REAL API / '+mode.upper()+' JUDGE SMOKE CHECKS PASSED')

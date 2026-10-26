@@ -6,7 +6,8 @@ export const useQuest = defineStore('quest', () => {
   const lessons = ref<Lesson[]>([]),
     user = ref<Profile | null>(null),
     ready = ref(false),
-    judgeEnabled = ref(false)
+    judgeEnabled = ref(false),
+    judgeMode = ref<Capabilities['judgeMode']>('off')
   const completed = computed(() => user.value?.completed || [])
   const nextLesson = computed(
     () => lessons.value.find((l) => !completed.value.includes(l.id)) || lessons.value[0],
@@ -21,6 +22,7 @@ export const useQuest = defineStore('quest', () => {
     ])
     lessons.value = course
     judgeEnabled.value = capabilities.judgeEnabled
+    judgeMode.value = capabilities.judgeMode || (capabilities.judgeEnabled ? 'remote' : 'off')
     try {
       user.value = await api<Profile>('/me')
     } catch (e) {
@@ -40,6 +42,7 @@ export const useQuest = defineStore('quest', () => {
     user,
     ready,
     judgeEnabled,
+    judgeMode,
     completed,
     nextLesson,
     percentage,

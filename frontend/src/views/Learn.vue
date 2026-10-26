@@ -36,6 +36,7 @@ const files = ref<SourceFile[]>([]),
   active = ref('Main.java'),
   loading = ref(true),
   running = ref(false),
+  coolingDown = ref(false),
   error = ref(''),
   saveState = ref(''),
   hints = ref(0),
@@ -51,6 +52,7 @@ const guestDraft = ref<SourceFile[] | null>(null)
 const file = computed(() => files.value.find((f) => f.name === active.value))
 const next = computed(() => quest.lessons[lesson.value?.order || 0])
 let timer: ReturnType<typeof setTimeout> | undefined,
+  runCooldownTimer: ReturnType<typeof setTimeout> | undefined,
   generation = 0
 const statuses: Record<string, string> = {
   PASSED: '全部测试通过',
@@ -67,6 +69,24 @@ const explanations: Record<string, string> = {
   TIME_LIMIT: '程序没有在预算内完成，也可能超出容器资源限制。检查无限循环、线程或大对象。',
   OUTPUT_LIMIT: '程序输出超过 64KiB，执行已终止。检查循环中的打印。',
 }
+function applyRunCooldown(until: number) {
+  clearTimeout(runCooldownTimer)
+  const remaining = Math.min(2200, Math.max(0, until - Date.now()))
+  coolingDown.value = remaining > 0
+  if (remaining > 0)
+    runCooldownTimer = setTimeout(() => {
+      coolingDown.value = false
+    }, remaining)
+}
+function restoreRunCooldown() {
+  let until = 0
+  try {
+    until = Number(sessionStorage.getItem(`quest-next-run:${quest.user?.id || 'guest'}`)) || 0
+  } catch {
+    /* Browser storage is optional. */
+  }
+  applyRunCooldown(until)
+}
 function localKey(id: string, user = quest.user?.id) {
   return `quest-draft:${user || 'guest'}:${id}`
 }
@@ -74,6 +94,7 @@ async function load() {
   const ticket = ++generation
   clearTimeout(timer)
   loading.value = true
+  restoreRunCooldown()
   guestDraft.value = null
   error.value = ''
   result.value = null
@@ -194,8 +215,16 @@ async function run() {
     router.push({ path: '/login', query: { redirect: route.fullPath } })
     return
   }
-  if (!lesson.value || !unlocked.value || running.value) return
+  if (!lesson.value || !unlocked.value || running.value || coolingDown.value) return
   running.value = true
+  // The API permits one submission every two seconds; native execution can finish sooner.
+  const nextRun = Date.now() + 2200
+  try {
+    sessionStorage.setItem(`quest-next-run:${quest.user.id}`, String(nextRun))
+  } catch {
+    /* Timer still works without storage. */
+  }
+  applyRunCooldown(nextRun)
   error.value = ''
   result.value = null
   awarded.value = 0
@@ -268,6 +297,7 @@ onBeforeRouteLeave(() => {
 })
 onBeforeUnmount(() => {
   clearTimeout(timer)
+  clearTimeout(runCooldownTimer)
   generation++
 })
 </script>
@@ -429,10 +459,18 @@ onBeforeUnmount(() => {
           <div class="run-toolbar">
             <span
               ><Lock :size="13" />
-              {{ quest.judgeEnabled ? '隔离容器 · 无网络' : '未连接隔离判题服务' }}</span
+              {{
+                quest.judgeMode === 'process'
+                  ? '本地进程 · 未隔离'
+                  : quest.judgeMode === 'docker'
+                    ? 'Docker 容器 · 无网络'
+                    : quest.judgeEnabled
+                      ? '独立判题服务'
+                      : '未连接判题服务'
+              }}</span
             ><button
               class="primary"
-              :disabled="running || !unlocked || !quest.judgeEnabled"
+              :disabled="running || coolingDown || !unlocked || !quest.judgeEnabled"
               @click="run"
             >
               <LoaderCircle v-if="running" :size="15" class="spin" /><Play
@@ -444,9 +482,11 @@ onBeforeUnmount(() => {
                   ? '判题未启用'
                   : running
                     ? '正在编译与测试…'
-                    : quest.user
-                      ? '运行并验证'
-                      : '登录并运行'
+                    : coolingDown
+                      ? '稍后可再次运行'
+                      : quest.user
+                        ? '运行并验证'
+                        : '登录并运行'
               }}
             </button>
           </div>
@@ -462,7 +502,13 @@ onBeforeUnmount(() => {
             </div>
             <div v-if="running" class="output-empty">
               <LoaderCircle class="spin" :size="23" />
-              <p>正在独立容器中编译并运行 Java…</p>
+              <p>
+                {{
+                  quest.judgeMode === 'process'
+                    ? '正在独立 Java 进程中编译并运行…'
+                    : '正在判题服务中编译并运行 Java…'
+                }}
+              </p>
               <small>首次运行可能需要几秒，页面会保留你的代码。</small>
             </div>
             <template v-else-if="result"

@@ -1,5 +1,7 @@
 # Java Quest 源码交付与公司电脑本地运行
 
+**需要切换本地进程/Docker 真实判题：见 [判题模式](JUDGE-MODES.md)。**
+
 **不安装 Docker：请直接使用 [本地学习模式](NO-DOCKER.md)，只需 JDK/Maven/Node，内置 H2，无需执行下文的 Docker 启动步骤。**
 
 此项目在本机运行，不依赖 ChatGPT、chatgpt.site、云预览或平台 Git 代理。源码包中的 Maven/npm 使用正常公共依赖仓库；下载源码附件的渠道与程序运行的网络依赖是两件事。
