@@ -17,6 +17,23 @@ compose.yml   MySQL 8.4（命名卷持久化）
 docs/         产品、架构、实施计划与验证证据
 ```
 
+## 不安装 Docker：两个进程启动
+
+只需 JDK 21、Maven 3.9+、Node.js 22.12+ 或 24。H2 文件数据库随依赖安装，无需 MySQL、Python 或 .env。更新 `java-quest-mvp` 分支后：
+
+```powershell
+npm ci --prefix frontend
+mvn -f backend/pom.xml verify
+# 终端 1
+java -jar backend/target/java-quest-api-0.1.0.jar --spring.profiles.active=local
+# 终端 2（同一项目根目录）
+npm run dev --prefix frontend
+```
+
+访问 `http://localhost:5173`。可以注册、阅读课程、编辑和保存草稿/笔记；未接入隔离判题时不能在线运行或通关，界面与 API 均明确禁用。数据保存在 Java 用户主目录的 `.java-quest` 文件夹，重启后保留；不会自动导入 MySQL 数据。完整说明见 [无 Docker 启动指南](docs/NO-DOCKER.md)。
+
+以下原有环境要求及启动方式适用于完整 Docker 判题模式。
+
 ## 前置条件
 
 - JDK 21（`java -version` 与 `javac -version` 都需可用），Maven 3.9+

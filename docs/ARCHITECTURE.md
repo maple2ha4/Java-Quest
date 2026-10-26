@@ -93,3 +93,9 @@ erDiagram
 - POST `/api/v1/learning-events`：有限白名单事件/去重 id/频率限制，采集需有清晰隐私说明。
 - GET/POST `/api/v1/admin/courses`、POST `/admin/lessons/{id}/revisions`、POST `/admin/revisions/{id}/publish`：管理员角色校验、审核、乐观锁与审计；发布前在可信沙盒运行课程自测。
 - Maven 配置任务采用 XML 安全解析（禁止外部实体/外部 DTD）、语义断言与受控构建；Spring 实验服务运行在临时隔离网络，仅由可信 HTTP 测试器访问；并发题采用可重放事件记录与确定性同步测试。以上都需独立 runner，不扩展成主 API 内执行代码。
+
+## 可选的无 Docker 本地学习模式
+
+`--spring.profiles.active=local` 启用内嵌 H2/MySQL 兼容模式文件数据库，自动执行同一份 Flyway 初始迁移。默认路径固定为 `${user.home}/.java-quest/javaquest`，可用 QUEST_DATA_DIR 覆盖；H2 不依赖独立数据库进程，数据与原 MySQL 分离，不自动迁移。API 本地监听 127.0.0.1。
+
+GET `/api/capabilities` 下发配置状态 judgeEnabled，前端依据此字段显示本地模式说明并禁用提交。local 默认 false，后端也在执行之前拒绝，绝不在主机执行代码或生成成功结果。H2 驱动是 runtime 依赖并嵌入可运行 jar；此模式不要求判题 token。若显式设置 JUDGE_ENABLED=true，仍强制校验 token 长度并调用独立判题服务，保留完整模式的资源隔离边界。judgeEnabled 仅表示配置开关，不保证远端服务健康。

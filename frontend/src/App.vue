@@ -139,7 +139,12 @@ const nav = [
           <button class="primary" @click="load">重新连接</button>
         </div>
         <div v-else-if="loading" class="load-state">正在准备你的学习空间…</div>
-        <RouterView v-else />
+        <template v-else>
+          <div v-if="!quest.judgeEnabled" class="info-banner app-mode-notice" role="status">
+            本地学习模式：隔离判题未启用。可以阅读课程、编辑代码、保存草稿和笔记，暂不能在线运行或通关。
+          </div>
+          <RouterView />
+        </template>
       </main>
       <footer v-if="!route.path.startsWith('/learn')">
         <span>Java Quest · 在实践中，学会编程。</span

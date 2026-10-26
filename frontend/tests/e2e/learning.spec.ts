@@ -38,7 +38,7 @@ test('real learning loop, drafts, notes and persistent progress', async ({ page 
   await page.getByRole('button', { name: '运行并验证', exact: true }).click()
   await expect(page.getByText('编译没有通过', { exact: true })).toBeVisible({ timeout: 30000 })
   await code(page, hello)
-  await expect(page.locator('.editor-status')).toContainText('已保存到云端')
+  await expect(page.locator('.editor-status')).toContainText('已保存到服务器')
   await page.reload()
   await page.locator('.monaco-editor').waitFor()
   await expect(page.locator('.view-lines')).toContainText('Hello, Java Quest!')

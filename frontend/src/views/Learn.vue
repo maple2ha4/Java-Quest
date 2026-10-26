@@ -166,12 +166,12 @@ async function saveDraft(
       body: JSON.stringify({ files: JSON.parse(snapshot) }),
     })
     if (id === lesson.value?.id) {
-      saveState.value = '已保存到云端'
+      saveState.value = '已保存到服务器'
       if (localStorage.getItem(localKey(id, userId)) === snapshot)
         localStorage.removeItem(localKey(id, userId))
     }
   } catch (e) {
-    if (id === lesson.value?.id) saveState.value = '云端保存失败：' + message(e)
+    if (id === lesson.value?.id) saveState.value = '服务器保存失败：' + message(e)
   }
 }
 function importGuestDraft() {
@@ -186,6 +186,10 @@ function importGuestDraft() {
   }
 }
 async function run() {
+  if (!quest.judgeEnabled) {
+    error.value = '当前未启用隔离判题服务。代码可编辑并保存，但不会在本机执行。'
+    return
+  }
   if (!quest.user) {
     router.push({ path: '/login', query: { redirect: route.fullPath } })
     return
@@ -419,17 +423,31 @@ onBeforeUnmount(() => {
           </form>
           <CodeEditor v-if="file" v-model="file.content" :filename="active" :readonly="running" />
           <div class="editor-status">
-            <span>{{ saveState || (quest.user ? '云端草稿已载入' : '草稿保存在本机') }} </span
+            <span>{{ saveState || (quest.user ? '服务器草稿已载入' : '草稿保存在本机') }} </span
             ><span>Java 21 <span class="status-dot" /></span>
           </div>
           <div class="run-toolbar">
-            <span><Lock :size="13" /> 隔离容器 · 无网络</span
-            ><button class="primary" :disabled="running || !unlocked" @click="run">
+            <span
+              ><Lock :size="13" />
+              {{ quest.judgeEnabled ? '隔离容器 · 无网络' : '未连接隔离判题服务' }}</span
+            ><button
+              class="primary"
+              :disabled="running || !unlocked || !quest.judgeEnabled"
+              @click="run"
+            >
               <LoaderCircle v-if="running" :size="15" class="spin" /><Play
                 v-else
                 :size="15"
                 fill="currentColor"
-              />{{ running ? '正在编译与测试…' : quest.user ? '运行并验证' : '登录并运行' }}
+              />{{
+                !quest.judgeEnabled
+                  ? '判题未启用'
+                  : running
+                    ? '正在编译与测试…'
+                    : quest.user
+                      ? '运行并验证'
+                      : '登录并运行'
+              }}
             </button>
           </div>
           <p v-if="!unlocked" class="warning">可以先阅读；完成上一关后开放运行与提交。</p>
@@ -440,7 +458,7 @@ onBeforeUnmount(() => {
               <span v-if="result"
                 >{{ result.tests.filter((t) => t.passed).length }} /
                 {{ result.totalTests }} 测试通过</span
-              ><span v-else>等待你的代码</span>
+              ><span v-else>{{ quest.judgeEnabled ? '等待你的代码' : '仅编辑与保存' }}</span>
             </div>
             <div v-if="running" class="output-empty">
               <LoaderCircle class="spin" :size="23" />
@@ -484,8 +502,18 @@ onBeforeUnmount(() => {
             ></template>
             <div v-else class="output-empty">
               <span class="terminal-prompt">&gt;_</span>
-              <p>每次运行，都是一次发现。</p>
-              <small>修改上方代码，点击「运行并验证」。</small>
+              <p>
+                {{
+                  quest.judgeEnabled
+                    ? '每次运行，都是一次发现。'
+                    : '当前为本地学习模式，不执行代码。'
+                }}
+              </p>
+              <small>{{
+                quest.judgeEnabled
+                  ? '修改上方代码，点击「运行并验证」。'
+                  : '草稿和笔记可以保留；接入隔离判题服务后可继续验证与通关。'
+              }}</small>
             </div>
           </div></template
         >

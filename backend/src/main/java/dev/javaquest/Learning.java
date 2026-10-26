@@ -16,15 +16,19 @@ public class Learning {
     private final Curriculum curriculum;
     private final ObjectMapper mapper;
     private final RestClient judge;
+    private final boolean judgeEnabled;
     private final Semaphore capacity=new Semaphore(2);
     public Learning(JdbcTemplate db,Curriculum curriculum,ObjectMapper mapper,
-            @Value("${quest.judge-url}") String url,@Value("${quest.judge-token}") String token) {
+            @Value("${quest.judge-url}") String url,@Value("${quest.judge-token}") String token,
+            @Value("${quest.judge-enabled:true}") boolean judgeEnabled) {
         this.db=db; this.curriculum=curriculum; this.mapper=mapper;
-        if(token.length()<32) throw new IllegalArgumentException("JUDGE_TOKEN must contain at least 32 characters");
+        this.judgeEnabled=judgeEnabled;
+        if(judgeEnabled && token.length()<32) throw new IllegalArgumentException("JUDGE_TOKEN must contain at least 32 characters");
         var factory=new SimpleClientHttpRequestFactory();
         factory.setConnectTimeout(3000); factory.setReadTimeout(140000);
-        judge=RestClient.builder().baseUrl(url).requestFactory(factory).defaultHeader("X-Judge-Token",token).build();
+        judge=judgeEnabled?RestClient.builder().baseUrl(url).requestFactory(factory).defaultHeader("X-Judge-Token",token).build():null;
     }
+    public boolean judgingEnabled() { return judgeEnabled; }
     public Map<String,Object> me(long user) {
         var profile=new HashMap<>(db.queryForMap("SELECT id,email,display_name AS name,created_at AS createdAt FROM app_user WHERE id=?",user));
         var complete=db.queryForList("SELECT lesson_id FROM progress WHERE user_id=? ORDER BY completed_at",String.class,user);
@@ -44,6 +48,8 @@ public class Learning {
         if(!names.contains("Main.java") || length>32768) throw new ApiError(400,"必须包含 Main.java，总代码不超过 32KiB 字符");
     }
     public JsonNode run(long user,String lessonId,List<Curriculum.SourceFile> files) {
+        // Local study mode never compiles or executes learner code on the host.
+        if(!judgeEnabled) throw new ApiError(503,"当前未启用隔离判题服务；可以保存草稿和笔记，但不能运行代码或通关");
         var lesson=curriculum.get(lessonId); validateFiles(files);
         if(lesson.order()>1) {
             var previous=curriculum.all().get(lesson.order()-2);

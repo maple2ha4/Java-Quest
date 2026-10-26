@@ -57,3 +57,7 @@ export interface Note {
   body: string
   updatedAt: string
 }
+
+export interface Capabilities {
+  judgeEnabled: boolean
+}

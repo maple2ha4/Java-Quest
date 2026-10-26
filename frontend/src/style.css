@@ -2511,3 +2511,12 @@ textarea {
     scroll-behavior: auto !important;
   }
 }
+
+.app-mode-notice {
+  margin: 20px 26px 0;
+}
+@media (max-width: 520px) {
+  .app-mode-notice {
+    margin: 16px 12px 0;
+  }
+}

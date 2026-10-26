@@ -19,7 +19,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest(properties={"spring.datasource.url=jdbc:h2:mem:quest;MODE=MySQL;DB_CLOSE_DELAY=-1;DATABASE_TO_LOWER=TRUE",
- "spring.datasource.username=sa","spring.datasource.password=","quest.judge-token=test-token-with-at-least-32-characters"})
+ "quest.judge-enabled=true","spring.datasource.username=sa","spring.datasource.password=","quest.judge-token=test-token-with-at-least-32-characters"})
 @AutoConfigureMockMvc
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class ApiTest {
@@ -47,6 +47,7 @@ class ApiTest {
     @DynamicPropertySource static void properties(DynamicPropertyRegistry r){r.add("quest.judge-url",()->"http://127.0.0.1:"+judge.getAddress().getPort());}
     @AfterAll static void stop(){judge.stop(0);}
     @Test @Order(1) void registerAndProtectRequests() throws Exception {
+        mvc.perform(get("/api/capabilities")).andExpect(jsonPath("$.judgeEnabled").value(true));
         mvc.perform(get("/api/me")).andExpect(status().isUnauthorized());
         mvc.perform(post("/api/auth/register").contentType("application/json").content("{}" )).andExpect(status().isForbidden());
         var response=mvc.perform(post("/api/auth/register").header("X-Quest-Client","1").contentType("application/json")

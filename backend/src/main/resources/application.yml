@@ -15,5 +15,6 @@ spring:
 quest:
   origin: ${FRONTEND_ORIGIN:http://localhost:5173}
   judge-url: ${JUDGE_URL:http://127.0.0.1:8091}
-  judge-token: ${JUDGE_TOKEN}
+  judge-token: ${JUDGE_TOKEN:}
+  judge-enabled: ${JUDGE_ENABLED:true}
   cookie-secure: ${COOKIE_SECURE:false}
